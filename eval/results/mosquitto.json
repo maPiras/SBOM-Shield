@@ -1,0 +1,2385 @@
+{
+  "generated_at": "2026-06-23T21:33:31.691897+00:00",
+  "target": "/home/debian/repos/mosquitto",
+  "verdict": "FAIL",
+  "summary": {
+    "total": 6,
+    "vulnerable": 2,
+    "skipped": 1,
+    "total_vulns": 39,
+    "by_severity": {
+      "CRITICAL": 1,
+      "HIGH": 18,
+      "MEDIUM": 15,
+      "LOW": 0,
+      "UNKNOWN": 5
+    }
+  },
+  "vulnerable_components": [
+    {
+      "name": "mosquitto",
+      "version": "",
+      "ecosystem": "github",
+      "highest_severity": "CRITICAL",
+      "max_cvss": 9.8,
+      "max_epss": 0.579,
+      "vulns": [
+        {
+          "id": "CVE-2024-10525",
+          "source": "NVD",
+          "severity": "CRITICAL",
+          "cvss": 9.8,
+          "epss": 0.579,
+          "epss_percentile": 0.98961,
+          "summary": "In Eclipse Mosquitto, from version 1.3.2 through 2.0.18, if a malicious broker sends a crafted SUBACK packet with no reason codes, a client using libmosquitto may make out of bounds memory access when acting in its on_subscribe callback. This affects the mosquitto_sub and mosquitto_rr clients.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Attend",
+            "score": 0.6091,
+            "rationale": "Attend: exploitation=Public PoC, exposure=Open, utility=Efficient, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "Public PoC",
+                "exposure": "Open",
+                "utility": "Efficient",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.294,
+                "epss_term": 0.2026,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2017-9131",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.02577,
+          "epss_percentile": 0.83179,
+          "summary": "An issue was discovered on Mimosa Client Radios before 2.2.3 and Mimosa Backhaul Radios before 2.2.3. By connecting to the Mosquitto broker on an access point and one of its clients, an attacker can gather enough information to craft a command that reboots the client remotely when sent to the client's Mosquitto broker, aka \"unauthenticated remote command execution.\" This command can be re-sent endlessly to act as a DoS attack on the client.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3465,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.009,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2017-9132",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.01118,
+          "epss_percentile": 0.61892,
+          "summary": "A hard-coded credentials issue was discovered on Mimosa Client Radios before 2.2.3, Mimosa Backhaul Radios before 2.2.3, and Mimosa Access Points before 2.2.3. These devices run Mosquitto, a lightweight message broker, to send information between devices. By using the vendor's hard-coded credentials to connect to the broker on any device (whether it be an AP, Client, or Backhaul model), an attacker can view all the messages being sent between the devices. If an attacker connects to an AP, the AP will leak information about any clients connected to it, including the serial numbers, which can be used to remotely factory reset the clients via a page in their web interface.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3414,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0039,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2017-7651",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.05294,
+          "epss_percentile": 0.91513,
+          "summary": "In Eclipse Mosquitto 1.4.14, a user can shutdown the Mosquitto server simply by filling the RAM memory with a lot of connections with large payload. This can be done without authentications if occur in connection phase of MQTT protocol.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.356,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0185,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2017-7652",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.01679,
+          "epss_percentile": 0.73896,
+          "summary": "In Eclipse Mosquitto 1.4.14, if a Mosquitto instance is set running with a configuration file, then sending a HUP signal to server triggers the configuration to be reloaded from disk. If there are lots of clients connected so that there are no more file descriptors/sockets available (default limit typically 1024 file descriptors on Linux), then opening the configuration file will fail.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3434,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0059,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2017-7654",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.02173,
+          "epss_percentile": 0.79947,
+          "summary": "In Eclipse Mosquitto 1.4.15 and earlier, a Memory Leak vulnerability was found within the Mosquitto Broker. Unauthenticated clients can send crafted CONNECT packets which could cause a denial of service in the Mosquitto Broker.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3451,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0076,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2018-12543",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.36013,
+          "epss_percentile": 0.98263,
+          "summary": "In Eclipse Mosquitto versions 1.5 to 1.5.2 inclusive, if a message is published to Mosquitto that has a topic starting with $, but that is not $SYS, e.g. $test/test, then an assert is triggered that should otherwise not be reachable and Mosquitto will exit.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.4635,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Efficient, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Efficient",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.126,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2018-20145",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.01645,
+          "epss_percentile": 0.73376,
+          "summary": "Eclipse Mosquitto 1.5.x before 1.5.5 allows ACL bypass: if the option per_listener_settings was set to true, and the default listener was in use, and the default listener specified an acl_file, then the acl file was being ignored.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3433,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0058,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2018-12550",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.1,
+          "epss": 0.01353,
+          "epss_percentile": 0.67964,
+          "summary": "When Eclipse Mosquitto version 1.0 to 1.5.5 (inclusive) is configured to use an ACL file, and that ACL file is empty, or contains only comments or blank lines, then Mosquitto will treat this as though no ACL file has been defined and use a default allow policy. The new behaviour is to have an empty ACL file mean that all access is denied, which is not a useful configuration but is not unexpected.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3602,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.243,
+                "epss_term": 0.0047,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2018-12551",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.1,
+          "epss": 0.01475,
+          "epss_percentile": 0.70464,
+          "summary": "When Eclipse Mosquitto version 1.0 to 1.5.5 (inclusive) is configured to use a password file for authentication, any malformed data in the password file will be treated as valid. This typically means that the malformed data becomes a username and no password. If this occurs, clients can circumvent authentication and get access to the broker by using the malformed username. In particular, a blank line will be treated as a valid empty username. Other security measures are unaffected. Users who have only used the mosquitto_passwd utility to create and modify their password files are unaffected by this vulnerability.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3607,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.243,
+                "epss_term": 0.0052,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2017-7655",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.01885,
+          "epss_percentile": 0.76811,
+          "summary": "In Eclipse Mosquitto version from 1.0 to 1.4.15, a Null Dereference vulnerability was found in the Mosquitto library which could lead to crashes for those applications using the library.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3441,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0066,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2020-13537",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.8,
+          "epss": 0.00532,
+          "epss_percentile": 0.40722,
+          "summary": "An exploitable local privilege elevation vulnerability exists in the file system permissions of Moxa MXView series 3.1.8 installation. Depending on the vector chosen, an attacker can either add code to a script or replace a binary.By default MXViewService, which starts as a NT SYSTEM authority user executes a series of Node.Js scripts to start additional application functionality and among them the mosquitto executable is also run.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3484,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.234,
+                "epss_term": 0.0019,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2021-28825",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.8,
+          "epss": 0.0023,
+          "epss_percentile": 0.13616,
+          "summary": "The Windows Installation component of TIBCO Software Inc.'s TIBCO Messaging - Eclipse Mosquitto Distribution - Core - Community Edition and TIBCO Messaging - Eclipse Mosquitto Distribution - Core - Enterprise Edition contains a vulnerability that theoretically allows a low privileged attacker with local access on some versions of the Windows operating system to insert malicious software. The affected component can be abused to execute the malicious software inserted by the attacker with the elevated privileges of the component. This vulnerability results from a lack of access restrictions on certain files and/or folders in the installation. Affected releases are TIBCO Software Inc.'s TIBCO Messaging - Eclipse Mosquitto Distribution - Core - Community Edition: versions 1.3.0 and below and TIBCO Messaging - Eclipse Mosquitto Distribution - Core - Enterprise Edition: versions 1.3.0 and below.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3773,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.264,
+                "epss_term": 0.0008,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2021-28826",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.8,
+          "epss": 0.0023,
+          "epss_percentile": 0.13616,
+          "summary": "The Windows Installation component of TIBCO Software Inc.'s TIBCO Messaging - Eclipse Mosquitto Distribution - Bridge - Community Edition and TIBCO Messaging - Eclipse Mosquitto Distribution - Bridge - Enterprise Edition contains a vulnerability that theoretically allows a low privileged attacker with local access on some versions of the Windows operating system to insert malicious software. The affected component can be abused to execute the malicious software inserted by the attacker with the elevated privileges of the component. This vulnerability results from a lack of access restrictions on certain files and/or folders in the installation. Affected releases are TIBCO Software Inc.'s TIBCO Messaging - Eclipse Mosquitto Distribution - Bridge - Community Edition: versions 1.3.0 and below and TIBCO Messaging - Eclipse Mosquitto Distribution - Bridge - Enterprise Edition: versions 1.3.0 and below.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3773,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.264,
+                "epss_term": 0.0008,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2021-34432",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.01247,
+          "epss_percentile": 0.65479,
+          "summary": "In Eclipse Mosquitto versions 2.07 and earlier, the server will crash if the client tries to send a PUBLISH packet with topic length = 0.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3419,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0044,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2021-41039",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.0126,
+          "epss_percentile": 0.65808,
+          "summary": "In versions 1.6 to 2.0.11 of Eclipse Mosquitto, an MQTT v5 client connecting with a large number of user-property properties could cause excessive CPU usage, leading to a loss of performance and possible denial of service.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3419,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0044,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2023-28366",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.01107,
+          "epss_percentile": 0.61584,
+          "summary": "The broker in Eclipse Mosquitto 1.3.2 through 2.x before 2.0.16 has a memory leak that can be abused remotely when a client sends many QoS 2 messages with duplicate message IDs, and fails to respond to PUBREC commands. This occurs because of mishandling of EAGAIN from the libc send function.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3414,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0039,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2023-5632",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.00689,
+          "epss_percentile": 0.4792,
+          "summary": "In Eclipse Mosquito before and including 2.0.5, establishing a connection to the mosquitto server without sending data causes the EPOLLOUT event to be added, which results excessive CPU consumption. This could be used by a malicious actor to perform denial of service type attack. This issue is fixed in 2.0.6\n\n\n",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3399,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0024,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2024-8376",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.00748,
+          "epss_percentile": 0.5005,
+          "summary": "In Eclipse Mosquitto up to version 2.0.18a, an attacker can achieve memory leaking, segmentation fault or heap-use-after-free by sending specific sequences of \"CONNECT\", \"DISCONNECT\", \"SUBSCRIBE\", \"UNSUBSCRIBE\" and \"PUBLISH\" packets.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3401,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0026,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2017-9868",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.5,
+          "epss": 0.00361,
+          "epss_percentile": 0.27874,
+          "summary": "In Mosquitto through 1.4.12, mosquitto.db (aka the persistence file) is world readable, which allows local users to obtain sensitive MQTT topic information.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2788,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.165,
+                "epss_term": 0.0013,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2017-7650",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.02472,
+          "epss_percentile": 0.82438,
+          "summary": "In Mosquitto before 1.4.12, pattern based ACLs can be bypassed by clients that set their username/client id to '#' or '+'. This allows locally or remotely connected clients to access MQTT topics that they do have the rights to. The same issue may be present in third party authentication/access control plugins for Mosquitto.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3162,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0087,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2017-7653",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.3,
+          "epss": 0.01454,
+          "epss_percentile": 0.70058,
+          "summary": "The Eclipse Mosquitto broker up to version 1.4.15 does not reject strings that are not valid UTF-8. A malicious client could cause other clients that do reject invalid UTF-8 strings to disconnect themselves from the broker by sending a topic string which is not valid UTF-8, and so cause a denial of service for the clients.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2766,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.159,
+                "epss_term": 0.0051,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2018-12546",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.00817,
+          "epss_percentile": 0.52363,
+          "summary": "In Eclipse Mosquitto version 1.0 to 1.5.5 (inclusive) when a client publishes a retained message to a topic, then has its access to that topic revoked, the retained message will still be published to clients that subscribe to that topic in the future. In some applications this may result in clients being able cause effects that would otherwise not be allowed.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3104,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0029,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2019-11778",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.4,
+          "epss": 0.00761,
+          "epss_percentile": 0.50506,
+          "summary": "If an MQTT v5 client connects to Eclipse Mosquitto versions 1.6.0 to 1.6.4 inclusive, sets a last will and testament, sets a will delay interval, sets a session expiry interval, and the will delay interval is set longer than the session expiry interval, then a use after free error occurs, which has the potential to cause a crash in some situations.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2772,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.162,
+                "epss_term": 0.0027,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2019-11779",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.02742,
+          "epss_percentile": 0.84234,
+          "summary": "In Eclipse Mosquitto 1.5.0 to 1.6.5 inclusive, if a malicious MQTT client sends a SUBSCRIBE packet containing a topic that consists of approximately 65400 or more '/' characters, i.e. the topic hierarchy separator, then a stack overflow will occur.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3171,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0096,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2021-28166",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.00968,
+          "epss_percentile": 0.57233,
+          "summary": "In Eclipse Mosquitto version 2.0.0 to 2.0.9, if an authenticated client that had connected with MQTT v5 sent a crafted CONNACK message to the broker, a NULL pointer dereference would occur.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3109,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0034,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2021-0229",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.3,
+          "epss": 0.01156,
+          "epss_percentile": 0.62914,
+          "summary": "An uncontrolled resource consumption vulnerability in Message Queue Telemetry Transport (MQTT) server of Juniper Networks Junos OS allows an attacker to cause MQTT server to crash and restart leading to a Denial of Service (DoS) by sending a stream of specific packets. A Juniper Extension Toolkit (JET) application designed with a listening port uses the Message Queue Telemetry Transport (MQTT) protocol to connect to a mosquitto broker that is running on Junos OS to subscribe for events. Continued receipt and processing of this packet will create a sustained Denial of Service (DoS) condition. This issue affects Juniper Networks Junos OS: 16.1R1 and later versions prior to 17.3R3-S11; 17.4 versions prior to 17.4R2-S13, 17.4R3-S4; 18.1 versions prior to 18.1R3-S12; 18.2 versions prior to 18.2R2-S8, 18.2R3-S7; 18.3 versions prior to 18.3R3-S4; 18.4 versions prior to 18.4R1-S8, 18.4R2-S7, 18.4R3-S7; 19.1 versions prior to 19.1R3-S5; 19.2 versions prior to 19.2R1-S6, 19.2R3-S2; 19.3 versions prior to 19.3R3-S2; 19.4 versions prior to 19.4R2-S4, 19.4R3-S2; 20.1 versions prior to 20.1R2-S1, 20.1R3; 20.2 versions prior to 20.2R2-S2, 20.2R3; 20.3 versions prior to 20.3R1-S1, 20.3R2. This issue does not affect Juniper Networks Junos OS versions prior to 16.1R1.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2755,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.159,
+                "epss_term": 0.004,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2021-0256",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.5,
+          "epss": 0.00208,
+          "epss_percentile": 0.10888,
+          "summary": "A sensitive information disclosure vulnerability in the mosquitto message broker of Juniper Networks Junos OS may allow a locally authenticated user with shell access the ability to read portions of sensitive files, such as the master.passwd file. Since mosquitto is shipped with setuid permissions enabled and is owned by the root user, this vulnerability may allow a local privileged user the ability to run mosquitto with root privileges and access sensitive information stored on the local filesystem. This issue affects Juniper Networks Junos OS: 17.3 versions prior to 17.3R3-S12, 17.4 versions prior to 17.4R3-S4; 18.1 versions prior to 18.1R3-S12; 18.3 versions prior to 18.3R3-S4; 19.1 versions prior to 19.1R3-S4; 19.3 versions prior to 19.3R3-S1, 19.3R3-S2; 19.4 versions prior to 19.4R2-S3; 20.1 versions prior to 20.1R2; 20.2 versions prior to 20.2R1-S3, 20.2R2, 20.2R3.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2782,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.165,
+                "epss_term": 0.0007,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2021-34431",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.01113,
+          "epss_percentile": 0.61733,
+          "summary": "In Eclipse Mosquitto version 1.6 to 2.0.10, if an authenticated client that had connected with MQTT v5 sent a crafted CONNECT message to the broker a memory leak would occur, which could be used to provide a DoS attack against the broker.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3114,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0039,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2021-34434",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.3,
+          "epss": 0.01367,
+          "epss_percentile": 0.68297,
+          "summary": "In Eclipse Mosquitto versions 2.0 to 2.0.11, when using the dynamic security plugin, if the ability for a client to make subscriptions on a topic is revoked when a durable client is offline, then existing subscriptions for that client are not revoked.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2763,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.159,
+                "epss_term": 0.0048,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2023-0809",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.8,
+          "epss": 0.00608,
+          "epss_percentile": 0.44439,
+          "summary": "In Mosquitto before 2.0.16, excessive memory is allocated based on malicious initial packets that are not CONNECT packets.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2886,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.174,
+                "epss_term": 0.0021,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2023-3592",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.8,
+          "epss": 0.00675,
+          "epss_percentile": 0.47384,
+          "summary": "In Mosquitto before 2.0.16, a memory leak occurs when clients send v5 CONNECT packets with a will message that contains invalid property types.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2889,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.174,
+                "epss_term": 0.0024,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2024-3935",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.00761,
+          "epss_percentile": 0.50499,
+          "summary": "In Eclipse Mosquito, versions from 2.0.0 through 2.0.18, if a Mosquitto broker is configured to create an outgoing bridge connection, and that bridge connection has an incoming topic configured that makes use of topic remapping, then if the remote connection sends a crafted PUBLISH packet to the broker a double free will occur with a subsequent crash of the broker.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3102,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0027,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        }
+      ],
+      "priority_bucket": "Attend",
+      "priority_score_max": 0.6091
+    },
+    {
+      "name": "libwebsockets",
+      "version": "",
+      "ecosystem": "github",
+      "highest_severity": "MEDIUM",
+      "max_cvss": 5.3,
+      "max_epss": 0.00429,
+      "vulns": [
+        {
+          "id": "CVE-2026-10650",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.3,
+          "epss": 0.00429,
+          "epss_percentile": 0.34173,
+          "summary": "A flaw has been found in warmcat libwebsockets up to 4.5.8. This issue affects the function lws_ssh_parse_plaintext of the file plugins/protocol_lws_ssh_base/sshd.c of the component SSH Protocol Handler. Executing a manipulation of the argument msg_len can lead to resource consumption. The attack may be launched remotely. The exploit has been published and may be used. This patch is called 3f9f0c6ecaf0e6f3f219d30632c5d1f2479d7498. A patch should be applied to remediate this issue.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.273,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.159,
+                "epss_term": 0.0015,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-1866",
+          "source": "NVD",
+          "severity": "UNKNOWN",
+          "cvss": null,
+          "epss": 0.00398,
+          "epss_percentile": 0.31458,
+          "summary": "Improper Restriction of Operations within the Bounds of a Memory Buffer vulnerability in warmcat libwebsockets allows Pointer Manipulation, potentially leading to out-of-bounds memory access. This issue affects libwebsockets before 4.3.4 and is present in code built specifically for the Win32 platform.\n\nBy default, the affected code is not executed unless one of the following conditions is met:\n\nLWS_WITHOUT_EXTENSIONS (default ON) is manually set to OFF in CMake.\nLWS_WITH_HTTP_STREAM_COMPRESSION (default OFF) is manually set to ON in CMake.\nDespite these conditions, when triggered in affected configurations, this vulnerability may allow attackers to manipulate pointers, potentially leading to memory corruption or unexpected behavior.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.1139,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.0,
+                "epss_term": 0.0014,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-11677",
+          "source": "NVD",
+          "severity": "UNKNOWN",
+          "cvss": null,
+          "epss": 0.00369,
+          "epss_percentile": 0.28561,
+          "summary": "Use After Free in WebSocket server implementation in lws_handshake_server in warmcat libwebsockets may allow an attacker, in specific configurations where the user provides a callback function that handles\u00a0LWS_CALLBACK_HTTP_CONFIRM_UPGRADE, to achieve denial of service.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.1138,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.0,
+                "epss_term": 0.0013,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-11678",
+          "source": "NVD",
+          "severity": "UNKNOWN",
+          "cvss": null,
+          "epss": 0.0027,
+          "epss_percentile": 0.1842,
+          "summary": "Stack-based Buffer Overflow\u00a0in lws_adns_parse_label in warmcat libwebsockets allows, when the LWS_WITH_SYS_ASYNC_DNS flag is enabled during compilation, to overflow the label_stack, when the attacker is able to sniff a DNS request in order to craft a response with a matching id containing a label longer than the maximum.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.1134,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.0,
+                "epss_term": 0.0009,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-11679",
+          "source": "NVD",
+          "severity": "UNKNOWN",
+          "cvss": null,
+          "epss": 0.00356,
+          "epss_percentile": 0.27365,
+          "summary": "Out-of-bounds Read in lws_upng_emit_next_line in warmcat libwebsockets allows, when the LWS_WITH_UPNG flag is enabled during compilation and the HTML display stack is used, to read past a heap allocated buffer possibly causing a crash, when the user visits an attacker controlled website that contains a crafted PNG file with a big height dimension.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.1137,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.0,
+                "epss_term": 0.0012,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-11680",
+          "source": "NVD",
+          "severity": "UNKNOWN",
+          "cvss": null,
+          "epss": 0.00356,
+          "epss_percentile": 0.27365,
+          "summary": "Out-of-bounds Write in unfilter_scanline in warmcat libwebsockets allows, when the LWS_WITH_UPNG flag is enabled during compilation and the HTML display stack is used, to write past a heap allocated buffer possibly causing a crash, when the user visits an attacker controlled website that contains a crafted PNG file with a big width value that causes an integer overflow which value is used for determining the size of a heap allocation.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.1137,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.0,
+                "epss_term": 0.0012,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        }
+      ],
+      "priority_bucket": "Track*",
+      "priority_score_max": 0.273
+    }
+  ],
+  "skipped": [
+    {
+      "name": "OpenSSL",
+      "reason": "version-anchored: no version recovered, keyword search skipped"
+    }
+  ],
+  "extended_coverage": {
+    "target": "/home/debian/repos/mosquitto",
+    "summary": {
+      "components_found": 32,
+      "by_category": {
+        "PROTOCOL_STACK": 4,
+        "UNKNOWN": 28
+      }
+    },
+    "components": [
+      {
+        "name": "OpenSSL",
+        "version": null,
+        "purl": "pkg:github/openssl/openssl",
+        "category": "PROTOCOL_STACK",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "<source-tree>",
+            "line": null,
+            "matched": "api_calls: BIO_f_base64, BIO_flush, BIO_free, BIO_free_all",
+            "detection_type": "api_call",
+            "source_type": "verified"
+          },
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 219,
+            "matched": "target_link_libraries: OpenSSL::SSL",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "libcommon/CMakeLists.txt",
+            "line": 76,
+            "matched": "target_link_libraries: OpenSSL::SSL",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "client/CMakeLists.txt",
+            "line": 13,
+            "matched": "target_link_libraries: OpenSSL::SSL",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "apps/db_dump/CMakeLists.txt",
+            "line": 34,
+            "matched": "target_link_libraries: OpenSSL::SSL",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "apps/mosquitto_passwd/CMakeLists.txt",
+            "line": 15,
+            "matched": "target_link_libraries: OpenSSL::SSL",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "libwebsockets",
+        "version": null,
+        "purl": "pkg:github/warmcat/libwebsockets",
+        "category": "PROTOCOL_STACK",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "<source-tree>",
+            "line": null,
+            "matched": "api_calls: lws_callback_on_writable, lws_context_destroy, lws_context_user, lws_create_context",
+            "detection_type": "api_call",
+            "source_type": "verified"
+          },
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 231,
+            "matched": "target_link_libraries: websockets",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 265,
+            "matched": "target_link_libraries: socket",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "client/CMakeLists.txt",
+            "line": 47,
+            "matched": "target_link_libraries: socket",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "src/mosquitto_broker_internal.h",
+            "line": 27,
+            "matched": "#  include <libwebsockets.h>",
+            "detection_type": "import",
+            "source_type": "remote"
+          },
+          {
+            "file": "lib/mosquitto_internal.h",
+            "line": 66,
+            "matched": "#  include <libwebsockets.h>",
+            "detection_type": "import",
+            "source_type": "remote"
+          }
+        ]
+      },
+      {
+        "name": "mosquitto",
+        "version": null,
+        "purl": "pkg:github/eclipse/mosquitto",
+        "category": "PROTOCOL_STACK",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "<source-tree>",
+            "line": null,
+            "matched": "api_calls: mosquitto_FREE, mosquitto__check_keepalive, mosquitto__cmp_hostname_wildcard, mosquitto__connect_init",
+            "detection_type": "api_call",
+            "source_type": "verified"
+          },
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 288,
+            "matched": "target_link_libraries: libmosquitto_common",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "client/CMakeLists.txt",
+            "line": 50,
+            "matched": "target_link_libraries: libmosquitto_common",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "client/CMakeLists.txt",
+            "line": 51,
+            "matched": "target_link_libraries: libmosquitto_common",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "client/CMakeLists.txt",
+            "line": 52,
+            "matched": "target_link_libraries: libmosquitto_common",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/unit/libcommon/CMakeLists.txt",
+            "line": 17,
+            "matched": "target_link_libraries: libmosquitto_common",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "paho-mqtt",
+        "version": null,
+        "purl": "pkg:pypi/paho-mqtt",
+        "category": "PROTOCOL_STACK",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "test/random/random_client.py",
+            "line": 4,
+            "matched": "import paho.mqtt.client as paho",
+            "detection_type": "import",
+            "source_type": "package_manager"
+          },
+          {
+            "file": "test/broker/03-publish-qos1-queued-bytes.py",
+            "line": 13,
+            "matched": "import paho.mqtt.client",
+            "detection_type": "import",
+            "source_type": "package_manager"
+          },
+          {
+            "file": "test/broker/03-publish-qos1-queued-bytes.py",
+            "line": 14,
+            "matched": "import paho.mqtt.publish",
+            "detection_type": "import",
+            "source_type": "package_manager"
+          }
+        ]
+      },
+      {
+        "name": "CUnit::CUnit",
+        "version": null,
+        "purl": "pkg:generic/cunit::cunit/cunit::cunit",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/unit/CMakeLists.txt",
+            "line": 13,
+            "matched": "target_link_libraries: CUnit::CUnit",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "GTest::gmock",
+        "version": null,
+        "purl": "pkg:generic/gtest::gmock/gtest::gmock",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/mock/CMakeLists.txt",
+            "line": 12,
+            "matched": "target_link_libraries: GTest::gmock",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/mock/CMakeLists.txt",
+            "line": 20,
+            "matched": "target_link_libraries: GTest::gmock",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/mock/libcommon/CMakeLists.txt",
+            "line": 25,
+            "matched": "target_link_libraries: GTest::gmock",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/mock/lib/CMakeLists.txt",
+            "line": 28,
+            "matched": "target_link_libraries: GTest::gmock",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/mock/apps/mosquitto_ctrl/CMakeLists.txt",
+            "line": 19,
+            "matched": "target_link_libraries: GTest::gmock",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "GTest::gmock_main",
+        "version": null,
+        "purl": "pkg:generic/gtest::gmock-main/gtest::gmock-main",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/apps/ctrl/CMakeLists.txt",
+            "line": 38,
+            "matched": "target_link_libraries: GTest::gmock_main",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/apps/ctrl/CMakeLists.txt",
+            "line": 72,
+            "matched": "target_link_libraries: GTest::gmock_main",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "LineEditing::LineEditing",
+        "version": null,
+        "purl": "pkg:generic/lineediting::lineediting/lineediting::lineediting",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/apps/ctrl/CMakeLists.txt",
+            "line": 72,
+            "matched": "target_link_libraries: LineEditing::LineEditing",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "apps/mosquitto_ctrl/CMakeLists.txt",
+            "line": 34,
+            "matched": "target_link_libraries: LineEditing::LineEditing",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "apps/mosquitto_ctrl/CMakeLists.txt",
+            "line": 49,
+            "matched": "target_link_libraries: LineEditing::LineEditing",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "apps/mosquitto_ctrl/CMakeLists.txt",
+            "line": 67,
+            "matched": "target_link_libraries: LineEditing::LineEditing",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "PThreads4W::PThreads4W",
+        "version": null,
+        "purl": "pkg:generic/pthreads4w::pthreads4w/pthreads4w::pthreads4w",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "apps/mosquitto_ctrl/CMakeLists.txt",
+            "line": 104,
+            "matched": "target_link_libraries: PThreads4W::PThreads4W",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "Threads::Threads",
+        "version": null,
+        "purl": "pkg:generic/threads::threads/threads::threads",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 215,
+            "matched": "target_link_libraries: Threads::Threads",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "client/CMakeLists.txt",
+            "line": 33,
+            "matched": "target_link_libraries: Threads::Threads",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "apps/mosquitto_ctrl/CMakeLists.txt",
+            "line": 108,
+            "matched": "target_link_libraries: Threads::Threads",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "anl",
+        "version": null,
+        "purl": "pkg:generic/anl/anl",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 125,
+            "matched": "target_link_libraries: anl",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "argon2",
+        "version": null,
+        "purl": "pkg:generic/argon2/argon2",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "libcommon/CMakeLists.txt",
+            "line": 60,
+            "matched": "target_link_libraries: argon2",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "bridge-topic-obj",
+        "version": null,
+        "purl": "pkg:generic/bridge-topic-obj/bridge-topic-obj",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/unit/broker/CMakeLists.txt",
+            "line": 15,
+            "matched": "target_link_libraries: bridge-topic-obj",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "cJSON",
+        "version": null,
+        "purl": "pkg:generic/cjson/cjson",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 275,
+            "matched": "target_link_libraries: cJSON",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "libcommon/CMakeLists.txt",
+            "line": 53,
+            "matched": "target_link_libraries: cJSON",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "client/CMakeLists.txt",
+            "line": 37,
+            "matched": "target_link_libraries: cJSON",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/unit/CMakeLists.txt",
+            "line": 13,
+            "matched": "target_link_libraries: cJSON",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/mock/libcommon/CMakeLists.txt",
+            "line": 25,
+            "matched": "target_link_libraries: cJSON",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "client-common",
+        "version": null,
+        "purl": "pkg:generic/client-common/client-common",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "client/CMakeLists.txt",
+            "line": 50,
+            "matched": "target_link_libraries: client-common",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "client/CMakeLists.txt",
+            "line": 51,
+            "matched": "target_link_libraries: client-common",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "client/CMakeLists.txt",
+            "line": 52,
+            "matched": "target_link_libraries: client-common",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "common-options",
+        "version": null,
+        "purl": "pkg:generic/common-options/common-options",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 288,
+            "matched": "target_link_libraries: common-options",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "libcommon/CMakeLists.txt",
+            "line": 53,
+            "matched": "target_link_libraries: common-options",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "client/CMakeLists.txt",
+            "line": 4,
+            "matched": "target_link_libraries: common-options",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "plugins/CMakeLists.txt",
+            "line": 15,
+            "matched": "target_link_libraries: common-options",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "lib/cpp/CMakeLists.txt",
+            "line": 16,
+            "matched": "target_link_libraries: common-options",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "common-unit-test-header",
+        "version": null,
+        "purl": "pkg:generic/common-unit-test-header/common-unit-test-header",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/unit/libcommon/CMakeLists.txt",
+            "line": 17,
+            "matched": "target_link_libraries: common-unit-test-header",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/unit/lib/CMakeLists.txt",
+            "line": 17,
+            "matched": "target_link_libraries: common-unit-test-header",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/unit/broker/CMakeLists.txt",
+            "line": 8,
+            "matched": "target_link_libraries: common-unit-test-header",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/unit/broker/CMakeLists.txt",
+            "line": 15,
+            "matched": "target_link_libraries: common-unit-test-header",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/unit/broker/CMakeLists.txt",
+            "line": 25,
+            "matched": "target_link_libraries: common-unit-test-header",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "ctrl_shell",
+        "version": null,
+        "purl": "pkg:generic/ctrl-shell/ctrl-shell",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "apps/mosquitto_ctrl/CMakeLists.txt",
+            "line": 67,
+            "matched": "target_link_libraries: ctrl_shell",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "ctrl_shell_io",
+        "version": null,
+        "purl": "pkg:generic/ctrl-shell-io/ctrl-shell-io",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "apps/mosquitto_ctrl/CMakeLists.txt",
+            "line": 67,
+            "matched": "target_link_libraries: ctrl_shell_io",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "dl",
+        "version": null,
+        "purl": "pkg:generic/dl/dl",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 257,
+            "matched": "target_link_libraries: dl",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 267,
+            "matched": "target_link_libraries: dl",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "apps/mosquitto_ctrl/CMakeLists.txt",
+            "line": 82,
+            "matched": "target_link_libraries: dl",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "apps/mosquitto_ctrl/CMakeLists.txt",
+            "line": 90,
+            "matched": "target_link_libraries: dl",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "editline_mock",
+        "version": null,
+        "purl": "pkg:generic/editline-mock/editline-mock",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/apps/ctrl/CMakeLists.txt",
+            "line": 38,
+            "matched": "target_link_libraries: editline_mock",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "iphlpapi",
+        "version": null,
+        "purl": "pkg:generic/iphlpapi/iphlpapi",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 233,
+            "matched": "target_link_libraries: iphlpapi",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "jemalloc",
+        "version": null,
+        "purl": "pkg:generic/jemalloc/jemalloc",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "CMakeLists.txt",
+            "line": 188,
+            "matched": "target_link_libraries: jemalloc",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "log",
+        "version": null,
+        "purl": "pkg:generic/log/log",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 252,
+            "matched": "target_link_libraries: log",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "network",
+        "version": null,
+        "purl": "pkg:generic/network/network",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 263,
+            "matched": "target_link_libraries: network",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "persistence-read-obj",
+        "version": null,
+        "purl": "pkg:generic/persistence-read-obj/persistence-read-obj",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/unit/broker/CMakeLists.txt",
+            "line": 51,
+            "matched": "target_link_libraries: persistence-read-obj",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "persistence-write-obj",
+        "version": null,
+        "purl": "pkg:generic/persistence-write-obj/persistence-write-obj",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/unit/broker/CMakeLists.txt",
+            "line": 85,
+            "matched": "target_link_libraries: persistence-write-obj",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "pthread_mock",
+        "version": null,
+        "purl": "pkg:generic/pthread-mock/pthread-mock",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/apps/ctrl/CMakeLists.txt",
+            "line": 38,
+            "matched": "target_link_libraries: pthread_mock",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/apps/ctrl/CMakeLists.txt",
+            "line": 72,
+            "matched": "target_link_libraries: pthread_mock",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "subs-obj",
+        "version": null,
+        "purl": "pkg:generic/subs-obj/subs-obj",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/unit/broker/CMakeLists.txt",
+            "line": 111,
+            "matched": "target_link_libraries: subs-obj",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "websockets_shared",
+        "version": null,
+        "purl": "pkg:generic/websockets-shared/websockets-shared",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 236,
+            "matched": "target_link_libraries: websockets_shared",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "wrap",
+        "version": null,
+        "purl": "pkg:generic/wrap/wrap",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 168,
+            "matched": "target_link_libraries: wrap",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "ws2_32",
+        "version": null,
+        "purl": "pkg:generic/ws2-32/ws2-32",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "src/CMakeLists.txt",
+            "line": 272,
+            "matched": "target_link_libraries: ws2_32",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/unit/lib/CMakeLists.txt",
+            "line": 19,
+            "matched": "target_link_libraries: ws2_32",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/unit/broker/CMakeLists.txt",
+            "line": 53,
+            "matched": "target_link_libraries: ws2_32",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/unit/broker/CMakeLists.txt",
+            "line": 87,
+            "matched": "target_link_libraries: ws2_32",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/unit/broker/CMakeLists.txt",
+            "line": 113,
+            "matched": "target_link_libraries: ws2_32",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "enrichment": {
+      "added": 3,
+      "skipped_duplicate": 1,
+      "skipped_no_purl": 0,
+      "skipped_low_confidence": 28,
+      "injected_components": [
+        {
+          "name": "OpenSSL",
+          "version": "",
+          "purl": "pkg:github/openssl/openssl"
+        },
+        {
+          "name": "libwebsockets",
+          "version": "",
+          "purl": "pkg:github/warmcat/libwebsockets"
+        },
+        {
+          "name": "mosquitto",
+          "version": "",
+          "purl": "pkg:github/eclipse/mosquitto"
+        }
+      ]
+    }
+  },
+  "detected": [],
+  "sbom_generation": {
+    "cdxgen_used": true,
+    "syft_used": false,
+    "online_resolution": false
+  },
+  "sbom_components": [
+    {
+      "name": "paho-mqtt",
+      "version": "2.1.0",
+      "purl": "pkg:pypi/paho-mqtt@2.1.0",
+      "ecosystem": "pypi",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "psutil",
+      "version": "7.2.2",
+      "purl": "pkg:pypi/psutil@7.2.2",
+      "ecosystem": "pypi",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "pywin32",
+      "version": "311",
+      "purl": "pkg:pypi/pywin32@311",
+      "ecosystem": "pypi",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "OpenSSL",
+      "version": "",
+      "purl": "pkg:github/openssl/openssl",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    },
+    {
+      "name": "libwebsockets",
+      "version": "",
+      "purl": "pkg:github/warmcat/libwebsockets",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    },
+    {
+      "name": "mosquitto",
+      "version": "",
+      "purl": "pkg:github/eclipse/mosquitto",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    }
+  ],
+  "indirect_components": [],
+  "priority": {
+    "profile": {
+      "name": "production_ot",
+      "exposure": "network",
+      "criticality": "production",
+      "update_cadence_days": 365
+    },
+    "buckets": {
+      "Act": 0,
+      "Attend": 1,
+      "Track*": 38,
+      "Track": 0
+    }
+  },
+  "version": "benchmark",
+  "benchmark": true
+}

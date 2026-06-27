@@ -1,0 +1,83 @@
+{
+  "metrics": {
+    "overall": {
+      "label": "ALL",
+      "n": 17,
+      "n_score_cvss": 17,
+      "n_bucket": 17,
+      "spearman_score_vs_vendor_cvss": {
+        "rho": 0.9511,
+        "p": 4.688581560663775e-09,
+        "n": 17
+      },
+      "spearman_baseline_our_cvss_vs_vendor_cvss": {
+        "rho": 0.993,
+        "p": 2.604772287985857e-15,
+        "n": 17
+      },
+      "cohen_kappa_bucket": 0.0,
+      "bucket_agreement_rate": 0.0,
+      "bucket_mean_abs_distance": 2
+    },
+    "siemens": {
+      "label": "Siemens",
+      "n": 16,
+      "n_score_cvss": 16,
+      "n_bucket": 16,
+      "spearman_score_vs_vendor_cvss": {
+        "rho": 0.9487,
+        "p": 2.1929784251868806e-08,
+        "n": 16
+      },
+      "spearman_baseline_our_cvss_vs_vendor_cvss": {
+        "rho": 1.0,
+        "p": 0.0,
+        "n": 16
+      },
+      "cohen_kappa_bucket": 0.0,
+      "bucket_agreement_rate": 0.0,
+      "bucket_mean_abs_distance": 2
+    },
+    "cisa": {
+      "label": "CISA",
+      "n": 1,
+      "n_score_cvss": 1,
+      "n_bucket": 1,
+      "spearman_score_vs_vendor_cvss": {
+        "rho": NaN,
+        "p": NaN,
+        "n": 1
+      },
+      "spearman_baseline_our_cvss_vs_vendor_cvss": {
+        "rho": NaN,
+        "p": NaN,
+        "n": 1
+      },
+      "cohen_kappa_bucket": 0.0,
+      "bucket_agreement_rate": 0.0,
+      "bucket_mean_abs_distance": 2
+    }
+  },
+  "per_component": [
+    {
+      "component": "mbedTLS",
+      "cves": 16,
+      "act": 0,
+      "attend": 0,
+      "trackstar": 16,
+      "track": 0,
+      "vendor_cvss_avg": 7.97
+    },
+    {
+      "component": "threadx",
+      "cves": 1,
+      "act": 0,
+      "attend": 0,
+      "trackstar": 1,
+      "track": 0,
+      "vendor_cvss_avg": 9.8
+    }
+  ],
+  "n_total_pairs": 17,
+  "n_unique_cves": 5
+}

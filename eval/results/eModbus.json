@@ -1,0 +1,1141 @@
+{
+  "generated_at": "2026-06-25T22:22:24.625134+00:00",
+  "target": "/home/debian/repos/eModbus",
+  "verdict": "FAIL",
+  "summary": {
+    "total": 3,
+    "vulnerable": 1,
+    "skipped": 0,
+    "total_vulns": 26,
+    "by_severity": {
+      "CRITICAL": 2,
+      "HIGH": 10,
+      "MEDIUM": 10,
+      "LOW": 0,
+      "UNKNOWN": 4
+    }
+  },
+  "vulnerable_components": [
+    {
+      "name": "Arduino",
+      "version": "",
+      "ecosystem": "github",
+      "highest_severity": "CRITICAL",
+      "max_cvss": 9.9,
+      "max_epss": 0.09258,
+      "vulns": [
+        {
+          "id": "CVE-2024-45798",
+          "source": "NVD",
+          "severity": "CRITICAL",
+          "cvss": 9.9,
+          "epss": 0.00769,
+          "epss_percentile": 0.50883,
+          "summary": "arduino-esp32 is an Arduino core for the ESP32, ESP32-S2, ESP32-S3, ESP32-C3, ESP32-C6 and ESP32-H2 microcontrollers. The `arduino-esp32` CI is vulnerable to multiple Poisoned Pipeline Execution (PPE) vulnerabilities. Code injection in `tests_results.yml` workflow (`GHSL-2024-169`) and environment Variable injection (`GHSL-2024-170`). These issue have been addressed but users are advised to verify the contents of the downloaded artifacts.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.4122,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.297,
+                "epss_term": 0.0027,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-42854",
+          "source": "NVD",
+          "severity": "CRITICAL",
+          "cvss": 9.8,
+          "epss": 0.00571,
+          "epss_percentile": 0.42848,
+          "summary": "arduino-esp32 is an Arduino core for the ESP32, ESP32-S2, ESP32-S3, ESP32-C3, ESP32-C6 and ESP32-H2 microcontrollers. Prior to 3.3.8, the WebServer multipart form parser in arduino-esp32 allocates a Variable Length Array (VLA) on the stack whose size is derived from an attacker-controlled HTTP header field (Content-Type: multipart/form-data; boundary=...) without enforcing any length limit. Sending a boundary string longer than ~8000 characters overflows the 8192-byte task stack of the loopTask, causing a crash and potential remote code execution. This vulnerability is fixed in 3.3.8.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.4085,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.294,
+                "epss_term": 0.002,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2018-17614",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.8,
+          "epss": 0.09258,
+          "epss_percentile": 0.9472,
+          "summary": "This vulnerability allows remote attackers to execute arbitrary code on vulnerable installations of Losant Arduino MQTT Client prior to V2.7. User interaction is not required to exploit this vulnerability. The specific flaw exists within the parsing of MQTT PUBLISH packets. The issue results from the lack of proper validation of the length of user-supplied data prior to copying it to a fixed-length stack-based buffer. An attacker can leverage this vulnerability to execute code in the context of the current process. Was ZDI-CAN-6436.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.4089,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.264,
+                "epss_term": 0.0324,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2023-43802",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.1,
+          "epss": 0.00354,
+          "epss_percentile": 0.27239,
+          "summary": "Arduino Create Agent is a package to help manage Arduino development. This vulnerability affects the endpoint `/upload` which handles request with the `filename` parameter. A user who has the ability to perform HTTP requests to the localhost interface, or is able to bypass the CORS configuration, can escalate their privileges to those of the user running the Arduino Create Agent service via a crafted HTTP POST request. This issue has been addressed in version `1.3.3`. Users are advised to upgrade. There are no known workarounds for this vulnerability.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3267,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.213,
+                "epss_term": 0.0012,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2023-43800",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.3,
+          "epss": 0.00211,
+          "epss_percentile": 0.11337,
+          "summary": "Arduino Create Agent is a package to help manage Arduino development. The vulnerability affects the endpoint `/v2/pkgs/tools/installed`. A user who has the ability to perform HTTP requests to the localhost interface, or is able to bypass the CORS configuration, can escalate his privileges to those of the user running the Arduino Create Agent service via a crafted HTTP POST request. This issue has been addressed in version `1.3.3`. Users are advised to upgrade. There are no known workarounds for this issue.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3322,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.219,
+                "epss_term": 0.0007,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2024-43488",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.8,
+          "epss": 0.01132,
+          "epss_percentile": 0.62344,
+          "summary": "Missing authentication for critical function in Visual Studio Code extension for Arduino allows an unauthenticated attacker to perform remote code execution through network attack vector.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3805,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.264,
+                "epss_term": 0.004,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-64724",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.3,
+          "epss": 0.00104,
+          "epss_percentile": 0.01223,
+          "summary": "Arduino IDE is an integrated development environment. Prior to version 2.3.7, Arduino IDE for macOS is installed with world-writable file permissions on sensitive application components, allowing any local user to replace legitimate files with malicious code. When another user launches the application, the malicious code executes with that user's privileges, enabling privilege escalation and unauthorized access to sensitive data. The fix is included starting from the `2.3.7` release.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3319,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.219,
+                "epss_term": 0.0004,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-28519",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.8,
+          "epss": 0.00396,
+          "epss_percentile": 0.31385,
+          "summary": "arduino-TuyaOpen before version 1.2.1 contains a heap-based buffer overflow vulnerability in the DnsServer component. An attacker on the same local area network who controls the LAN DNS server can send malicious DNS responses to overflow the heap buffer, potentially allowing execution of arbitrary code on affected embedded devices.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3779,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.264,
+                "epss_term": 0.0014,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-28520",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.4,
+          "epss": 0.00193,
+          "epss_percentile": 0.09154,
+          "summary": "arduino-TuyaOpen before version 1.2.1 contains a single-byte buffer overflow vulnerability in the WiFiMulti component. When the victim's smart hardware connects to an attacker-controlled AP hotspot, the attacker can exploit the overflow to execute arbitrary code on the affected embedded device.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3652,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.252,
+                "epss_term": 0.0007,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-28521",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.7,
+          "epss": 0.00212,
+          "epss_percentile": 0.1144,
+          "summary": "arduino-TuyaOpen before version 1.2.1 contains an out-of-bounds memory read vulnerability in the TuyaIoT component. An attacker who hijacks or controls the Tuya cloud service can issue malicious DP event data to victim devices, causing out-of-bounds memory access that may result in information disclosure or a denial-of-service condition.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3442,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.231,
+                "epss_term": 0.0007,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-41429",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.8,
+          "epss": 0.00307,
+          "epss_percentile": 0.22344,
+          "summary": "arduino-esp32 is an Arduino core for the ESP32, ESP32-S2, ESP32-S3, ESP32-C3, ESP32-C6 and ESP32-H2 microcontrollers. Prior to 3.3.8, there is a remotely reachable memory corruption issue in the NBNS packet handling path. When NetBIOS is enabled by calling NBNS.begin(...), the device listens on UDP port 137 and processes untrusted NBNS requests from the local network.\nThe request parser trusts the attacker-controlled name_len field without enforcing a bound consistent with the fixed-size destination buffers used later in the flow. This vulnerability is fixed in 3.3.8.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3776,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.264,
+                "epss_term": 0.0011,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-42855",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.00351,
+          "epss_percentile": 0.26939,
+          "summary": "arduino-esp32 is an Arduino core for the ESP32, ESP32-S2, ESP32-S3, ESP32-C3, ESP32-C6 and ESP32-H2 microcontrollers. Prior to 3.3.8, the WebServer Digest authentication implementation in arduino-esp32 computes the authentication hash using the URI field from the client's Authorization header, without verifying that it matches the actual requested URI. This allows an attacker who possesses any valid digest response (computed for URI-A) to authenticate requests to a completely different protected URI (URI-B), bypassing per-resource access control. This vulnerability is fixed in 3.3.8.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3387,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0012,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2015-4590",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.0,
+          "epss": 0.02647,
+          "epss_percentile": 0.83676,
+          "summary": "The extractFrom function in Internals/QuotedString.cpp in Arduino JSON before 4.5 allows remote attackers to cause a denial of service (crash) via a JSON string with a \\ (backslash) followed by a terminator, as demonstrated by \"\\\\\\0\", which triggers a buffer overflow and over-read.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2718,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.15,
+                "epss_term": 0.0093,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2019-13991",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.00667,
+          "epss_percentile": 0.47148,
+          "summary": "Embedded systems based on Arduino before Rev3 allow remote attackers to send data to LEDs (directly connected to GPIO pins) via a laser, because of LED photosensitivity.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3098,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0023,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2023-43803",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.1,
+          "epss": 0.00326,
+          "epss_percentile": 0.24341,
+          "summary": "Arduino Create Agent is a package to help manage Arduino development. This vulnerability affects the endpoint `/v2/pkgs/tools/installed` and the way it handles plugin names supplied as user input. A user who has the ability to perform HTTP requests to the localhost interface, or is able to bypass the CORS configuration, can delete arbitrary files or folders belonging to the user that runs the Arduino Create Agent via a crafted HTTP POST request. This issue has been addressed in version `1.3.3`. Users are advised to upgrade. There are no known workarounds for this vulnerability.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2966,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.183,
+                "epss_term": 0.0011,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2023-43801",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.1,
+          "epss": 0.00326,
+          "epss_percentile": 0.24341,
+          "summary": "Arduino Create Agent is a package to help manage Arduino development. This vulnerability affects the endpoint `/v2/pkgs/tools/installed` and the way it handles plugin names supplied as user input. A user who has the ability to perform HTTP requests to the localhost interface, or is able to bypass the CORS configuration, can delete arbitrary files or folders belonging to the user that runs the Arduino Create Agent via a crafted HTTP DELETE request. This issue has been addressed in version `1.3.3`. Users are advised to upgrade. There are no known workarounds for this issue.\n",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2966,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.183,
+                "epss_term": 0.0011,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2023-49296",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.3,
+          "epss": 0.0026,
+          "epss_percentile": 0.17297,
+          "summary": "The Arduino Create Agent allows users to use the Arduino Create applications to upload code to any USB connected Arduino board directly from the browser. A vulnerability in versions prior to 1.3.6 affects the endpoint `/certificate.crt` and the way the web interface of the ArduinoCreateAgent handles custom error messages. An attacker that is able to persuade a victim into clicking on a malicious link can perform a Reflected Cross-Site Scripting attack on the web interface of the create agent, which would allow the attacker to execute arbitrary browser client side code. Version 1.3.6 contains a fix for the issue.\n",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3024,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.189,
+                "epss_term": 0.0009,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-50740",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.1,
+          "epss": 0.00244,
+          "epss_percentile": 0.15383,
+          "summary": "AutoConnect 1.4.2, an Arduino library, is vulnerable to a cross site scripting (xss) vulnerability. The AutoConnect web interface /_ac/config allows HTML/JS code to be executed via a crafted network SSID.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2964,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.183,
+                "epss_term": 0.0009,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-64723",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 4.4,
+          "epss": 0.00106,
+          "epss_percentile": 0.01316,
+          "summary": "Arduino IDE is an integrated development environment. Prior to version 2.3.7, Arduino IDE for macOS was configured with overly permissive security entitlements that could bypass macOS Hardened Runtime protections. This configuration allows attackers to inject malicious dynamic libraries into the application process, gaining access to all TCC (Transparency, Consent, and Control) permissions granted to the application. The fix is included starting from the `2.3.7 ` release.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2449,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.132,
+                "epss_term": 0.0004,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-25933",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.8,
+          "epss": 0.00151,
+          "epss_percentile": 0.04652,
+          "summary": "Arduino App Lab is a cross-platform IDE for developing Arduino Apps. Prior to 0.4.0, a vulnerability was identified in the Terminal component of the arduino-app-lab application. The issue stems from insufficient sanitization and validation of input data received from connected hardware devices, specifically in the _info.Serial and _info.Address metadata fields. The problem occurs during device information handling. When a board is connected, the application collects identifying attributes to establish a terminal session. Because strict validation is not enforced for the Serial and Address parameters, an attacker with control over the connected hardware can supply specially crafted strings containing shell metacharacters. The exploitation requires direct physical access to a previously tampered board. When the host system processes these fields, any injected payload is executed with the privileges of the user running arduino-app-lab. This vulnerability is fixed in 0.4.0.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.317,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.204,
+                "epss_term": 0.0005,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-28522",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.00271,
+          "epss_percentile": 0.18625,
+          "summary": "arduino-TuyaOpen before version 1.2.1 contains a null pointer dereference vulnerability in the WiFiUDP component. An attacker on the same local area network can send a large volume of malicious UDP packets that trigger a null pointer dereference, resulting in a denial-of-service condition.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3084,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0009,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-26399",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.3,
+          "epss": 0.00179,
+          "epss_percentile": 0.07606,
+          "summary": "A stack-use-after-return issue exists in the Arduino_Core_STM32 library prior to version 1.7.0. The pwm_start() function allocates a TIM_HandleTypeDef structure on the stack and passes its address to HAL initialization routines, where it is stored in a global timer handle registry. After the function returns, interrupt service routines may dereference this dangling pointer, resulting in memory corruption.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2721,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.159,
+                "epss_term": 0.0006,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-27608",
+          "source": "NVD",
+          "severity": "UNKNOWN",
+          "cvss": null,
+          "epss": 0.00177,
+          "epss_percentile": 0.07469,
+          "summary": "Arduino IDE 2.x is an IDE based on the Theia IDE framework and built with Electron. A Self Cross-Site Scripting (XSS) vulnerability has been identified within the Arduino-IDE prior to version v2.3.5. The vulnerability occurs in the Additional Board Manager URLs field, which can be found in the Preferences -> Settings section of the Arduino IDE interface. In the vulnerable versions, any values entered in this field are directly displayed to the user through a notification tooltip object, without a proper output encoding routine, due to the underlying ElectronJS engine interpretation. This vulnerability exposes the input parameter to Self-XSS attacks, which may lead to security risks depending on where the malicious payload is injected. This vulnerability is fixed in 2.3.5.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.1131,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.0,
+                "epss_term": 0.0006,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-53007",
+          "source": "NVD",
+          "severity": "UNKNOWN",
+          "cvss": null,
+          "epss": 0.00396,
+          "epss_percentile": 0.31434,
+          "summary": "arduino-esp32 provides an Arduino core for the ESP32. Versions prior to 3.3.0-RC1 and 3.2.1 contain a HTTP Response Splitting vulnerability. The `sendHeader` function takes arbitrary input for the HTTP header name and value, concatenates them into an HTTP header line, and appends this to the outgoing HTTP response headers. There is no validation or sanitization of the `name` or `value` parameters before they are included in the HTTP response. If an attacker can control the input to `sendHeader` (either directly or indirectly), they could inject carriage return (`\\r`) or line feed (`\\n`) characters into either the header name or value. This could allow the attacker to inject additional headers, manipulate the structure of the HTTP response, potentially inject an entire new HTTP response (HTTP Response Splitting), and/or ause header confusion or other HTTP protocol attacks. Versions 3.3.0-RC1 and 3.2.1 contain a fix for the issue.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.1139,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.0,
+                "epss_term": 0.0014,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-53540",
+          "source": "NVD",
+          "severity": "UNKNOWN",
+          "cvss": null,
+          "epss": 0.00299,
+          "epss_percentile": 0.21532,
+          "summary": "arduino-esp32 is an Arduino core for the ESP32, ESP32-S2, ESP32-S3, ESP32-C3, ESP32-C6 and ESP32-H2 microcontrollers. Several OTA update examples and the HTTPUpdateServer implementation are vulnerable to Cross-Site Request Forgery (CSRF). The update endpoints accept POST requests for firmware uploads without CSRF protection. This allows an attacker to upload and execute arbitrary firmware, resulting in remote code execution (RCE). This vulnerability is fixed in 3.2.1.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.1135,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.0,
+                "epss_term": 0.001,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-69209",
+          "source": "NVD",
+          "severity": "UNKNOWN",
+          "cvss": null,
+          "epss": 0.00149,
+          "epss_percentile": 0.04438,
+          "summary": "ArduinoCore-avr contains the source code and configuration files of the Arduino AVR Boards platform. A vulnerability in versions prior to 1.8.7 allows an attacker to trigger a stack-based buffer overflow when converting floating-point values to strings with high precision. By passing very large `decimalPlaces` values to the affected String constructors or concat methods, the `dtostrf` function writes beyond fixed-size stack buffers, causing memory corruption and denial of service. Under specific conditions, this could enable arbitrary code execution on AVR-based Arduino boards.\n\n### Patches\n\n- The Fix is included starting from the `1.8.7` release available from the following link [ArduinoCore-avr v1.8.7](https://github.com/arduino/ArduinoCore-avr)\n\n- The Fixing Commit is available at the following link [1a6a417f89c8901dad646efce74ae9d3ddebfd59](https://github.com/arduino/ArduinoCore-avr/pull/613/commits/1a6a417f89c8901dad646efce74ae9d3ddebfd59)\n\n### References\n\n- [ASEC-26-001 ArduinoCore-avr vXXXX Resolves Buffer Overflow Vulnerability](https://support.arduino.cc/hc/en-us/articles/XXXXX)\n\n### Credits\n\n- Maxime Rossi Bellom and Ramtine Tofighi Shirazi from SecMate (https://secmate.dev/)",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.113,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.0,
+                "epss_term": 0.0005,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        }
+      ],
+      "priority_bucket": "Track*",
+      "priority_score_max": 0.4122
+    }
+  ],
+  "skipped": [],
+  "extended_coverage": {
+    "target": "/home/debian/repos/eModbus",
+    "summary": {
+      "components_found": 3,
+      "by_category": {
+        "RTOS": 3
+      }
+    },
+    "components": [
+      {
+        "name": "Arduino",
+        "version": null,
+        "purl": "pkg:github/arduino/Arduino",
+        "category": "RTOS",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "<source-tree>",
+            "line": null,
+            "matched": "api_calls: digitalWrite, pinMode",
+            "detection_type": "api_call",
+            "source_type": "verified"
+          },
+          {
+            "file": "src/ModbusServer.cpp",
+            "line": 5,
+            "matched": "#include <Arduino.h>",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "Test/TCPstub.cpp",
+            "line": 5,
+            "matched": "#include <Arduino.h>",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "Test/main.cpp",
+            "line": 5,
+            "matched": "#include <Arduino.h>",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "examples/RP2040_RTUserver/main.cpp",
+            "line": 5,
+            "matched": "#include <Arduino.h>",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "examples/TCPEthernetServer/main.cpp",
+            "line": 6,
+            "matched": "#include <Arduino.h>",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "FreeRTOS-Kernel",
+        "version": null,
+        "purl": "pkg:github/FreeRTOS/FreeRTOS-Kernel",
+        "category": "RTOS",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "<source-tree>",
+            "line": null,
+            "matched": "api_calls: xTaskCreate",
+            "detection_type": "api_call",
+            "source_type": "verified"
+          },
+          {
+            "file": "src/ModbusClientRTU.cpp",
+            "line": 94,
+            "matched": "xTaskCreate((TaskFunction_t)&handleConnection, taskName, CLIENT_TASK_STACK, this, 6, &worker);",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "src/ModbusClient.h",
+            "line": 22,
+            "matched": "#include <FreeRTOS.h>",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "src/ModbusServerRTU.h",
+            "line": 24,
+            "matched": "#include <FreeRTOS.h>",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "src/ModbusServerRTU.cpp",
+            "line": 103,
+            "matched": "xTaskCreate((TaskFunction_t)&serve, taskName, SERVER_TASK_STACK, this, 8,",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "platformio",
+        "version": null,
+        "purl": "pkg:pypi/platformio",
+        "category": "RTOS",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "examples/Linux/platformio.ini",
+            "line": 24,
+            "matched": "[env:native]",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "enrichment": {
+      "added": 3,
+      "skipped_duplicate": 0,
+      "skipped_no_purl": 0,
+      "skipped_low_confidence": 0,
+      "injected_components": [
+        {
+          "name": "Arduino",
+          "version": "",
+          "purl": "pkg:github/arduino/Arduino"
+        },
+        {
+          "name": "FreeRTOS-Kernel",
+          "version": "",
+          "purl": "pkg:github/FreeRTOS/FreeRTOS-Kernel"
+        },
+        {
+          "name": "platformio",
+          "version": "",
+          "purl": "pkg:pypi/platformio"
+        }
+      ]
+    }
+  },
+  "detected": [],
+  "sbom_generation": {
+    "cdxgen_used": true,
+    "syft_used": false,
+    "online_resolution": false
+  },
+  "sbom_components": [
+    {
+      "name": "Arduino",
+      "version": "",
+      "purl": "pkg:github/arduino/Arduino",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    },
+    {
+      "name": "FreeRTOS-Kernel",
+      "version": "",
+      "purl": "pkg:github/FreeRTOS/FreeRTOS-Kernel",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    },
+    {
+      "name": "platformio",
+      "version": "",
+      "purl": "pkg:pypi/platformio",
+      "ecosystem": "pypi",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    }
+  ],
+  "indirect_components": [],
+  "priority": {
+    "profile": {
+      "name": "production_ot",
+      "exposure": "network",
+      "criticality": "production",
+      "update_cadence_days": 365
+    },
+    "buckets": {
+      "Act": 0,
+      "Attend": 0,
+      "Track*": 26,
+      "Track": 0
+    }
+  },
+  "version": "benchmark",
+  "benchmark": true
+}

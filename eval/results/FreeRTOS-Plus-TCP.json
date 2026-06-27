@@ -1,0 +1,1198 @@
+{
+  "generated_at": "2026-06-23T19:35:43.155070+00:00",
+  "target": "/home/debian/repos/FreeRTOS-Plus-TCP",
+  "verdict": "FAIL",
+  "summary": {
+    "total": 4,
+    "vulnerable": 2,
+    "skipped": 0,
+    "total_vulns": 15,
+    "by_severity": {
+      "CRITICAL": 3,
+      "HIGH": 4,
+      "MEDIUM": 8,
+      "LOW": 0,
+      "UNKNOWN": 0
+    }
+  },
+  "vulnerable_components": [
+    {
+      "name": "FreeRTOS-Plus-TCP",
+      "version": "",
+      "ecosystem": "github",
+      "highest_severity": "CRITICAL",
+      "max_cvss": 9.6,
+      "max_epss": 0.00615,
+      "vulns": [
+        {
+          "id": "CVE-2024-38373",
+          "source": "NVD",
+          "severity": "CRITICAL",
+          "cvss": 9.6,
+          "epss": 0.00615,
+          "epss_percentile": 0.44767,
+          "summary": "FreeRTOS-Plus-TCP is a lightweight TCP/IP stack for FreeRTOS. FreeRTOS-Plus-TCP versions 4.0.0 through 4.1.0 contain a buffer over-read issue in the DNS Response Parser when parsing domain names in a DNS response. A carefully crafted DNS response with domain name length value greater than the actual domain name length, could cause the parser to read beyond the DNS response buffer. This issue affects applications using DNS functionality of the FreeRTOS-Plus-TCP stack. Applications that do not use DNS functionality are not affected, even when the DNS functionality is enabled. This vulnerability has been patched in version 4.1.1.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.4027,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.288,
+                "epss_term": 0.0022,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-7424",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.1,
+          "epss": 0.00223,
+          "epss_percentile": 0.12673,
+          "summary": "Integer underflow in the DHCPv6 sub-option parser in FreeRTOS-Plus-TCP before V4.4.1 and V4.2.6 allows an adjacent network actor to corrupt the device's IPv6 address assignment, DNS configuration, and lease times, and to cause a denial of service (permanent IP task freeze requiring hardware reset) by sending a single crafted DHCPv6 packet.\n\n\n\n\n\n\n\n\nThe issue is present whenever DHCPv6 is enabled.\n\n\n\n\n\n\n\n\nTo mitigate this issue, users should upgrade to version V4.2.6 or V4.4.1 or newer.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3563,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.243,
+                "epss_term": 0.0008,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-7426",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.1,
+          "epss": 0.00246,
+          "epss_percentile": 0.15598,
+          "summary": "Insufficient validation of the prefix length field in IPv6 Router Advertisement processing in FreeRTOS-Plus-TCP before V4.2.6 and V4.4.1 allows an adjacent network actor to cause memory corruption by sending a crafted Router Advertisement with a prefix length value exceeding the maximum valid length, resulting in a heap buffer overflow. Users processing IPv4 RA only are not impacted.\n\n\n\nTo mitigate this issue, users should upgrade to the fixed version when available.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3564,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.243,
+                "epss_term": 0.0009,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-11616",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.4,
+          "epss": 0.00279,
+          "epss_percentile": 0.19431,
+          "summary": "A missing validation check in FreeRTOS-Plus-TCP's ICMPv6 packet processing code can lead to an out-of-bounds read when receiving ICMPv6 packets of certain message types which are smaller than the expected size.\u00a0These issues only affect applications using IPv6.\n\nUsers should upgrade to the latest version and ensure any forked or derivative code is patched to incorporate the new fixes.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2755,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.162,
+                "epss_term": 0.001,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-11617",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.4,
+          "epss": 0.00279,
+          "epss_percentile": 0.19431,
+          "summary": "A missing validation check in FreeRTOS-Plus-TCP's IPv6 packet processing code can lead to an out-of-bounds read when receiving a IPv6 packet with incorrect payload lengths in the packet header.\u00a0This issue only affects applications using IPv6.\n\nWe recommend users upgrade to the latest version and ensure any forked or derivative code is patched to incorporate the new fixes.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2755,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.162,
+                "epss_term": 0.001,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-11618",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 4.3,
+          "epss": 0.00308,
+          "epss_percentile": 0.22273,
+          "summary": "A missing validation check in FreeRTOS-Plus-TCP's UDP/IPv6 packet processing code can lead to an invalid pointer dereference when receiving a UDP/IPv6 packet with an incorrect IP version field in the packet header.\u00a0This issue only affects applications using IPv6.\n\nWe recommend upgrading to the latest version and ensure any forked or derivative code is patched to incorporate the new fixes.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2426,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.129,
+                "epss_term": 0.0011,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-7422",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.00177,
+          "epss_percentile": 0.07375,
+          "summary": "Insufficient packet validation in FreeRTOS-Plus-TCP before V4.2.6 and V4.4.1 allows an adjacent network actor to bypass all checksum and minimum-size validation by spoofing the Ethernet source MAC address to match one of the device's own registered endpoints, because the loopback detection mechanism skips all input validation for packets whose source MAC matches a local endpoint.\n\n\n\nTo mitigate this issue, users should upgrade to the fixed version when available.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3081,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0006,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-7423",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 5.3,
+          "epss": 0.00221,
+          "epss_percentile": 0.12447,
+          "summary": "Integer underflow in the ICMP and ICMPv6 echo reply handlers in FreeRTOS-Plus-TCP before V4.4.1 and V4.2.6 allows an adjacent network user to cause a denial of service (device crash) when outgoing ping support is enabled, because header sizes are subtracted from a packet length field without validating the field is large enough, resulting in a heap out-of-bounds read of up to approximately 65KB.\n\n\n\nTo mitigate this issue, users should upgrade to the fixed version when available.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2723,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.159,
+                "epss_term": 0.0008,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-7425",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.00233,
+          "epss_percentile": 0.13898,
+          "summary": "Insufficient option length validation in the IPv6 Router Advertisement parser in FreeRTOS-Plus-TCP before V4.2.6 and V4.4.1 allows an adjacent network actor to cause a denial of service (device crash) by sending a crafted Router Advertisement with a truncated PREFIX_INFORMATION option that is smaller than the expected structure size.\n\n\n\nTo mitigate this issue, users should upgrade to the fixed version when available.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3083,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0008,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        }
+      ],
+      "priority_bucket": "Track*",
+      "priority_score_max": 0.4027
+    },
+    {
+      "name": "lwIP",
+      "version": "",
+      "ecosystem": "github",
+      "highest_severity": "CRITICAL",
+      "max_cvss": 9.8,
+      "max_epss": 0.01377,
+      "vulns": [
+        {
+          "id": "CVE-2024-7490",
+          "source": "NVD",
+          "severity": "CRITICAL",
+          "cvss": 9.8,
+          "epss": 0.01377,
+          "epss_percentile": 0.68516,
+          "summary": "Improper Input Validation vulnerability in Microchip Techology Advanced Software Framework example DHCP server can cause remote code execution through a buffer overflow.\n This vulnerability is associated with program files tinydhcpserver.C and program routines lwip_dhcp_find_option.\n\nThis issue affects Advanced Software Framework: through 3.52.0.2574.\n\n\nASF is no longer being supported. Apply provided workaround or migrate to an actively maintained framework.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.4113,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.294,
+                "epss_term": 0.0048,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-8836",
+          "source": "NVD",
+          "severity": "CRITICAL",
+          "cvss": 9.8,
+          "epss": 0.01016,
+          "epss_percentile": 0.58786,
+          "summary": "A vulnerability was found in lwIP up to 2.2.1. Affected is the function snmp_parse_inbound_frame of the file src/apps/snmp/snmp_msg.c of the component snmpv3 USM Handler. Performing a manipulation of the argument msgAuthenticationParameters results in stack-based buffer overflow. The attack may be initiated remotely. The patch is named 0c957ec03054eb6c8205e9c9d1d05d90ada3898c. It is suggested to install a patch to address this issue.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.4101,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.294,
+                "epss_term": 0.0036,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2020-22283",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.01366,
+          "epss_percentile": 0.6827,
+          "summary": "A buffer overflow vulnerability in the icmp6_send_response_with_addrs_and_netif() function of Free Software Foundation lwIP version git head allows attackers to access sensitive information via a crafted ICMPv6 packet.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3423,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0048,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2020-22284",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.01173,
+          "epss_percentile": 0.63448,
+          "summary": "A buffer overflow vulnerability in the zepif_linkoutput() function of Free Software Foundation lwIP git head version and version 2.1.2 allows attackers to access sensitive information via a crafted 6LoWPAN packet.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3416,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0041,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2014-4883",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 4.3,
+          "epss": 0.00572,
+          "epss_percentile": 0.42808,
+          "summary": "resolv.c in the DNS resolver in uIP, and dns.c in the DNS resolver in lwIP 1.4.1 and earlier, does not use random values for ID fields and source ports of DNS query packets, which makes it easier for man-in-the-middle attackers to conduct cache-poisoning attacks via spoofed reply packets.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2435,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.129,
+                "epss_term": 0.002,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-45160",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.00246,
+          "epss_percentile": 0.15627,
+          "summary": "ESF-IDF is the Espressif Internet of Things (IOT) Development Framework. In versions 5.2.7, 5.3.5, 5.4.4, 5.5.4, and 6.0.1, an out-of-bounds read flaw exists in the DHCP server option parser (parse_options() in components/lwip/apps/dhcpserver/dhcpserver.c) shipped with ESP-IDF's lwIP component. The parser walks the BOOTP/DHCP options field without validating that each option's length byte and declared payload length stay within the received packet buffer. A crafted DHCP request can cause the parser to read past the end of the options buffer into adjacent heap memory. The issue affects the DHCP server used by ESP-IDF's SoftAP and any configuration where the device runs as a DHCP server on a local network. This issue has been patched in versions 5.2.8, 5.3.6, 5.4.5, 5.5.5, and 6.0.2.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3084,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0009,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        }
+      ],
+      "priority_bucket": "Track*",
+      "priority_score_max": 0.4113
+    }
+  ],
+  "skipped": [],
+  "extended_coverage": {
+    "target": "/home/debian/repos/FreeRTOS-Plus-TCP",
+    "summary": {
+      "components_found": 21,
+      "by_category": {
+        "RTOS": 1,
+        "PROTOCOL_STACK": 2,
+        "BSP_HAL": 3,
+        "UNKNOWN": 15
+      }
+    },
+    "components": [
+      {
+        "name": "FreeRTOS-Kernel",
+        "version": null,
+        "purl": "pkg:github/FreeRTOS/FreeRTOS-Kernel",
+        "category": "RTOS",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "<source-tree>",
+            "line": null,
+            "matched": "api_calls: vTaskDelay, vTaskStartScheduler, xQueueCreate, xSemaphoreCreateMutex",
+            "detection_type": "api_call",
+            "source_type": "verified"
+          },
+          {
+            "file": ".gitmodules",
+            "line": null,
+            "matched": ".gitmodules [url=https://github.com/FreeRTOS/FreeRTOS-Kernel, sha=dbf70559b27d]",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/FreeRTOS-Kernel",
+            "line": null,
+            "matched": "pinned at commit dbf70559b27d39c1fdb68dfb9a32140b6a6777a0",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          },
+          {
+            "file": "CMakeLists.txt",
+            "line": 162,
+            "matched": "CMake [url=https://github.com/FreeRTOS/FreeRTOS-Kernel.git, tag=main]",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          },
+          {
+            "file": "CMakeLists.txt",
+            "line": 141,
+            "matched": "target_link_libraries: freertos_kernel",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "tools/CMakeLists.txt",
+            "line": 33,
+            "matched": "target_link_libraries: freertos_kernel",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "FreeRTOS-Plus-TCP",
+        "version": null,
+        "purl": "pkg:github/FreeRTOS/FreeRTOS-Plus-TCP",
+        "category": "PROTOCOL_STACK",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "<source-tree>",
+            "line": null,
+            "matched": "api_calls: FreeRTOS_AddEndPoint, FreeRTOS_AddNetworkInterface, FreeRTOS_AllEndPointsUp, FreeRTOS_ClearARP",
+            "detection_type": "api_call",
+            "source_type": "verified"
+          },
+          {
+            "file": "CMakeLists.txt",
+            "line": 141,
+            "matched": "target_link_libraries: freertos_plus_tcp_port\\n\"",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "CMakeLists.txt",
+            "line": 141,
+            "matched": "target_link_libraries: freertos_plus_tcp_network_if_common\\n\"",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "tools/CMakeLists.txt",
+            "line": 33,
+            "matched": "target_link_libraries: freertos_plus_tcp",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/build-combination/CMakeLists.txt",
+            "line": 165,
+            "matched": "target_link_libraries: freertos_plus_tcp",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "source/portable/CMakeLists.txt",
+            "line": 29,
+            "matched": "target_link_libraries: freertos_plus_tcp",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "lwIP",
+        "version": null,
+        "purl": "pkg:github/lwip-tcpip/lwip",
+        "category": "PROTOCOL_STACK",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/Zynq/x_emacpsif_hw.h",
+            "line": 23,
+            "matched": "/*#include \"lwip/netif.h\" */",
+            "detection_type": "import",
+            "source_type": "package_manager"
+          }
+        ]
+      },
+      {
+        "name": "nxp-fsl",
+        "version": null,
+        "purl": null,
+        "category": "BSP_HAL",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/NXP1060/NetworkInterface.c",
+            "line": 38,
+            "matched": "#include \"fsl_device_registers.h\"",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "source/portable/NetworkInterface/LPC54018/NetworkInterface.c",
+            "line": 41,
+            "matched": "#include \"fsl_enet.h\"",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "stm32-hal",
+        "version": null,
+        "purl": null,
+        "category": "BSP_HAL",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/STM32/Legacy/STM32Hxx/stm32hxx_hal_eth.h",
+            "line": 45,
+            "matched": "#error Please define ETH_TX_DESC_CNT in your stm32h7xx_hal_conf.h",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "source/portable/NetworkInterface/STM32/Legacy/STM32Fxx/stm32fxx_hal_eth.h",
+            "line": 48,
+            "matched": "#include \"stm32f7xx_hal.h\"",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "source/portable/NetworkInterface/STM32/CMakeLists.txt",
+            "line": 14,
+            "matched": "Drivers/F4/stm32f4xx_hal_eth.c>",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "source/portable/NetworkInterface/STM32/Legacy/STM32Hxx/CMakeLists.txt",
+            "line": 11,
+            "matched": "stm32h7xx_hal_eth.h",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "source/portable/NetworkInterface/STM32/Legacy/STM32Fxx/CMakeLists.txt",
+            "line": 11,
+            "matched": "# stm32f2xx_hal_eth.h",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "ti-driverlib",
+        "version": null,
+        "purl": null,
+        "category": "BSP_HAL",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/TM4C/NetworkInterface.c",
+            "line": 41,
+            "matched": "#include \"driverlib/flash.h\"",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "PRIVATE\\n\"",
+        "version": null,
+        "purl": "pkg:generic/private\\n\"/private\\n\"",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "CMakeLists.txt",
+            "line": 141,
+            "matched": "target_link_libraries: PRIVATE\\n\"",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "PUBLIC\\n\"",
+        "version": null,
+        "purl": "pkg:generic/public\\n\"/public\\n\"",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "CMakeLists.txt",
+            "line": 141,
+            "matched": "target_link_libraries: PUBLIC\\n\"",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "Threads::Threads",
+        "version": null,
+        "purl": "pkg:generic/threads::threads/threads::threads",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/linux/CMakeLists.txt",
+            "line": 30,
+            "matched": "target_link_libraries: Threads::Threads",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "Where",
+        "version": null,
+        "purl": "pkg:generic/where/where",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/SH2A/CMakeLists.txt",
+            "line": 13,
+            "matched": "target_link_libraries: Where",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "esp32_lib",
+        "version": null,
+        "purl": "pkg:generic/esp32-lib/esp32-lib",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/esp32/CMakeLists.txt",
+            "line": 16,
+            "matched": "target_link_libraries: esp32_lib",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "for",
+        "version": null,
+        "purl": "pkg:generic/for/for",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "source/CMakeLists.txt",
+            "line": 101,
+            "matched": "target_link_libraries: for",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "hwEthernet.h?",
+        "version": null,
+        "purl": "pkg:generic/hwethernet-h?/hwethernet-h?",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/SH2A/CMakeLists.txt",
+            "line": 13,
+            "matched": "target_link_libraries: hwEthernet.h?",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "hwEthernetLib",
+        "version": null,
+        "purl": "pkg:generic/hwethernetlib/hwethernetlib",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/SH2A/CMakeLists.txt",
+            "line": 13,
+            "matched": "target_link_libraries: hwEthernetLib",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "is",
+        "version": null,
+        "purl": "pkg:generic/is/is",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/SH2A/CMakeLists.txt",
+            "line": 13,
+            "matched": "target_link_libraries: is",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "lpc17xx_driver",
+        "version": null,
+        "purl": "pkg:generic/lpc17xx-driver/lpc17xx-driver",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/LPC17xx/CMakeLists.txt",
+            "line": 16,
+            "matched": "target_link_libraries: lpc17xx_driver",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "lpc18xx_driver",
+        "version": null,
+        "purl": "pkg:generic/lpc18xx-driver/lpc18xx-driver",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/LPC18xx/CMakeLists.txt",
+            "line": 16,
+            "matched": "target_link_libraries: lpc18xx_driver",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "lpc54018_driver",
+        "version": null,
+        "purl": "pkg:generic/lpc54018-driver/lpc54018-driver",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/LPC54018/CMakeLists.txt",
+            "line": 16,
+            "matched": "target_link_libraries: lpc54018_driver",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "pack_struct_start.h",
+        "version": null,
+        "purl": "pkg:generic/pack-struct-start-h/pack-struct-start-h",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "source/CMakeLists.txt",
+            "line": 101,
+            "matched": "target_link_libraries: pack_struct_start.h",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "slirp",
+        "version": null,
+        "purl": "pkg:generic/slirp/slirp",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/libslirp/CMakeLists.txt",
+            "line": 17,
+            "matched": "target_link_libraries: slirp",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "xil_bsp",
+        "version": null,
+        "purl": "pkg:generic/xil-bsp/xil-bsp",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "source/portable/NetworkInterface/xilinx_ultrascale/CMakeLists.txt",
+            "line": 27,
+            "matched": "target_link_libraries: xil_bsp",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "source/portable/NetworkInterface/xilinx_ultrascale/CMakeLists.txt",
+            "line": 61,
+            "matched": "target_link_libraries: xil_bsp",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "source/portable/NetworkInterface/Zynq/CMakeLists.txt",
+            "line": 27,
+            "matched": "target_link_libraries: xil_bsp",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "source/portable/NetworkInterface/Zynq/CMakeLists.txt",
+            "line": 64,
+            "matched": "target_link_libraries: xil_bsp",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "enrichment": {
+      "added": 3,
+      "skipped_duplicate": 0,
+      "skipped_no_purl": 3,
+      "skipped_low_confidence": 15,
+      "injected_components": [
+        {
+          "name": "FreeRTOS-Kernel",
+          "version": "",
+          "purl": "pkg:github/FreeRTOS/FreeRTOS-Kernel"
+        },
+        {
+          "name": "FreeRTOS-Plus-TCP",
+          "version": "",
+          "purl": "pkg:github/FreeRTOS/FreeRTOS-Plus-TCP"
+        },
+        {
+          "name": "lwIP",
+          "version": "",
+          "purl": "pkg:github/lwip-tcpip/lwip"
+        }
+      ]
+    }
+  },
+  "detected": [
+    {
+      "name": "nxp-fsl",
+      "category": "BSP_HAL",
+      "confidence": "HIGH",
+      "reason": "no_purl",
+      "matches": [
+        {
+          "file": "source/portable/NetworkInterface/NXP1060/NetworkInterface.c",
+          "line": 38,
+          "matched": "#include \"fsl_device_registers.h\"",
+          "detection_type": "build_system",
+          "source_type": "unknown"
+        },
+        {
+          "file": "source/portable/NetworkInterface/LPC54018/NetworkInterface.c",
+          "line": 41,
+          "matched": "#include \"fsl_enet.h\"",
+          "detection_type": "build_system",
+          "source_type": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "stm32-hal",
+      "category": "BSP_HAL",
+      "confidence": "HIGH",
+      "reason": "no_purl",
+      "matches": [
+        {
+          "file": "source/portable/NetworkInterface/STM32/Legacy/STM32Hxx/stm32hxx_hal_eth.h",
+          "line": 45,
+          "matched": "#error Please define ETH_TX_DESC_CNT in your stm32h7xx_hal_conf.h",
+          "detection_type": "build_system",
+          "source_type": "unknown"
+        },
+        {
+          "file": "source/portable/NetworkInterface/STM32/Legacy/STM32Fxx/stm32fxx_hal_eth.h",
+          "line": 48,
+          "matched": "#include \"stm32f7xx_hal.h\"",
+          "detection_type": "build_system",
+          "source_type": "unknown"
+        },
+        {
+          "file": "source/portable/NetworkInterface/STM32/CMakeLists.txt",
+          "line": 14,
+          "matched": "Drivers/F4/stm32f4xx_hal_eth.c>",
+          "detection_type": "build_system",
+          "source_type": "unknown"
+        }
+      ]
+    },
+    {
+      "name": "ti-driverlib",
+      "category": "BSP_HAL",
+      "confidence": "HIGH",
+      "reason": "no_purl",
+      "matches": [
+        {
+          "file": "source/portable/NetworkInterface/TM4C/NetworkInterface.c",
+          "line": 41,
+          "matched": "#include \"driverlib/flash.h\"",
+          "detection_type": "build_system",
+          "source_type": "unknown"
+        }
+      ]
+    }
+  ],
+  "sbom_generation": {
+    "cdxgen_used": true,
+    "syft_used": false,
+    "online_resolution": false
+  },
+  "sbom_components": [
+    {
+      "name": "FreeRTOS+TCP",
+      "version": "",
+      "purl": "pkg:generic/FreeRTOS%2BTCP",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "FreeRTOS-Kernel",
+      "version": "",
+      "purl": "pkg:github/FreeRTOS/FreeRTOS-Kernel",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    },
+    {
+      "name": "FreeRTOS-Plus-TCP",
+      "version": "",
+      "purl": "pkg:github/FreeRTOS/FreeRTOS-Plus-TCP",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    },
+    {
+      "name": "lwIP",
+      "version": "",
+      "purl": "pkg:github/lwip-tcpip/lwip",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    }
+  ],
+  "indirect_components": [],
+  "priority": {
+    "profile": {
+      "name": "production_ot",
+      "exposure": "network",
+      "criticality": "production",
+      "update_cadence_days": 365
+    },
+    "buckets": {
+      "Act": 0,
+      "Attend": 0,
+      "Track*": 15,
+      "Track": 0
+    }
+  },
+  "version": "benchmark",
+  "benchmark": true
+}

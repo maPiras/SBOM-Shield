@@ -1,0 +1,114 @@
+{
+  "generated_at": "2026-06-23T20:34:10.802120+00:00",
+  "target": "/home/debian/repos/busybox",
+  "verdict": "PASS",
+  "summary": {
+    "total": 1,
+    "vulnerable": 0,
+    "skipped": 1,
+    "total_vulns": 0,
+    "by_severity": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "UNKNOWN": 0
+    }
+  },
+  "vulnerable_components": [],
+  "skipped": [
+    {
+      "name": "wolfSSL",
+      "reason": "version-anchored: no version recovered, keyword search skipped"
+    }
+  ],
+  "extended_coverage": {
+    "target": "/home/debian/repos/busybox",
+    "summary": {
+      "components_found": 1,
+      "by_category": {
+        "PROTOCOL_STACK": 1
+      }
+    },
+    "components": [
+      {
+        "name": "wolfSSL",
+        "version": null,
+        "purl": "pkg:github/wolfSSL/wolfssl",
+        "category": "PROTOCOL_STACK",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "<source-tree>",
+            "line": null,
+            "matched": "api_calls: wolfSSL_CIPHER_get_name, wolfSSL_CTX_new, wolfSSL_CTX_set_verify, wolfSSL_FreeX509",
+            "detection_type": "api_call",
+            "source_type": "verified"
+          },
+          {
+            "file": "networking/ssl_helper-wolfssl/ssl_helper.c",
+            "line": 35,
+            "matched": "#include <wolfssl/wolfcrypt/types.h>",
+            "detection_type": "import",
+            "source_type": "unknown"
+          },
+          {
+            "file": "networking/ssl_helper-wolfssl/ssl_helper.c",
+            "line": 36,
+            "matched": "#include <wolfssl/ssl.h>",
+            "detection_type": "import",
+            "source_type": "unknown"
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "enrichment": {
+      "added": 1,
+      "skipped_duplicate": 0,
+      "skipped_no_purl": 0,
+      "skipped_low_confidence": 0,
+      "injected_components": [
+        {
+          "name": "wolfSSL",
+          "version": "",
+          "purl": "pkg:github/wolfSSL/wolfssl"
+        }
+      ]
+    }
+  },
+  "detected": [],
+  "sbom_generation": {
+    "cdxgen_used": true,
+    "syft_used": false,
+    "online_resolution": false
+  },
+  "sbom_components": [
+    {
+      "name": "wolfSSL",
+      "version": "",
+      "purl": "pkg:github/wolfSSL/wolfssl",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    }
+  ],
+  "indirect_components": [],
+  "priority": {
+    "profile": {
+      "name": "production_ot",
+      "exposure": "network",
+      "criticality": "production",
+      "update_cadence_days": 365
+    },
+    "buckets": {
+      "Act": 0,
+      "Attend": 0,
+      "Track*": 0,
+      "Track": 0
+    }
+  },
+  "version": "benchmark",
+  "benchmark": true
+}

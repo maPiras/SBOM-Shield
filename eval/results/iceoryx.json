@@ -1,0 +1,438 @@
+{
+  "generated_at": "2026-06-23T21:26:28.358786+00:00",
+  "target": "/home/debian/repos/iceoryx",
+  "verdict": "PASS",
+  "summary": {
+    "total": 36,
+    "vulnerable": 0,
+    "skipped": 0,
+    "total_vulns": 0,
+    "by_severity": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "UNKNOWN": 0
+    }
+  },
+  "vulnerable_components": [],
+  "skipped": [],
+  "extended_coverage": {
+    "target": "/home/debian/repos/iceoryx",
+    "summary": {
+      "components_found": 1,
+      "by_category": {
+        "RTOS": 1
+      }
+    },
+    "components": [
+      {
+        "name": "FreeRTOS-Kernel",
+        "version": null,
+        "purl": "pkg:github/FreeRTOS/FreeRTOS-Kernel",
+        "category": "RTOS",
+        "confidence": "MEDIUM",
+        "matches": [
+          {
+            "file": "iceoryx_platform/CMakeLists.txt",
+            "line": 54,
+            "matched": "elseif(FREERTOS)",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "iceoryx_platform/CMakeLists.txt",
+            "line": 55,
+            "matched": "set(ICEORYX_PLATFORM ${CMAKE_CURRENT_SOURCE_DIR}/freertos/)",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "iceoryx_platform/CMakeLists.txt",
+            "line": 56,
+            "matched": "set(PUBLIC_LIBS freertos_sdk::FreeRTOS_POSIX)",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "iceoryx_platform/freertos/source/shm_file.cpp",
+            "line": 21,
+            "matched": "#include \"FreeRTOS.h\"",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "iceoryx_platform/freertos/source/mqueue.cpp",
+            "line": 17,
+            "matched": "#include \"FreeRTOS.h\"",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "enrichment": {
+      "added": 1,
+      "skipped_duplicate": 0,
+      "skipped_no_purl": 0,
+      "skipped_low_confidence": 0,
+      "injected_components": [
+        {
+          "name": "FreeRTOS-Kernel",
+          "version": "",
+          "purl": "pkg:github/FreeRTOS/FreeRTOS-Kernel"
+        }
+      ]
+    }
+  },
+  "detected": [],
+  "sbom_generation": {
+    "cdxgen_used": true,
+    "syft_used": false,
+    "online_resolution": false
+  },
+  "sbom_components": [
+    {
+      "name": "benchmark_optional_and_expected",
+      "version": "",
+      "purl": "pkg:generic/benchmark_optional_and_expected",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "cpptoml-build",
+      "version": "",
+      "purl": "pkg:generic/cpptoml-build",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_callbacks",
+      "version": "",
+      "purl": "pkg:generic/example_callbacks",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_callbacks_in_c",
+      "version": "",
+      "purl": "pkg:generic/example_callbacks_in_c",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_complexdata",
+      "version": "",
+      "purl": "pkg:generic/example_complexdata",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_experimental_node",
+      "version": "",
+      "purl": "pkg:generic/example_experimental_node",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_ice_access_control",
+      "version": "",
+      "purl": "pkg:generic/example_ice_access_control",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_icedelivery",
+      "version": "",
+      "purl": "pkg:generic/example_icedelivery",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_icedelivery_in_c",
+      "version": "",
+      "purl": "pkg:generic/example_icedelivery_in_c",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_icediscovery",
+      "version": "",
+      "purl": "pkg:generic/example_icediscovery",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_icediscovery_in_c",
+      "version": "",
+      "purl": "pkg:generic/example_icediscovery_in_c",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_icehello",
+      "version": "",
+      "purl": "pkg:generic/example_icehello",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_iceoptions",
+      "version": "",
+      "purl": "pkg:generic/example_iceoptions",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_iceperf",
+      "version": "",
+      "purl": "pkg:generic/example_iceperf",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_request_response",
+      "version": "",
+      "purl": "pkg:generic/example_request_response",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_request_response_in_c",
+      "version": "",
+      "purl": "pkg:generic/example_request_response_in_c",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_singleprocess",
+      "version": "",
+      "purl": "pkg:generic/example_singleprocess",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_user_header",
+      "version": "",
+      "purl": "pkg:generic/example_user_header",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_waitset",
+      "version": "",
+      "purl": "pkg:generic/example_waitset",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "example_waitset_in_c",
+      "version": "",
+      "purl": "pkg:generic/example_waitset_in_c",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "googletest-build",
+      "version": "",
+      "purl": "pkg:generic/googletest-build",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "iceoryx_binding_c",
+      "version": "2.95.8",
+      "purl": "pkg:generic/iceoryx_binding_c@2.95.8",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "iceoryx_component",
+      "version": "0.8.15",
+      "purl": "pkg:generic/iceoryx_component@0.8.15",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "iceoryx_doc",
+      "version": "2.95.8",
+      "purl": "pkg:generic/iceoryx_doc@2.95.8",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "iceoryx_hoofs",
+      "version": "2.95.8",
+      "purl": "pkg:generic/iceoryx_hoofs@2.95.8",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "iceoryx_integrationtest",
+      "version": "",
+      "purl": "pkg:generic/iceoryx_integrationtest",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "iceoryx_introspection",
+      "version": "2.95.8",
+      "purl": "pkg:generic/iceoryx_introspection@2.95.8",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "iceoryx_meta",
+      "version": "",
+      "purl": "pkg:generic/iceoryx_meta",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "iceoryx_package",
+      "version": "2.95.8",
+      "purl": "pkg:generic/iceoryx_package@2.95.8",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "iceoryx_platform",
+      "version": "2.95.8",
+      "purl": "pkg:generic/iceoryx_platform@2.95.8",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "iceoryx_posh",
+      "version": "2.95.8",
+      "purl": "pkg:generic/iceoryx_posh@2.95.8",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "test_binding_c",
+      "version": "",
+      "purl": "pkg:generic/test_binding_c",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "test_iceoryx_hoofs",
+      "version": "",
+      "purl": "pkg:generic/test_iceoryx_hoofs",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "test_iceoryx_platform",
+      "version": "",
+      "purl": "pkg:generic/test_iceoryx_platform",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "test_iceoryx_posh",
+      "version": "",
+      "purl": "pkg:generic/test_iceoryx_posh",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "FreeRTOS-Kernel",
+      "version": "",
+      "purl": "pkg:github/FreeRTOS/FreeRTOS-Kernel",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    }
+  ],
+  "indirect_components": [],
+  "priority": {
+    "profile": {
+      "name": "production_ot",
+      "exposure": "network",
+      "criticality": "production",
+      "update_cadence_days": 365
+    },
+    "buckets": {
+      "Act": 0,
+      "Attend": 0,
+      "Track*": 0,
+      "Track": 0
+    }
+  },
+  "version": "benchmark",
+  "benchmark": true
+}

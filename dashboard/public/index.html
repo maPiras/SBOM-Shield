@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SBOM Shield</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/intecs-i.svg" />
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Theme toggle — fixed top-right -->
+  <button class="dark-toggle theme-corner" id="dark-toggle" aria-label="Toggle dark mode"></button>
+
+  <!-- LOGIN OVERLAY -->
+  <div id="login-overlay" class="login-overlay" aria-hidden="true">
+    <div class="login-panel" id="login-panel">
+      <button class="login-close" id="login-close" aria-label="Close">✕</button>
+      <div class="login-header">
+        <span class="login-badge">SECURE ACCESS</span>
+        <h2>SBOM Shield Portal</h2>
+        <p>Authenticate to access the vulnerability intelligence dashboard.</p>
+      </div>
+      <form class="login-form" onsubmit="return false;">
+        <div class="field-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="user@intecs.it" autocomplete="off" />
+        </div>
+        <div class="field-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="••••••••••••" />
+        </div>
+        <div class="login-options">
+          <label class="checkbox-wrap">
+            <input type="checkbox" /> <span>Remember device</span>
+          </label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn-login">
+          <span>Sign in</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <p class="login-note">Access restricted to authorised personnel. All sessions are monitored.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- HERO — centred -->
+  <section class="hero">
+    <div class="hero-inner hero-center">
+
+      <img src="/assets/sbomshieldlogo.png" alt="Intecs SBOM Shield" class="hero-combined-logo" />
+
+      <p class="hero-tagline">OT/ICS Software Composition Analysis</p>
+
+      <button class="btn-access btn-hero" id="btn-access">
+        <span class="btn-dot"></span>
+        Access Platform
+      </button>
+    </div>
+  </section>
+
+  <script src="main.js"></script>
+</body>
+</html>

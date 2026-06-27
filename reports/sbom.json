@@ -1,0 +1,141 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:b74ef6a5-7547-4ee6-8a41-6f5c9709be38",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-05-12T16:32:08Z",
+    "tools": {
+      "components": [
+        {
+          "group": "@cyclonedx",
+          "name": "cdxgen",
+          "version": "12.2.1",
+          "purl": "pkg:npm/%40cyclonedx/cdxgen@12.2.1",
+          "type": "application",
+          "bom-ref": "pkg:npm/@cyclonedx/cdxgen@12.2.1",
+          "author": "OWASP Foundation",
+          "publisher": "OWASP Foundation"
+        }
+      ]
+    },
+    "authors": [
+      {
+        "name": "OWASP Foundation"
+      }
+    ],
+    "lifecycles": [
+      {
+        "phase": "pre-build"
+      }
+    ],
+    "properties": [
+      {
+        "name": "cdx:bom:componentTypes",
+        "value": "generic"
+      }
+    ]
+  },
+  "components": [
+    {
+      "group": "",
+      "name": "device_dashboard",
+      "version": "",
+      "purl": "pkg:generic/device_dashboard",
+      "type": "library",
+      "bom-ref": "pkg:generic/device_dashboard",
+      "properties": [
+        {
+          "name": "sbom-shield:source",
+          "value": "cdxgen"
+        }
+      ]
+    },
+    {
+      "group": "",
+      "name": "firmware",
+      "version": "",
+      "purl": "pkg:generic/firmware",
+      "type": "library",
+      "bom-ref": "pkg:generic/firmware",
+      "properties": [
+        {
+          "name": "sbom-shield:source",
+          "value": "cdxgen"
+        }
+      ]
+    },
+    {
+      "group": "",
+      "name": "http_client",
+      "version": "",
+      "purl": "pkg:generic/http_client",
+      "type": "framework",
+      "bom-ref": "pkg:generic/http_client",
+      "properties": [
+        {
+          "name": "sbom-shield:source",
+          "value": "cdxgen"
+        }
+      ]
+    },
+    {
+      "group": "",
+      "name": "http_server",
+      "version": "",
+      "purl": "pkg:generic/http_server",
+      "type": "framework",
+      "bom-ref": "pkg:generic/http_server",
+      "properties": [
+        {
+          "name": "sbom-shield:source",
+          "value": "cdxgen"
+        }
+      ]
+    },
+    {
+      "group": "",
+      "name": "mongoose-esp32-example",
+      "version": "",
+      "purl": "pkg:generic/mongoose-esp32-example",
+      "type": "library",
+      "bom-ref": "pkg:generic/mongoose-esp32-example",
+      "properties": [
+        {
+          "name": "sbom-shield:source",
+          "value": "cdxgen"
+        }
+      ]
+    },
+    {
+      "group": "",
+      "name": "mqtt_aws_client",
+      "version": "",
+      "purl": "pkg:generic/mqtt_aws_client",
+      "type": "library",
+      "bom-ref": "pkg:generic/mqtt_aws_client",
+      "properties": [
+        {
+          "name": "sbom-shield:source",
+          "value": "cdxgen"
+        }
+      ]
+    },
+    {
+      "group": "",
+      "name": "websocket_server",
+      "version": "",
+      "purl": "pkg:generic/websocket_server",
+      "type": "library",
+      "bom-ref": "pkg:generic/websocket_server",
+      "properties": [
+        {
+          "name": "sbom-shield:source",
+          "value": "cdxgen"
+        }
+      ]
+    }
+  ],
+  "services": [],
+  "dependencies": []
+}

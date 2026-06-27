@@ -1,0 +1,503 @@
+{
+  "generated_at": "2026-06-24T13:29:13.772030+00:00",
+  "target": "/home/debian/repos/CarPlayCore",
+  "verdict": "FAIL",
+  "summary": {
+    "total": 38,
+    "vulnerable": 2,
+    "skipped": 1,
+    "total_vulns": 2,
+    "by_severity": {
+      "CRITICAL": 0,
+      "HIGH": 1,
+      "MEDIUM": 1,
+      "LOW": 0,
+      "UNKNOWN": 0
+    }
+  },
+  "vulnerable_components": [
+    {
+      "name": "pybind11",
+      "version": "2.13.6",
+      "ecosystem": "conan",
+      "highest_severity": "HIGH",
+      "max_cvss": 7.1,
+      "max_epss": 0.00681,
+      "vulns": [
+        {
+          "id": "CVE-2020-15193",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.1,
+          "epss": 0.00681,
+          "epss_percentile": 0.47596,
+          "summary": "In Tensorflow before versions 2.2.1 and 2.3.1, the implementation of `dlpack.to_dlpack` can be made to use uninitialized memory resulting in further memory corruption. This is because the pybind11 glue code assumes that the argument is a tensor. However, there is nothing stopping users from passing in a Python object instead of a tensor. The uninitialized memory address is due to a `reinterpret_cast` Since the `PyObject` is a Python object, not a TensorFlow Tensor, the cast to `EagerTensor` fails. The issue is patched in commit 22e07fb204386768e5bcbea563641ea11f96ceb8 and is released in TensorFlow versions 2.2.1, or 2.3.1.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3279,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.213,
+                "epss_term": 0.0024,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        }
+      ],
+      "priority_bucket": "Track*",
+      "priority_score_max": 0.3279
+    },
+    {
+      "name": "breakpad",
+      "version": "cci.20210521",
+      "ecosystem": "conan",
+      "highest_severity": "MEDIUM",
+      "max_cvss": 6.8,
+      "max_epss": 0.01138,
+      "vulns": [
+        {
+          "id": "CVE-2018-3927",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.8,
+          "epss": 0.01138,
+          "epss_percentile": 0.62412,
+          "summary": "An exploitable information disclosure vulnerability exists in the crash handler of the hubCore binary of the Samsung SmartThings Hub STH-ETH-250 - Firmware version 0.20.17. When hubCore crashes, Google Breakpad is used to record minidumps, which are sent over an insecure HTTPS connection to the backtrace.io service, leading to the exposure of sensitive data. An attacker can impersonate the remote backtrace.io server in order to trigger this vulnerability.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3205,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.204,
+                "epss_term": 0.004,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        }
+      ],
+      "priority_bucket": "Track*",
+      "priority_score_max": 0.3205
+    }
+  ],
+  "skipped": [
+    {
+      "name": "qt",
+      "reason": "keyword-unreliable: monolithic/collision-prone PURL, keyword search skipped"
+    }
+  ],
+  "extended_coverage": {
+    "target": "/home/debian/repos/CarPlayCore",
+    "summary": {
+      "components_found": 0,
+      "by_category": {}
+    },
+    "components": [],
+    "enabled": true,
+    "enrichment": {
+      "added": 0,
+      "skipped_duplicate": 0,
+      "skipped_no_purl": 0,
+      "skipped_low_confidence": 0,
+      "injected_components": []
+    }
+  },
+  "detected": [],
+  "sbom_generation": {
+    "cdxgen_used": true,
+    "syft_used": false,
+    "online_resolution": false
+  },
+  "sbom_components": [
+    {
+      "name": "CarPlayCoreCore",
+      "version": "${project_version}",
+      "purl": "pkg:generic/CarPlayCoreCore@%24%7Bproject_version%7D",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "CarPlayCoreTest",
+      "version": "${project_version}",
+      "purl": "pkg:generic/CarPlayCoreTest@%24%7Bproject_version%7D",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "CarPlayCoreTestAppTestAppCode",
+      "version": "${project_version}",
+      "purl": "pkg:generic/CarPlayCoreTestAppTestAppCode@%24%7Bproject_version%7D",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-carplay-api",
+      "version": "3.06.00",
+      "purl": "pkg:conan/art-adp-carplay-api@3.06.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-commonwatchdog-epe",
+      "version": "1.00.03",
+      "purl": "pkg:conan/art-adp-commonwatchdog-epe@1.00.03",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-audioownership-epe",
+      "version": "2.00.00",
+      "purl": "pkg:conan/art-adp-audioownership-epe@2.00.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-common-bluetoothconnection-epe",
+      "version": "2.02.01",
+      "purl": "pkg:conan/art-adp-common-bluetoothconnection-epe@2.02.01",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-common-wirelessconnection-epe",
+      "version": "2.01.01",
+      "purl": "pkg:conan/art-adp-common-wirelessconnection-epe@2.01.01",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-videoownership-epe",
+      "version": "1.01.00",
+      "purl": "pkg:conan/art-adp-videoownership-epe@1.01.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-carplay-audio-epe",
+      "version": "2.00.00",
+      "purl": "pkg:conan/art-adp-carplay-audio-epe@2.00.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-carplay-video-epe",
+      "version": "2.00.00",
+      "purl": "pkg:conan/art-adp-carplay-video-epe@2.00.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-carplay-input-epe",
+      "version": "2.01.00",
+      "purl": "pkg:conan/art-adp-carplay-input-epe@2.01.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-carplay-wired-epe",
+      "version": "2.00.00",
+      "purl": "pkg:conan/art-adp-carplay-wired-epe@2.00.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-carplay-mfichip-epe",
+      "version": "2.00.01",
+      "purl": "pkg:conan/art-adp-carplay-mfichip-epe@2.00.01",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-carplay-headunitbridge-epe",
+      "version": "2.01.02",
+      "purl": "pkg:conan/art-adp-carplay-headunitbridge-epe@2.01.02",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-carplay-audiostream",
+      "version": "2.00.00",
+      "purl": "pkg:conan/art-adp-carplay-audiostream@2.00.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-carplay-screenstream",
+      "version": "2.00.00",
+      "purl": "pkg:conan/art-adp-carplay-screenstream@2.00.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-carplay-stack",
+      "version": "2.00.05",
+      "purl": "pkg:conan/art-adp-carplay-stack@2.00.05",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-carplay-carplayiap2stack",
+      "version": "2.00.03",
+      "purl": "pkg:conan/art-adp-carplay-carplayiap2stack@2.00.03",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-pluginloader-lib",
+      "version": "2.01.02",
+      "purl": "pkg:conan/art-adp-pluginloader-lib@2.01.02",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-loggercpp-core",
+      "version": "3.00.03",
+      "purl": "pkg:conan/art-adp-loggercpp-core@3.00.03",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-artutilscpp-lib",
+      "version": "2.04.00",
+      "purl": "pkg:conan/art-artutilscpp-lib@2.04.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-persistence-databasemanager-lib",
+      "version": "2.01.00",
+      "purl": "pkg:conan/art-adp-persistence-databasemanager-lib@2.01.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "toml11",
+      "version": "4.4.0",
+      "purl": "pkg:conan/toml11@4.4.0",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "breakpad",
+      "version": "cci.20210521",
+      "purl": "pkg:conan/breakpad@cci.20210521",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "qt",
+      "version": "5.15.3",
+      "purl": "pkg:conan/qt@5.15.3",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "pybind11",
+      "version": "2.13.6",
+      "purl": "pkg:conan/pybind11@2.13.6",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "msgpack-cxx",
+      "version": "6.1.1",
+      "purl": "pkg:conan/msgpack-cxx@6.1.1",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "magic_enum",
+      "version": "0.9.7",
+      "purl": "pkg:conan/magic_enum@0.9.7",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "artsdk-minini",
+      "version": "2.0.0",
+      "purl": "pkg:conan/artsdk-minini@2.0.0",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-linuxdbusinterfaces-lib",
+      "version": "2.00.00",
+      "purl": "pkg:conan/art-linuxdbusinterfaces-lib@2.00.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-artrpc-lib",
+      "version": "2.00.01",
+      "purl": "pkg:conan/art-artrpc-lib@2.00.01",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-logger-epe",
+      "version": "3.00.00",
+      "purl": "pkg:conan/art-adp-logger-epe@3.00.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-logger-core",
+      "version": "3.00.01",
+      "purl": "pkg:conan/art-adp-logger-core@3.00.01",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-carplay-applecommunicationplugin",
+      "version": "18.01.02",
+      "purl": "pkg:conan/art-adp-carplay-applecommunicationplugin@18.01.02",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-adp-tools-public-api-generator",
+      "version": "2.02.01",
+      "purl": "pkg:conan/art-adp-tools-public-api-generator@2.02.01",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "art-andromeda-base-recipe",
+      "version": "1.00.00",
+      "purl": "pkg:conan/art-andromeda-base-recipe@1.00.00",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "linux-syscall-support",
+      "version": "cci.20200813",
+      "purl": "pkg:conan/linux-syscall-support@cci.20200813",
+      "ecosystem": "conan",
+      "source": "conan",
+      "extended_injected": false,
+      "directly_used": true
+    }
+  ],
+  "indirect_components": [],
+  "priority": {
+    "profile": {
+      "name": "production_ot",
+      "exposure": "network",
+      "criticality": "production",
+      "update_cadence_days": 365
+    },
+    "buckets": {
+      "Act": 0,
+      "Attend": 0,
+      "Track*": 2,
+      "Track": 0
+    }
+  },
+  "version": "benchmark",
+  "benchmark": true
+}

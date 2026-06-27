@@ -1,0 +1,498 @@
+{
+  "generated_by": "sc3_coverage.py (merged, 18 repos)",
+  "syft_enabled": true,
+  "aggregate": {
+    "baseline_cdxgen": 4904,
+    "baseline_syft": 201,
+    "baseline_total": 5105,
+    "ext_manifest": 65,
+    "ext_conan": 35,
+    "ext_extended_coverage": 70,
+    "ext_total": 170,
+    "ext_direct": 163,
+    "delta_pct": 3.3
+  },
+  "per_repo": [
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 3,
+        "conan": 35
+      },
+      "baseline_cdxgen": 3,
+      "baseline_syft": 0,
+      "baseline_total": 3,
+      "ext_manifest": 0,
+      "ext_conan": 35,
+      "ext_extended_coverage": 0,
+      "ext_total": 35,
+      "ext_direct": 35,
+      "delta_pct": 1166.7,
+      "merge": {
+        "cdxgen_components": 3,
+        "syft_components": 0,
+        "added_from_syft": 0,
+        "duplicates_skipped": 0
+      },
+      "ot_found": 0,
+      "ot_injected": 0,
+      "repo": "CarPlayCore",
+      "elapsed_s": 5.5
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 1,
+        "syft": 2,
+        "extended_coverage": 3
+      },
+      "baseline_cdxgen": 1,
+      "baseline_syft": 2,
+      "baseline_total": 3,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 3,
+      "ext_total": 3,
+      "ext_direct": 3,
+      "delta_pct": 100.0,
+      "merge": {
+        "cdxgen_components": 2,
+        "syft_components": 14,
+        "added_from_syft": 5,
+        "duplicates_skipped": 9
+      },
+      "ot_found": 21,
+      "ot_injected": 3,
+      "repo": "FreeRTOS-Plus-TCP",
+      "elapsed_s": 16.9
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 13,
+        "syft": 18,
+        "extended_coverage": 3
+      },
+      "baseline_cdxgen": 13,
+      "baseline_syft": 18,
+      "baseline_total": 31,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 3,
+      "ext_total": 3,
+      "ext_direct": 2,
+      "delta_pct": 9.7,
+      "merge": {
+        "cdxgen_components": 13,
+        "syft_components": 37,
+        "added_from_syft": 32,
+        "duplicates_skipped": 5
+      },
+      "ot_found": 9,
+      "ot_injected": 3,
+      "repo": "OpenPLC_v3",
+      "elapsed_s": 29.5
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 603,
+        "syft": 14,
+        "manifest": 2,
+        "extended_coverage": 7
+      },
+      "baseline_cdxgen": 603,
+      "baseline_syft": 14,
+      "baseline_total": 617,
+      "ext_manifest": 2,
+      "ext_conan": 0,
+      "ext_extended_coverage": 7,
+      "ext_total": 9,
+      "ext_direct": 9,
+      "delta_pct": 1.5,
+      "merge": {
+        "cdxgen_components": 603,
+        "syft_components": 963,
+        "added_from_syft": 32,
+        "duplicates_skipped": 931
+      },
+      "ot_found": 9,
+      "ot_injected": 7,
+      "repo": "RIOT",
+      "elapsed_s": 1566.8
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 1538,
+        "manifest": 56,
+        "extended_coverage": 1
+      },
+      "baseline_cdxgen": 1538,
+      "baseline_syft": 0,
+      "baseline_total": 1538,
+      "ext_manifest": 56,
+      "ext_conan": 0,
+      "ext_extended_coverage": 1,
+      "ext_total": 57,
+      "ext_direct": 57,
+      "delta_pct": 3.7,
+      "merge": {
+        "cdxgen_components": 1538,
+        "syft_components": 1516,
+        "added_from_syft": 1,
+        "duplicates_skipped": 1515
+      },
+      "ot_found": 7,
+      "ot_injected": 1,
+      "repo": "apollo",
+      "elapsed_s": 1498.1
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 235,
+        "syft": 25,
+        "extended_coverage": 2
+      },
+      "baseline_cdxgen": 235,
+      "baseline_syft": 25,
+      "baseline_total": 260,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 2,
+      "ext_total": 2,
+      "ext_direct": 1,
+      "delta_pct": 0.8,
+      "merge": {
+        "cdxgen_components": 235,
+        "syft_components": 144,
+        "added_from_syft": 59,
+        "duplicates_skipped": 85
+      },
+      "ot_found": 105,
+      "ot_injected": 2,
+      "repo": "autoware_universe",
+      "elapsed_s": 163.7
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "extended_coverage": 1
+      },
+      "baseline_cdxgen": 0,
+      "baseline_syft": 0,
+      "baseline_total": 0,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 1,
+      "ext_total": 1,
+      "ext_direct": 1,
+      "delta_pct": null,
+      "merge": {
+        "cdxgen_components": 0,
+        "syft_components": 0,
+        "added_from_syft": 0,
+        "duplicates_skipped": 0
+      },
+      "ot_found": 1,
+      "ot_injected": 1,
+      "repo": "busybox",
+      "elapsed_s": 16.6
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 703,
+        "syft": 13,
+        "manifest": 7,
+        "extended_coverage": 7
+      },
+      "baseline_cdxgen": 703,
+      "baseline_syft": 13,
+      "baseline_total": 716,
+      "ext_manifest": 7,
+      "ext_conan": 0,
+      "ext_extended_coverage": 7,
+      "ext_total": 14,
+      "ext_direct": 13,
+      "delta_pct": 2.0,
+      "merge": {
+        "cdxgen_components": 703,
+        "syft_components": 30,
+        "added_from_syft": 22,
+        "duplicates_skipped": 8
+      },
+      "ot_found": 218,
+      "ot_injected": 7,
+      "repo": "esp-idf",
+      "elapsed_s": 3145.5
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 35,
+        "syft": 15,
+        "extended_coverage": 1
+      },
+      "baseline_cdxgen": 35,
+      "baseline_syft": 15,
+      "baseline_total": 50,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 1,
+      "ext_total": 1,
+      "ext_direct": 1,
+      "delta_pct": 2.0,
+      "merge": {
+        "cdxgen_components": 35,
+        "syft_components": 27,
+        "added_from_syft": 20,
+        "duplicates_skipped": 7
+      },
+      "ot_found": 1,
+      "ot_injected": 1,
+      "repo": "iceoryx",
+      "elapsed_s": 24.8
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 21,
+        "syft": 20,
+        "extended_coverage": 4
+      },
+      "baseline_cdxgen": 21,
+      "baseline_syft": 20,
+      "baseline_total": 41,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 4,
+      "ext_total": 4,
+      "ext_direct": 4,
+      "delta_pct": 9.8,
+      "merge": {
+        "cdxgen_components": 21,
+        "syft_components": 94,
+        "added_from_syft": 49,
+        "duplicates_skipped": 45
+      },
+      "ot_found": 15,
+      "ot_injected": 4,
+      "repo": "lvgl",
+      "elapsed_s": 111.4
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 7,
+        "syft": 7,
+        "extended_coverage": 12
+      },
+      "baseline_cdxgen": 7,
+      "baseline_syft": 7,
+      "baseline_total": 14,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 12,
+      "ext_total": 12,
+      "ext_direct": 11,
+      "delta_pct": 85.7,
+      "merge": {
+        "cdxgen_components": 7,
+        "syft_components": 26,
+        "added_from_syft": 16,
+        "duplicates_skipped": 10
+      },
+      "ot_found": 23,
+      "ot_injected": 12,
+      "repo": "mongoose",
+      "elapsed_s": 194.6
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 3,
+        "syft": 28,
+        "extended_coverage": 3
+      },
+      "baseline_cdxgen": 3,
+      "baseline_syft": 28,
+      "baseline_total": 31,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 3,
+      "ext_total": 3,
+      "ext_direct": 3,
+      "delta_pct": 9.7,
+      "merge": {
+        "cdxgen_components": 3,
+        "syft_components": 64,
+        "added_from_syft": 44,
+        "duplicates_skipped": 20
+      },
+      "ot_found": 32,
+      "ot_injected": 3,
+      "repo": "mosquitto",
+      "elapsed_s": 17.3
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 4,
+        "syft": 10,
+        "extended_coverage": 7
+      },
+      "baseline_cdxgen": 4,
+      "baseline_syft": 10,
+      "baseline_total": 14,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 7,
+      "ext_total": 7,
+      "ext_direct": 7,
+      "delta_pct": 50.0,
+      "merge": {
+        "cdxgen_components": 4,
+        "syft_components": 32,
+        "added_from_syft": 21,
+        "duplicates_skipped": 11
+      },
+      "ot_found": 13,
+      "ot_injected": 7,
+      "repo": "open62541",
+      "elapsed_s": 22.7
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 1722,
+        "syft": 30,
+        "extended_coverage": 3
+      },
+      "baseline_cdxgen": 1722,
+      "baseline_syft": 30,
+      "baseline_total": 1752,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 3,
+      "ext_total": 3,
+      "ext_direct": 3,
+      "delta_pct": 0.2,
+      "merge": {
+        "cdxgen_components": 1722,
+        "syft_components": 332,
+        "added_from_syft": 73,
+        "duplicates_skipped": 259
+      },
+      "ot_found": 121,
+      "ot_injected": 3,
+      "repo": "zephyr",
+      "elapsed_s": 4961.5
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "extended_coverage": 5
+      },
+      "baseline_cdxgen": 0,
+      "baseline_syft": 0,
+      "baseline_total": 0,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 5,
+      "ext_total": 5,
+      "ext_direct": 5,
+      "delta_pct": null,
+      "merge": {
+        "cdxgen_components": 0,
+        "syft_components": 0,
+        "added_from_syft": 0,
+        "duplicates_skipped": 0
+      },
+      "ot_found": 7,
+      "ot_injected": 5,
+      "repo": "mongoose-os",
+      "elapsed_s": 8.1
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "syft": 3,
+        "extended_coverage": 3
+      },
+      "baseline_cdxgen": 0,
+      "baseline_syft": 3,
+      "baseline_total": 3,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 3,
+      "ext_total": 3,
+      "ext_direct": 3,
+      "delta_pct": 100.0,
+      "merge": {
+        "cdxgen_components": 0,
+        "syft_components": 4,
+        "added_from_syft": 4,
+        "duplicates_skipped": 0
+      },
+      "ot_found": 3,
+      "ot_injected": 3,
+      "repo": "eModbus",
+      "elapsed_s": 4.6
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "syft": 8,
+        "extended_coverage": 2
+      },
+      "baseline_cdxgen": 0,
+      "baseline_syft": 8,
+      "baseline_total": 8,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 2,
+      "ext_total": 2,
+      "ext_direct": 1,
+      "delta_pct": 25.0,
+      "merge": {
+        "cdxgen_components": 0,
+        "syft_components": 10,
+        "added_from_syft": 10,
+        "duplicates_skipped": 0
+      },
+      "ot_found": 2,
+      "ot_injected": 2,
+      "repo": "mbusd",
+      "elapsed_s": 4.1
+    },
+    {
+      "syft_used": true,
+      "by_source": {
+        "cdxgen": 16,
+        "syft": 8,
+        "extended_coverage": 6
+      },
+      "baseline_cdxgen": 16,
+      "baseline_syft": 8,
+      "baseline_total": 24,
+      "ext_manifest": 0,
+      "ext_conan": 0,
+      "ext_extended_coverage": 6,
+      "ext_total": 6,
+      "ext_direct": 4,
+      "delta_pct": 25.0,
+      "merge": {
+        "cdxgen_components": 16,
+        "syft_components": 13,
+        "added_from_syft": 11,
+        "duplicates_skipped": 2
+      },
+      "ot_found": 16,
+      "ot_injected": 6,
+      "repo": "esp-mqtt",
+      "elapsed_s": 5.2
+    }
+  ]
+}

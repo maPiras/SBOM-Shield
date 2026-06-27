@@ -1,0 +1,173 @@
+{
+  "generated_at": "2026-06-25T22:22:19.039921+00:00",
+  "target": "/home/debian/repos/mbusd",
+  "verdict": "PASS",
+  "summary": {
+    "total": 1,
+    "vulnerable": 0,
+    "skipped": 0,
+    "total_vulns": 0,
+    "by_severity": {
+      "CRITICAL": 0,
+      "HIGH": 0,
+      "MEDIUM": 0,
+      "LOW": 0,
+      "UNKNOWN": 0
+    }
+  },
+  "vulnerable_components": [],
+  "skipped": [],
+  "extended_coverage": {
+    "target": "/home/debian/repos/mbusd",
+    "summary": {
+      "components_found": 2,
+      "by_category": {
+        "FIELDBUS": 2
+      }
+    },
+    "components": [
+      {
+        "name": "libmodbus",
+        "version": null,
+        "purl": "pkg:github/stephane/libmodbus",
+        "category": "FIELDBUS",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "<source-tree>",
+            "line": null,
+            "matched": "api_calls: modbus_check_header, modbus_crc_calculate, modbus_crc_correct, modbus_crc_write",
+            "detection_type": "api_call",
+            "source_type": "verified"
+          },
+          {
+            "file": "src/modbus.c",
+            "line": 34,
+            "matched": "#include \"modbus.h\"",
+            "detection_type": "import",
+            "source_type": "vendored"
+          },
+          {
+            "file": "src/conn.h",
+            "line": 40,
+            "matched": "#include \"modbus.h\"",
+            "detection_type": "import",
+            "source_type": "vendored"
+          }
+        ]
+      },
+      {
+        "name": "pymodbus",
+        "version": null,
+        "purl": "pkg:pypi/pymodbus",
+        "category": "FIELDBUS",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "tests/run_itests.py",
+            "line": 11,
+            "matched": "from pymodbus.client import ModbusTcpClient",
+            "detection_type": "import",
+            "source_type": "package_manager"
+          },
+          {
+            "file": "tests/run_itests.py",
+            "line": 12,
+            "matched": "from pymodbus.pdu import ExceptionResponse",
+            "detection_type": "import",
+            "source_type": "package_manager"
+          },
+          {
+            "file": "tests/run_itests.py",
+            "line": 13,
+            "matched": "from pymodbus.bit_read_message import ReadDiscreteInputsResponse, ReadCoilsResponse",
+            "detection_type": "import",
+            "source_type": "package_manager"
+          },
+          {
+            "file": "tests/run_itests.py",
+            "line": 14,
+            "matched": "from pymodbus.bit_write_message import WriteMultipleCoilsResponse, WriteSingleCoilResponse",
+            "detection_type": "import",
+            "source_type": "package_manager"
+          },
+          {
+            "file": "tests/run_itests.py",
+            "line": 15,
+            "matched": "from pymodbus.register_read_message import ReadInputRegistersResponse, ReadHoldingRegistersResponse",
+            "detection_type": "import",
+            "source_type": "package_manager"
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "enrichment": {
+      "added": 2,
+      "skipped_duplicate": 0,
+      "skipped_no_purl": 0,
+      "skipped_low_confidence": 0,
+      "injected_components": [
+        {
+          "name": "libmodbus",
+          "version": "",
+          "purl": "pkg:github/stephane/libmodbus"
+        },
+        {
+          "name": "pymodbus",
+          "version": "",
+          "purl": "pkg:pypi/pymodbus"
+        }
+      ]
+    }
+  },
+  "detected": [],
+  "sbom_generation": {
+    "cdxgen_used": true,
+    "syft_used": false,
+    "online_resolution": false
+  },
+  "sbom_components": [
+    {
+      "name": "libmodbus",
+      "version": "",
+      "purl": "pkg:github/stephane/libmodbus",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": false
+    },
+    {
+      "name": "pymodbus",
+      "version": "",
+      "purl": "pkg:pypi/pymodbus",
+      "ecosystem": "pypi",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    }
+  ],
+  "indirect_components": [
+    {
+      "name": "libmodbus",
+      "version": "",
+      "purl": "pkg:github/stephane/libmodbus"
+    }
+  ],
+  "priority": {
+    "profile": {
+      "name": "production_ot",
+      "exposure": "network",
+      "criticality": "production",
+      "update_cadence_days": 365
+    },
+    "buckets": {
+      "Act": 0,
+      "Attend": 0,
+      "Track*": 0,
+      "Track": 0
+    }
+  },
+  "version": "benchmark",
+  "benchmark": true
+}

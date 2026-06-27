@@ -1,0 +1,26 @@
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local secrets — never commit (.env.example is a sanitized template, kept tracked)
+.env
+
+# Runtime data (persisted in Docker volumes; not part of the source)
+storage/scans.db*
+reports/security_report*.json
+reports/*.pdf
+
+# Python envs
+venv/
+.venv/
+*.egg-info/
+
+# Repos to scan (user-local; keep only the placeholder)
+repos/*
+!repos/.gitkeep
+
+# Local notes — not part of the published source
+notes/
+clear_notes/

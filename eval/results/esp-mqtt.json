@@ -1,0 +1,1903 @@
+{
+  "generated_at": "2026-06-25T22:22:16.089757+00:00",
+  "target": "/home/debian/repos/esp-mqtt",
+  "verdict": "FAIL",
+  "summary": {
+    "total": 20,
+    "vulnerable": 2,
+    "skipped": 0,
+    "total_vulns": 31,
+    "by_severity": {
+      "CRITICAL": 3,
+      "HIGH": 11,
+      "MEDIUM": 16,
+      "LOW": 0,
+      "UNKNOWN": 1
+    }
+  },
+  "vulnerable_components": [
+    {
+      "name": "esp-idf",
+      "version": "",
+      "ecosystem": "github",
+      "highest_severity": "CRITICAL",
+      "max_cvss": 9.8,
+      "max_epss": 0.01514,
+      "vulns": [
+        {
+          "id": "CVE-2025-52471",
+          "source": "NVD",
+          "severity": "CRITICAL",
+          "cvss": 9.8,
+          "epss": 0.00741,
+          "epss_percentile": 0.49944,
+          "summary": "ESF-IDF is the Espressif Internet of Things (IOT) Development Framework. An integer underflow vulnerability has been identified in the ESP-NOW protocol implementation within the ESP Wi-Fi component of versions 5.4.1, 5.3.3, 5.2.5, and 5.1.6 of the ESP-IDF framework. This issue stems from insufficient validation of user-supplied data length in the packet receive function. Under certain conditions, this may lead to out-of-bounds memory access and may allow arbitrary memory write operations. On systems without a memory protection scheme, this behavior could potentially be used to achieve remote code execution (RCE) on the target device. In versions 5.4.2, 5.3.4, 5.2.6, and 5.1.6, ESP-NOW has added more comprehensive validation logic on user-supplied data length during packet reception to prevent integer underflow caused by negative value calculations. For ESP-IDF v5.3 and earlier, a workaround can be applied by validating that the `data_len` parameter received in the RX callback (registered via `esp_now_register_recv_cb()`) is a positive value before further processing. For ESP-IDF v5.4 and later, no application-level workaround is available. Users are advised to upgrade to a patched version of ESP-IDF to take advantage of the built-in mitigation.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.4091,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.294,
+                "epss_term": 0.0026,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2019-12587",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.1,
+          "epss": 0.00804,
+          "epss_percentile": 0.52029,
+          "summary": "The EAP peer implementation in Espressif ESP-IDF 2.0.0 through 4.0.0 and ESP8266_NONOS_SDK 2.2.0 through 3.1.0 allows the installation of a zero Pairwise Master Key (PMK) after the completion of any EAP authentication method, which allows attackers in radio range to replay, decrypt, or spoof frames via a rogue access point.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3583,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.243,
+                "epss_term": 0.0028,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2020-16146",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.01382,
+          "epss_percentile": 0.68675,
+          "summary": "Espressif ESP-IDF 2.x, 3.0.x through 3.0.9, 3.1.x through 3.1.7, 3.2.x through 3.2.3, 3.3.x through 3.3.2, and 4.0.x through 4.0.1 has a Buffer Overflow in BluFi provisioning in btc_blufi_recv_handler function in blufi_prf.c. An attacker can send a crafted BluFi protocol Write Attribute command to characteristic 0xFF01. With manipulated packet fields, there is a buffer overflow.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3423,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0048,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2021-28139",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.8,
+          "epss": 0.01292,
+          "epss_percentile": 0.66621,
+          "summary": "The Bluetooth Classic implementation in Espressif ESP-IDF 4.4 and earlier does not properly restrict the Feature Page upon reception of an LMP Feature Response Extended packet, allowing attackers in radio range to trigger arbitrary code execution in ESP32 via a crafted Extended Features bitfield payload.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.381,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.264,
+                "epss_term": 0.0045,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2022-24893",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.00521,
+          "epss_percentile": 0.40187,
+          "summary": "ESP-IDF is the official development framework for Espressif SoCs. In Espressif\u2019s Bluetooth Mesh SDK (`ESP-BLE-MESH`), a memory corruption vulnerability can be triggered during provisioning, because there is no check for the `SegN` field of the Transaction Start PDU. This can result in memory corruption related attacks and potentially attacker gaining control of the entire system. Patch commits are available on the 4.1, 4.2, 4.3 and 4.4 branches and users are recommended to upgrade. The upgrade is applicable for all applications and users of `ESP-BLE-MESH` component from `ESP-IDF`. As it is implemented in the Bluetooth Mesh stack, there is no workaround for the user to fix the application layer without upgrading the underlying firmware.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3393,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0018,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2024-33453",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.1,
+          "epss": 0.00954,
+          "epss_percentile": 0.56825,
+          "summary": "Buffer Overflow vulnerability in esp-idf v.5.1 allows a remote attacker to obtain sensitive information via the externalId component.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3588,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.243,
+                "epss_term": 0.0033,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-55297",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.8,
+          "epss": 0.00321,
+          "epss_percentile": 0.238,
+          "summary": "ESF-IDF is the Espressif Internet of Things (IOT) Development Framework. The BluFi example bundled in ESP-IDF was vulnerable to memory overflows in two areas: Wi-Fi credential handling and Diffie\u2013Hellman key exchange. This vulnerability is fixed in 5.4.1, 5.3.3, 5.1.6, and 5.0.9.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3776,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.264,
+                "epss_term": 0.0011,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-57808",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.1,
+          "epss": 0.01514,
+          "epss_percentile": 0.71283,
+          "summary": "ESPHome is a system to control microcontrollers remotely through Home Automation systems. In version 2025.8.0 in the ESP-IDF platform, ESPHome's web_server authentication check can pass incorrectly when the client-supplied base64-encoded Authorization value is empty or is a substring of the correct value. This allows access to web_server functionality (including OTA, if enabled) without knowing any information about the correct username or password. This issue has been patched in version 2025.8.1.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3608,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.243,
+                "epss_term": 0.0053,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-68473",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 8.6,
+          "epss": 0.00377,
+          "epss_percentile": 0.29463,
+          "summary": "ESF-IDF is the Espressif Internet of Things (IOT) Development Framework. In versions 5.5.1, 5.4.3, 5.3.4, 5.2.6, 5.1.6, and earlier, in the ESP-IDF Bluetooth host stack (BlueDroid), the function bta_dm_sdp_result() used a fixed-size array uuid_list[32][MAX_UUID_SIZE] to store discovered service UUIDs during the SDP (Service Discovery Protocol) process. On modern Bluetooth devices, it is possible for the number of available services to exceed this fixed limit (32). In such cases, if more than 32 services are discovered, subsequent writes to uuid_list could exceed the bounds of the array, resulting in a potential out-of-bounds write condition.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3718,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.258,
+                "epss_term": 0.0013,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-68474",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.6,
+          "epss": 0.003,
+          "epss_percentile": 0.21586,
+          "summary": "ESF-IDF is the Espressif Internet of Things (IOT) Development Framework. In versions 5.5.1, 5.4.3, 5.3.4, 5.2.6, 5.1.6, and earlier, in the avrc_vendor_msg() function of the ESP-IDF BlueDroid AVRCP stack, the allocated buffer size was validated using AVRC_MIN_CMD_LEN (20 bytes). However, the actual fixed header data written before the vendor payload exceeds this value. This totals 29 bytes written before p_msg->p_vendor_data is copied. Using the old AVRC_MIN_CMD_LEN could allow an out-of-bounds write if vendor_len approaches the buffer limit. For commands where vendor_len is large, the original buffer allocation may be insufficient, causing writes beyond the allocated memory. This can lead to memory corruption, crashes, or other undefined behavior. The overflow could be larger when assertions are disabled.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3415,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.228,
+                "epss_term": 0.001,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2018-18558",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.4,
+          "epss": 0.0039,
+          "epss_percentile": 0.30789,
+          "summary": "An issue was discovered in Espressif ESP-IDF 2.x and 3.x before 3.0.6 and 3.1.x before 3.1.1. Insufficient validation of input data in the 2nd stage bootloader allows a physically proximate attacker to bypass secure boot checks and execute arbitrary code, by crafting an application binary that overwrites a bootloader code segment in process_segment in components/bootloader_support/src/esp_image_format.c. The attack is effective when the flash encryption feature is not enabled, or if the attacker finds a different vulnerability that allows them to write this binary to flash memory.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3059,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.192,
+                "epss_term": 0.0014,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2019-12586",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.0135,
+          "epss_percentile": 0.67955,
+          "summary": "The EAP peer implementation in Espressif ESP-IDF 2.0.0 through 4.0.0 and ESP8266_NONOS_SDK 2.2.0 through 3.1.0 processes EAP Success messages before any EAP method completion or failure, which allows attackers in radio range to cause a denial of service (crash) via a crafted message.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3122,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0047,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2019-15894",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.8,
+          "epss": 0.00464,
+          "epss_percentile": 0.36744,
+          "summary": "An issue was discovered in Espressif ESP-IDF 2.x, 3.0.x through 3.0.9, 3.1.x through 3.1.6, 3.2.x through 3.2.3, and 3.3.x through 3.3.1. An attacker who uses fault injection to physically disrupt the ESP32 CPU can bypass the Secure Boot digest verification at startup, and boot unverified code from flash. The fault injection attack does not disable the Flash Encryption feature, so if the ESP32 is configured with the recommended combination of Secure Boot and Flash Encryption, then the impact is minimized. If the ESP32 is configured without Flash Encryption then successful fault injection allows arbitrary code execution. To protect devices with Flash Encryption and Secure Boot enabled against this attack, a firmware change must be made to permanently enable Flash Encryption in the field if it is not already permanently enabled.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3181,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.204,
+                "epss_term": 0.0016,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2020-12638",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.8,
+          "epss": 0.00469,
+          "epss_percentile": 0.37037,
+          "summary": "An encryption-bypass issue was discovered on Espressif ESP-IDF devices through 4.2, ESP8266_NONOS_SDK devices through 3.0.3, and ESP8266_RTOS_SDK devices through 3.3. Broadcasting forged beacon frames forces a device to change its authentication mode to OPEN, effectively disabling its 802.11 encryption.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3181,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.204,
+                "epss_term": 0.0016,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2020-13594",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.00756,
+          "epss_percentile": 0.50445,
+          "summary": "The Bluetooth Low Energy (BLE) controller implementation in Espressif ESP-IDF 4.2 and earlier (for ESP32 devices) does not properly restrict the channel map field of the connection request packet on reception, allowing attackers in radio range to cause a denial of service (crash) via a crafted packet.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3101,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0026,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2020-13595",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.0087,
+          "epss_percentile": 0.54175,
+          "summary": "The Bluetooth Low Energy (BLE) controller implementation in Espressif ESP-IDF 4.0 through 4.2 (for ESP32 devices) returns the wrong number of completed BLE packets and triggers a reachable assertion on the host stack when receiving a packet with an MIC failure. An attacker within radio range can silently trigger the assertion (which disables the target's BLE stack) by sending a crafted sequence of BLE packets.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3105,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.003,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2021-28135",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.00794,
+          "epss_percentile": 0.51702,
+          "summary": "The Bluetooth Classic implementation in Espressif ESP-IDF 4.4 and earlier does not properly handle the reception of continuous unsolicited LMP responses, allowing attackers in radio range to trigger a denial of service (crash) in ESP32 by flooding the target device with LMP Feature Response data.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3103,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0028,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2021-28136",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.0081,
+          "epss_percentile": 0.52255,
+          "summary": "The Bluetooth Classic implementation in Espressif ESP-IDF 4.4 and earlier does not properly handle the reception of multiple LMP IO Capability Request packets during the pairing process, allowing attackers in radio range to trigger memory corruption (and consequently a crash) in ESP32 via a replayed (duplicated) LMP packet.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3103,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0028,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2024-28183",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.1,
+          "epss": 0.00208,
+          "epss_percentile": 0.1095,
+          "summary": "ESP-IDF is the development framework for Espressif SoCs supported on Windows, Linux and macOS. A Time-of-Check to Time-of-Use (TOCTOU) vulnerability was discovered in the implementation of the ESP-IDF bootloader which could allow an attacker with physical access to flash of the device to bypass anti-rollback protection. Anti-rollback prevents rollback to application with security version lower than one programmed in eFuse of chip. This attack can allow to boot past (passive) application partition having lower security version of the same device even in the presence of the flash encryption scheme. The attack requires carefully modifying the flash contents after the anti-rollback checks have been performed by the bootloader (before loading the application). The vulnerability is fixed in 4.4.7 and 5.2.1.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2962,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.183,
+                "epss_term": 0.0007,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2024-33454",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.01127,
+          "epss_percentile": 0.62227,
+          "summary": "Buffer Overflow vulnerability in esp-idf v.5.1 allows a remote attacker to execute arbitrary code via a crafted script to the Bluetooth stack component.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3114,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0039,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-68622",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.8,
+          "epss": 0.00212,
+          "epss_percentile": 0.115,
+          "summary": "Espressif ESP-IDF USB Host UVC Class Driver allows video streaming from USB cameras. Prior to 2.4.0, a vulnerability in the esp-usb UVC host implementation allows a malicious USB Video Class (UVC) device to trigger a stack buffer overflow during configuration-descriptor parsing. When UVC configuration-descriptor printing is enabled, the host prints detailed descriptor information provided by the connected USB device. A specially crafted UVC descriptor may advertise an excessively large length. Because this value is not validated before being copied into a fixed-size stack buffer, an attacker can overflow the buffer and corrupt memory. This vulnerability is fixed in 2.4.0.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3172,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.204,
+                "epss_term": 0.0007,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-68656",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.8,
+          "epss": 0.00183,
+          "epss_percentile": 0.08071,
+          "summary": "Espressif ESP-IDF USB Host HID (Human Interface Device) Driver allows access to HID devices. Prior to 1.1.0, usb_class_request_get_descriptor() frees and reallocates hid_device->ctrl_xfer when an oversized descriptor is requested but continues to use the stale local pointer, leading to an immediate use-after-free when processing attacker-controlled Report Descriptor lengths. This vulnerability is fixed in 1.1.0.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3171,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.204,
+                "epss_term": 0.0006,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2025-68657",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.4,
+          "epss": 0.00139,
+          "epss_percentile": 0.03588,
+          "summary": "Espressif ESP-IDF USB Host HID (Human Interface Device) Driver allows access to HID devices. Prior to 1.1.0, calls to hid_host_device_close() can free the same usb_transfer_t twice. The USB event callback and user code share the hid_iface_t state without locking, so both can tear down a READY interface simultaneously, corrupting heap metadata inside the ESP USB host stack. This vulnerability is fixed in 1.1.0.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.305,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.192,
+                "epss_term": 0.0005,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-45160",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.00246,
+          "epss_percentile": 0.15745,
+          "summary": "ESF-IDF is the Espressif Internet of Things (IOT) Development Framework. In versions 5.2.7, 5.3.5, 5.4.4, 5.5.4, and 6.0.1, an out-of-bounds read flaw exists in the DHCP server option parser (parse_options() in components/lwip/apps/dhcpserver/dhcpserver.c) shipped with ESP-IDF's lwIP component. The parser walks the BOOTP/DHCP options field without validating that each option's length byte and declared payload length stay within the received packet buffer. A crafted DHCP request can cause the parser to read past the end of the options buffer into adjacent heap memory. The issue affects the DHCP server used by ESP-IDF's SoftAP and any configuration where the device runs as a DHCP server on a local network. This issue has been patched in versions 5.2.8, 5.3.6, 5.4.5, 5.5.5, and 6.0.2.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3084,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0009,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2024-53845",
+          "source": "NVD",
+          "severity": "UNKNOWN",
+          "cvss": null,
+          "epss": 0.0056,
+          "epss_percentile": 0.42313,
+          "summary": "ESPTouch is a connection protocol for internet of things devices. In the ESPTouchV2 protocol, while there is an option to use a custom AES key, there is no option to set the IV (Initialization Vector) prior to versions 5.3.2, 5.2.4, 5.1.6, and 5.0.8. The IV is set to zero and remains constant throughout the product's lifetime. In AES/CBC mode, if the IV is not properly initialized, the encrypted output becomes deterministic, leading to potential data leakage. To address the aforementioned issues, the application generates a random IV when activating the AES key starting in versions 5.3.2, 5.2.4, 5.1.6, and 5.0.8. This IV is then transmitted along with the provision data to the provision device. The provision device has also been equipped with a parser for the AES IV. The upgrade is applicable for all applications and users of ESPTouch v2 component from ESP-IDF. As it is implemented in the ESP Wi-Fi stack, there is no workaround for the user to fix the application layer without upgrading the underlying firmware.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.1145,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.0,
+                "epss_term": 0.002,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        }
+      ],
+      "priority_bucket": "Track*",
+      "priority_score_max": 0.4091
+    },
+    {
+      "name": "lwIP",
+      "version": "",
+      "ecosystem": "github",
+      "highest_severity": "CRITICAL",
+      "max_cvss": 9.8,
+      "max_epss": 0.01377,
+      "vulns": [
+        {
+          "id": "CVE-2024-7490",
+          "source": "NVD",
+          "severity": "CRITICAL",
+          "cvss": 9.8,
+          "epss": 0.01377,
+          "epss_percentile": 0.6859,
+          "summary": "Improper Input Validation vulnerability in Microchip Techology Advanced Software Framework example DHCP server can cause remote code execution through a buffer overflow.\n This vulnerability is associated with program files tinydhcpserver.C and program routines lwip_dhcp_find_option.\n\nThis issue affects Advanced Software Framework: through 3.52.0.2574.\n\n\nASF is no longer being supported. Apply provided workaround or migrate to an actively maintained framework.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.4113,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.294,
+                "epss_term": 0.0048,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-8836",
+          "source": "NVD",
+          "severity": "CRITICAL",
+          "cvss": 9.8,
+          "epss": 0.01016,
+          "epss_percentile": 0.58884,
+          "summary": "A vulnerability was found in lwIP up to 2.2.1. Affected is the function snmp_parse_inbound_frame of the file src/apps/snmp/snmp_msg.c of the component snmpv3 USM Handler. Performing a manipulation of the argument msgAuthenticationParameters results in stack-based buffer overflow. The attack may be initiated remotely. The patch is named 0c957ec03054eb6c8205e9c9d1d05d90ada3898c. It is suggested to install a patch to address this issue.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.4101,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.294,
+                "epss_term": 0.0036,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2020-22283",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.01366,
+          "epss_percentile": 0.68344,
+          "summary": "A buffer overflow vulnerability in the icmp6_send_response_with_addrs_and_netif() function of Free Software Foundation lwIP version git head allows attackers to access sensitive information via a crafted ICMPv6 packet.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3423,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0048,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2020-22284",
+          "source": "NVD",
+          "severity": "HIGH",
+          "cvss": 7.5,
+          "epss": 0.01173,
+          "epss_percentile": 0.63534,
+          "summary": "A buffer overflow vulnerability in the zepif_linkoutput() function of Free Software Foundation lwIP git head version and version 2.1.2 allows attackers to access sensitive information via a crafted 6LoWPAN packet.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3416,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.225,
+                "epss_term": 0.0041,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2014-4883",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 4.3,
+          "epss": 0.00572,
+          "epss_percentile": 0.42927,
+          "summary": "resolv.c in the DNS resolver in uIP, and dns.c in the DNS resolver in lwIP 1.4.1 and earlier, does not use random values for ID fields and source ports of DNS query packets, which makes it easier for man-in-the-middle attackers to conduct cache-poisoning attacks via spoofed reply packets.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.2435,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.129,
+                "epss_term": 0.002,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        },
+        {
+          "id": "CVE-2026-45160",
+          "source": "NVD",
+          "severity": "MEDIUM",
+          "cvss": 6.5,
+          "epss": 0.00246,
+          "epss_percentile": 0.15745,
+          "summary": "ESF-IDF is the Espressif Internet of Things (IOT) Development Framework. In versions 5.2.7, 5.3.5, 5.4.4, 5.5.4, and 6.0.1, an out-of-bounds read flaw exists in the DHCP server option parser (parse_options() in components/lwip/apps/dhcpserver/dhcpserver.c) shipped with ESP-IDF's lwIP component. The parser walks the BOOTP/DHCP options field without validating that each option's length byte and declared payload length stay within the received packet buffer. A crafted DHCP request can cause the parser to read past the end of the options buffer into adjacent heap memory. The issue affects the DHCP server used by ESP-IDF's SoftAP and any configuration where the device runs as a DHCP server on a local network. This issue has been patched in versions 5.2.8, 5.3.6, 5.4.5, 5.5.5, and 6.0.2.",
+          "fixed": null,
+          "affects_from": null,
+          "affects_before": null,
+          "version_confirmed": false,
+          "vdb_id": null,
+          "exploit_available": false,
+          "priority": {
+            "bucket": "Track*",
+            "score": 0.3084,
+            "rationale": "Track*: exploitation=None, exposure=Open, utility=Laborious, impact=High",
+            "breakdown": {
+              "ssvc_inputs": {
+                "exploitation": "None",
+                "exposure": "Open",
+                "utility": "Laborious",
+                "impact": "High"
+              },
+              "formula_terms": {
+                "cvss_term": 0.195,
+                "epss_term": 0.0009,
+                "kev_term": 0.0,
+                "ctx_term": 0.1125,
+                "expl_term": 0.0
+              }
+            }
+          }
+        }
+      ],
+      "priority_bucket": "Track*",
+      "priority_score_max": 0.4113
+    }
+  ],
+  "skipped": [],
+  "extended_coverage": {
+    "target": "/home/debian/repos/esp-mqtt",
+    "summary": {
+      "components_found": 16,
+      "by_category": {
+        "RTOS": 2,
+        "PROTOCOL_STACK": 4,
+        "UNKNOWN": 10
+      }
+    },
+    "components": [
+      {
+        "name": "FreeRTOS-Kernel",
+        "version": null,
+        "purl": "pkg:github/FreeRTOS/FreeRTOS-Kernel",
+        "category": "RTOS",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "<source-tree>",
+            "line": null,
+            "matched": "api_calls: vTaskDelay, xTaskCreate",
+            "detection_type": "api_call",
+            "source_type": "verified"
+          },
+          {
+            "file": "mqtt_client.c",
+            "line": 2172,
+            "matched": "if (xTaskCreate(esp_mqtt_task, \"mqtt_task\", client->config->task_stack, client, client->config->task_prio,",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/host/CMakeLists.txt",
+            "line": 11,
+            "matched": "\"$ENV{IDF_PATH}/tools/mocks/freertos/\"",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/mqtt_outbox_host_test/CMakeLists.txt",
+            "line": 9,
+            "matched": "\"$ENV{IDF_PATH}/tools/mocks/freertos/\")",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/mqtt_outbox_host_test/main/CMakeLists.txt",
+            "line": 3,
+            "matched": "REQUIRES freertos",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/apps/publish_connect_test/main/publish_connect_test.c",
+            "line": 347,
+            "matched": "xTaskCreate(broker_task, \"broker\", 8192, NULL, 4, NULL);",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "esp-idf",
+        "version": null,
+        "purl": "pkg:github/espressif/esp-idf",
+        "category": "RTOS",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "<source-tree>",
+            "line": null,
+            "matched": "api_calls: esp_console_cmd_register, esp_console_new_repl_uart, esp_console_register_help_command, esp_console_start_repl",
+            "detection_type": "api_call",
+            "source_type": "verified"
+          },
+          {
+            "file": "CMakeLists.txt",
+            "line": 8,
+            "matched": "idf_component_register(SRCS \"${srcs}\"",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/mqtt_utils_host_test/sdkconfig.defaults",
+            "line": 3,
+            "matched": "CONFIG_IDF_TARGET=\"linux\"",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/host/sdkconfig.defaults",
+            "line": 1,
+            "matched": "CONFIG_IDF_TARGET=\"linux\"",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/mqtt_outbox_host_test/sdkconfig.defaults",
+            "line": 1,
+            "matched": "CONFIG_IDF_TARGET=\"linux\"",
+            "detection_type": "build_system",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "Paho-MQTT-C",
+        "version": null,
+        "purl": "pkg:github/eclipse/paho.mqtt.c",
+        "category": "PROTOCOL_STACK",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "test/host/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: espressif/mqtt",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/apps/build_test/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: espressif/mqtt",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/apps/mqtt_conformance/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: mqtt",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/apps/mqtt/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: espressif/mqtt",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/apps/publish_connect_test/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: espressif/mqtt",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "lwIP",
+        "version": null,
+        "purl": "pkg:github/lwip-tcpip/lwip",
+        "category": "PROTOCOL_STACK",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "examples/ssl_mutual_auth/main/app_main.c",
+            "line": 30,
+            "matched": "#include \"lwip/sockets.h\"",
+            "detection_type": "import",
+            "source_type": "unknown"
+          },
+          {
+            "file": "examples/ssl_mutual_auth/main/app_main.c",
+            "line": 31,
+            "matched": "#include \"lwip/dns.h\"",
+            "detection_type": "import",
+            "source_type": "unknown"
+          },
+          {
+            "file": "examples/ssl_mutual_auth/main/app_main.c",
+            "line": 32,
+            "matched": "#include \"lwip/netdb.h\"",
+            "detection_type": "import",
+            "source_type": "unknown"
+          },
+          {
+            "file": "examples/ws/main/app_main.c",
+            "line": 30,
+            "matched": "#include \"lwip/sockets.h\"",
+            "detection_type": "import",
+            "source_type": "unknown"
+          },
+          {
+            "file": "examples/ws/main/app_main.c",
+            "line": 31,
+            "matched": "#include \"lwip/dns.h\"",
+            "detection_type": "import",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "mosquitto",
+        "version": "2.0.20",
+        "purl": "pkg:github/eclipse/mosquitto@2.0.20",
+        "category": "PROTOCOL_STACK",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "test/apps/publish_connect_test/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: espressif/mosquitto@2.0.20",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "paho-mqtt",
+        "version": null,
+        "purl": "pkg:pypi/paho-mqtt",
+        "category": "PROTOCOL_STACK",
+        "confidence": "HIGH",
+        "matches": [
+          {
+            "file": "test/apps/publish_connect_test/pytest_mqtt_publish_app.py",
+            "line": 22,
+            "matched": "import paho.mqtt.client as mqtt",
+            "detection_type": "import",
+            "source_type": "package_manager"
+          },
+          {
+            "file": "examples/ssl/pytest_mqtt_ssl.py",
+            "line": 11,
+            "matched": "import paho.mqtt.client as mqtt",
+            "detection_type": "import",
+            "source_type": "package_manager"
+          },
+          {
+            "file": "examples/wss/pytest_mqtt_wss_example.py",
+            "line": 13,
+            "matched": "import paho.mqtt.client as mqtt",
+            "detection_type": "import",
+            "source_type": "package_manager"
+          },
+          {
+            "file": "examples/ws/pytest_mqtt_ws_example.py",
+            "line": 12,
+            "matched": "import paho.mqtt.client as mqtt",
+            "detection_type": "import",
+            "source_type": "package_manager"
+          }
+        ]
+      },
+      {
+        "name": "Catch2",
+        "version": null,
+        "purl": "pkg:generic/catch2/catch2",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/mqtt_utils_host_test/main/CMakeLists.txt",
+            "line": 8,
+            "matched": "target_link_libraries: Catch2",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "Catch2::Catch2WithMain",
+        "version": null,
+        "purl": "pkg:generic/catch2::catch2withmain/catch2::catch2withmain",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/mqtt_outbox_host_test/main/CMakeLists.txt",
+            "line": 13,
+            "matched": "target_link_libraries: Catch2::Catch2WithMain",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/host/main/CMakeLists.txt",
+            "line": 9,
+            "matched": "target_link_libraries: Catch2::Catch2WithMain",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "catch2",
+        "version": "3.5.2",
+        "purl": "pkg:generic/catch2/catch2",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/mqtt_outbox_host_test/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: espressif/catch2",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/host/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: espressif/catch2@3.5.2",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/mqtt_utils_host_test/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: espressif/catch2",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "esp_secure_cert_mgr",
+        "version": "2.0.2",
+        "purl": "pkg:generic/esp-secure-cert-mgr/esp-secure-cert-mgr@2.0.2",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "examples/ssl_ds/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: espressif/esp_secure_cert_mgr@2.0.2",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "esp_wifi_remote",
+        "version": "0.10",
+        "purl": "pkg:generic/esp-wifi-remote/esp-wifi-remote@0.10",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "examples/tcp/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: espressif/esp_wifi_remote@0.10",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "idf::mqtt::outbox",
+        "version": null,
+        "purl": "pkg:generic/idf::mqtt::outbox/idf::mqtt::outbox",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "CMakeLists.txt",
+            "line": 20,
+            "matched": "target_link_libraries: idf::mqtt::outbox",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/mqtt_outbox_host_test/main/CMakeLists.txt",
+            "line": 13,
+            "matched": "target_link_libraries: idf::mqtt::outbox",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "idf::mqtt::utils",
+        "version": null,
+        "purl": "pkg:generic/idf::mqtt::utils/idf::mqtt::utils",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "CMakeLists.txt",
+            "line": 17,
+            "matched": "target_link_libraries: idf::mqtt::utils",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/mqtt_utils_host_test/main/CMakeLists.txt",
+            "line": 8,
+            "matched": "target_link_libraries: idf::mqtt::utils",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "protocol_examples_common",
+        "version": null,
+        "purl": "pkg:generic/protocol-examples-common/protocol-examples-common",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/apps/build_test/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: protocol_examples_common",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/apps/mqtt_conformance/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: protocol_examples_common",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          },
+          {
+            "file": "test/apps/publish_connect_test/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: protocol_examples_common",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          },
+          {
+            "file": "examples/ssl_mutual_auth/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: protocol_examples_common",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          },
+          {
+            "file": "examples/ws/main/idf_component.yml",
+            "line": null,
+            "matched": "idf_component.yml: protocol_examples_common",
+            "detection_type": "build_manifest",
+            "source_type": "unknown"
+          }
+        ]
+      },
+      {
+        "name": "rapidcheck",
+        "version": null,
+        "purl": "pkg:generic/rapidcheck/rapidcheck",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/mqtt_outbox_host_test/main/CMakeLists.txt",
+            "line": 13,
+            "matched": "target_link_libraries: rapidcheck",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/host/main/CMakeLists.txt",
+            "line": 9,
+            "matched": "target_link_libraries: rapidcheck",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/mqtt_utils_host_test/main/CMakeLists.txt",
+            "line": 8,
+            "matched": "target_link_libraries: rapidcheck",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      },
+      {
+        "name": "rapidcheck_catch",
+        "version": null,
+        "purl": "pkg:generic/rapidcheck-catch/rapidcheck-catch",
+        "category": "UNKNOWN",
+        "confidence": "LOW",
+        "matches": [
+          {
+            "file": "test/mqtt_outbox_host_test/main/CMakeLists.txt",
+            "line": 13,
+            "matched": "target_link_libraries: rapidcheck_catch",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          },
+          {
+            "file": "test/host/main/CMakeLists.txt",
+            "line": 9,
+            "matched": "target_link_libraries: rapidcheck_catch",
+            "detection_type": "build_manifest",
+            "source_type": "linked"
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "enrichment": {
+      "added": 6,
+      "skipped_duplicate": 0,
+      "skipped_no_purl": 0,
+      "skipped_low_confidence": 10,
+      "injected_components": [
+        {
+          "name": "FreeRTOS-Kernel",
+          "version": "",
+          "purl": "pkg:github/FreeRTOS/FreeRTOS-Kernel"
+        },
+        {
+          "name": "esp-idf",
+          "version": "",
+          "purl": "pkg:github/espressif/esp-idf"
+        },
+        {
+          "name": "Paho-MQTT-C",
+          "version": "",
+          "purl": "pkg:github/eclipse/paho.mqtt.c"
+        },
+        {
+          "name": "lwIP",
+          "version": "",
+          "purl": "pkg:github/lwip-tcpip/lwip"
+        },
+        {
+          "name": "mosquitto",
+          "version": "2.0.20",
+          "purl": "pkg:github/eclipse/mosquitto@2.0.20"
+        },
+        {
+          "name": "paho-mqtt",
+          "version": "",
+          "purl": "pkg:pypi/paho-mqtt"
+        }
+      ]
+    }
+  },
+  "detected": [],
+  "sbom_generation": {
+    "cdxgen_used": true,
+    "syft_used": false,
+    "online_resolution": false
+  },
+  "sbom_components": [
+    {
+      "name": "esp_mqtt5_client_test",
+      "version": "",
+      "purl": "pkg:generic/esp_mqtt5_client_test",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "esp_mqtt_client_test",
+      "version": "",
+      "purl": "pkg:generic/esp_mqtt_client_test",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "host_mqtt_client_test",
+      "version": "",
+      "purl": "pkg:generic/host_mqtt_client_test",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "mqtt5",
+      "version": "",
+      "purl": "pkg:generic/mqtt5",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "mqtt_conformance",
+      "version": "",
+      "purl": "pkg:generic/mqtt_conformance",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "mqtt_outbox_host_test",
+      "version": "",
+      "purl": "pkg:generic/mqtt_outbox_host_test",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "mqtt_publish_connect_test",
+      "version": "",
+      "purl": "pkg:generic/mqtt_publish_connect_test",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "mqtt_ssl",
+      "version": "",
+      "purl": "pkg:generic/mqtt_ssl",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "mqtt_ssl_ds",
+      "version": "",
+      "purl": "pkg:generic/mqtt_ssl_ds",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "mqtt_ssl_mutual_auth",
+      "version": "",
+      "purl": "pkg:generic/mqtt_ssl_mutual_auth",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "mqtt_ssl_psk",
+      "version": "",
+      "purl": "pkg:generic/mqtt_ssl_psk",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "mqtt_tcp",
+      "version": "",
+      "purl": "pkg:generic/mqtt_tcp",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "mqtt_tcp_custom_outbox",
+      "version": "",
+      "purl": "pkg:generic/mqtt_tcp_custom_outbox",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "mqtt_utils_host_test",
+      "version": "",
+      "purl": "pkg:generic/mqtt_utils_host_test",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "mqtt_websocket",
+      "version": "",
+      "purl": "pkg:generic/mqtt_websocket",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "mqtt_websocket_secure",
+      "version": "",
+      "purl": "pkg:generic/mqtt_websocket_secure",
+      "ecosystem": "generic",
+      "source": "cdxgen",
+      "extended_injected": false,
+      "directly_used": true
+    },
+    {
+      "name": "FreeRTOS-Kernel",
+      "version": "",
+      "purl": "pkg:github/FreeRTOS/FreeRTOS-Kernel",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    },
+    {
+      "name": "esp-idf",
+      "version": "",
+      "purl": "pkg:github/espressif/esp-idf",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    },
+    {
+      "name": "Paho-MQTT-C",
+      "version": "",
+      "purl": "pkg:github/eclipse/paho.mqtt.c",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": false
+    },
+    {
+      "name": "lwIP",
+      "version": "",
+      "purl": "pkg:github/lwip-tcpip/lwip",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    },
+    {
+      "name": "mosquitto",
+      "version": "2.0.20",
+      "purl": "pkg:github/eclipse/mosquitto@2.0.20",
+      "ecosystem": "github",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": false
+    },
+    {
+      "name": "paho-mqtt",
+      "version": "",
+      "purl": "pkg:pypi/paho-mqtt",
+      "ecosystem": "pypi",
+      "source": "extended_coverage",
+      "extended_injected": true,
+      "directly_used": true
+    }
+  ],
+  "indirect_components": [
+    {
+      "name": "Paho-MQTT-C",
+      "version": "",
+      "purl": "pkg:github/eclipse/paho.mqtt.c"
+    },
+    {
+      "name": "mosquitto",
+      "version": "2.0.20",
+      "purl": "pkg:github/eclipse/mosquitto@2.0.20"
+    }
+  ],
+  "priority": {
+    "profile": {
+      "name": "production_ot",
+      "exposure": "network",
+      "criticality": "production",
+      "update_cadence_days": 365
+    },
+    "buckets": {
+      "Act": 0,
+      "Attend": 0,
+      "Track*": 31,
+      "Track": 0
+    }
+  },
+  "version": "benchmark",
+  "benchmark": true
+}

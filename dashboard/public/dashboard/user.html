@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SBOM Shield</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/intecs-i.svg" />
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    /* Allow scrolling on dashboard page */
+    body { overflow: auto; background: var(--bg, #f4f7fc); }
+
+    /* Map dashboard component CSS vars to site theme */
+    :root {
+      --color-text-primary:        #1a1d2e;
+      --color-text-secondary:      #5a6a8a;
+      --color-text-tertiary:       #9aa5b8;
+      --color-background-primary:  #ffffff;
+      --color-background-secondary:#f4f7fc;
+      --color-border-secondary:    rgba(26,35,126,0.10);
+      --color-border-tertiary:     rgba(26,35,126,0.06);
+      --border-radius-md:          6px;
+      --border-radius-lg:          10px;
+      --font-sans:                 'DM Sans', sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --color-text-primary:        #dde3ef;
+      --color-text-secondary:      #7a8ba8;
+      --color-text-tertiary:       #4e5a70;
+      --color-background-primary:  #191c23;
+      --color-background-secondary:#1e2128;
+      --color-border-secondary:    rgba(255,255,255,0.08);
+      --color-border-tertiary:     rgba(255,255,255,0.06);
+    }
+
+    /* Top nav */
+    .user-topnav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(26,35,126,0.10);
+      box-shadow: 0 1px 4px rgba(26,35,126,0.07);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.65rem 2rem;
+    }
+    .user-topnav-right {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .user-email-pill {
+      font-size: 0.78rem; font-weight: 500;
+      color: #5a6a8a;
+      border: 1px solid rgba(26,35,126,0.12);
+      background: #f4f7fc;
+      padding: 0.28rem 0.85rem; border-radius: 99px;
+    }
+    .btn-topnav-logout {
+      background: transparent; border: 1px solid rgba(26,35,126,0.15);
+      color: #5a6a8a; padding: 0.28rem 0.9rem;
+      font-size: 0.78rem; font-weight: 500;
+      cursor: pointer; border-radius: 6px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .btn-topnav-logout:hover { border-color: #D32F2F; color: #D32F2F; background: rgba(211,47,47,0.05); }
+
+    /* Dark mode nav overrides */
+    [data-theme="dark"] .user-topnav {
+      background: rgba(17,19,22,0.96);
+      border-bottom-color: rgba(255,255,255,0.07);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+    }
+    [data-theme="dark"] .user-email-pill {
+      background: var(--bg2, #1e2128);
+      border-color: rgba(255,255,255,0.08);
+      color: var(--text-dim, #7a8ba8);
+    }
+    [data-theme="dark"] .btn-topnav-logout {
+      border-color: rgba(255,255,255,0.10);
+      color: var(--text-dim, #7a8ba8);
+    }
+    .nav-logo {
+      height: 44px;
+      width: auto;
+      display: block;
+    }
+    [data-theme="dark"] .nav-logo {
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+
+    /* Dashboard content area */
+    #app {
+      padding: 4.5rem 2rem 2rem;
+      min-height: 100vh;
+      position: relative; z-index: 1;
+    }
+
+    /* Loading state */
+    #app-loading {
+      display: flex; align-items: center; justify-content: center;
+      min-height: calc(100vh - 4.5rem);
+      font-family: var(--font-mono); font-size: 0.75rem;
+      letter-spacing: 0.12em; color: var(--text-dim);
+    }
+  </style>
+</head>
+<body>
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="hero-noise" aria-hidden="true"></div>
+
+  <!-- Top nav -->
+  <nav class="user-topnav">
+    <a href="/" aria-label="Intecs SBOM Shield" style="text-decoration:none;display:flex;align-items:center;">
+      <img src="/assets/sbomshieldlogo.png" alt="Intecs SBOM Shield" class="nav-logo" />
+    </a>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:0.75rem;">
+      <button class="dark-toggle" id="dark-toggle-dash" aria-label="Toggle dark mode"></button>
+      <span class="user-email-pill" id="user-email">—</span>
+      <button class="btn-topnav-logout" id="btn-logout">Logout</button>
+    </div>
+  </nav>
+
+  <!-- React mount point -->
+  <div id="app">
+    <div id="app-loading">INITIALISING...</div>
+  </div>
+
+  <!-- Auth guard (runs synchronously before anything renders) -->
+  <script>
+    (function () {
+      const token = sessionStorage.getItem('access_token');
+      if (!token) { window.location.href = '/'; }
+    })();
+  </script>
+
+  <!-- CDN: React 18, ReactDOM 18, Chart.js 4, Babel standalone -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Pipeline Dashboard (JSX, processed by Babel standalone) -->
+  <script type="text/babel">
+    const { useEffect, useRef, useState, useCallback } = React;
+
+    // ─── Hooks ────────────────────────────────────────────────────────────────
+
+    function usePipelineData() {
+      const [summary, setSummary]   = useState({ totalScans: 0, activeProjects: 0, openVulns: 0, kevMatches: 0 });
+      const [scans, setScans]       = useState([]);
+      const [severity, setSeverity] = useState({ critical: 0, high: 0, medium: 0, low: 0 });
+      const [sources, setSources]   = useState([]);
+      const [trend, setTrend]       = useState({ labels: [], fail: [], warn: [], pass: [] });
+      const [loading, setLoading]   = useState(false);
+
+      const refresh = useCallback(async () => {
+        setLoading(true);
+        const token = sessionStorage.getItem('access_token') || '';
+        const h = { 'Authorization': 'Bearer ' + token };
+        try {
+          const [sumRes, scansRes, sevRes, srcRes, trendRes] = await Promise.all([
+            fetch('/api/pipeline/summary',         { headers: h }),
+            fetch('/api/scans/recent?limit=6',     { headers: h }),
+            fetch('/api/vulns/severity-breakdown', { headers: h }),
+            fetch('/api/sources/stats',            { headers: h }),
+            fetch('/api/vulns/trend?days=7',       { headers: h }),
+          ]);
+          if (sumRes.ok)   setSummary(await sumRes.json());
+          if (scansRes.ok) setScans(await scansRes.json());
+          if (sevRes.ok)   setSeverity(await sevRes.json());
+          if (srcRes.ok)   setSources(await srcRes.json());
+          if (trendRes.ok) setTrend(await trendRes.json());
+        } catch (err) {
+          console.error("Pipeline data fetch failed:", err);
+        } finally {
+          setLoading(false);
+        }
+      }, []);
+
+      useEffect(() => { refresh(); }, []);
+
+      return { summary, scans, severity, sources, trend, loading, refresh };
+    }
+
+    // useScanRunner removed — multi-scan logic is now inline in NewScanSidebar
+
+    // ─── Sub-components ───────────────────────────────────────────────────────
+
+    function KpiCard({ label, value, sub, valueStyle }) {
+      return (
+        <div style={styles.kpi}>
+          <div style={styles.kpiLabel}>{label}</div>
+          <div style={{ ...styles.kpiVal, ...valueStyle }}>{value}</div>
+          <div style={styles.kpiSub}>{sub}</div>
+        </div>
+      );
+    }
+
+    function ScanTable({ scans, onRowClick }) {
+      const verdictStyle = (v) =>
+        v === "FAIL" ? styles.badgeFail : v === "WARN" ? styles.badgeWarn : styles.badgePass;
+      return (
+        <table style={styles.table}>
+          <thead>
+            <tr>
+              {["Project / Release","Components","Vulns","KEV","Verdict","Scanned"].map((h) => (
+                <th key={h} style={styles.th}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {scans.map((s, i) => (
+              <tr key={s.id ?? i} onClick={() => onRowClick?.(s.id)} style={{ cursor: "pointer" }}
+                  onMouseEnter={e => e.currentTarget.style.background = "var(--color-background-secondary)"}
+                  onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                <td style={styles.td}>
+                  <span style={{ fontWeight: 500 }}>{s.project}</span><br />
+                  <span style={styles.mono}>{s.release}</span>
+                </td>
+                <td style={{ ...styles.td, ...styles.mono }}>{s.components}</td>
+                <td style={{ ...styles.td, ...styles.mono }}>{s.vulns}</td>
+                <td style={{ ...styles.td, ...styles.mono }}>
+                  {s.kev > 0 ? <span style={{ color: "#A32D2D", fontWeight: 500 }}>{s.kev}</span> : "—"}
+                </td>
+                <td style={styles.td}><span style={verdictStyle(s.verdict)}>{s.verdict}</span></td>
+                <td style={{ ...styles.td, ...styles.mono }}>{s.ts}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+    }
+
+    function SeverityBar({ severity }) {
+      const total = Object.values(severity).reduce((a, b) => a + b, 0);
+      const rows = [
+        { label: "Critical", key: "critical", color: "#E24B4A" },
+        { label: "High",     key: "high",     color: "#EF9F27" },
+        { label: "Medium",   key: "medium",   color: "#FAC775" },
+        { label: "Low",      key: "low",      color: "#97C459" },
+      ];
+      return (
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          {rows.map((r) => (
+            <div key={r.key} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12 }}>
+              <span style={{ width: 60, color: "var(--color-text-secondary)", flexShrink: 0 }}>{r.label}</span>
+              <div style={{ flex: 1, height: 6, background: "var(--color-background-secondary)", borderRadius: 3, overflow: "hidden" }}>
+                <div style={{ height: "100%", borderRadius: 3, background: r.color, width: `${Math.round((severity[r.key] / total) * 100)}%` }} />
+              </div>
+              <span style={{ width: 24, textAlign: "right", fontWeight: 500 }}>{severity[r.key]}</span>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    function TrendChart({ trend }) {
+      const canvasRef = useRef(null);
+      const chartRef  = useRef(null);
+      const [theme, setTheme] = useState(document.documentElement.getAttribute('data-theme') || 'light');
+
+      useEffect(() => {
+        function onThemeChange() { setTheme(document.documentElement.getAttribute('data-theme') || 'light'); }
+        window.addEventListener('themechange', onThemeChange);
+        return () => window.removeEventListener('themechange', onThemeChange);
+      }, []);
+
+      useEffect(() => {
+        if (!canvasRef.current) return;
+        if (chartRef.current) chartRef.current.destroy();
+        const isDark    = theme === 'dark';
+        const textColor = isDark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.35)";
+        const gridColor = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)";
+        chartRef.current = new Chart(canvasRef.current, {
+          type: "bar",
+          data: {
+            labels: trend.labels,
+            datasets: [
+              { label: "FAIL", data: trend.fail, backgroundColor: "#F09595", stack: "a" },
+              { label: "WARN", data: trend.warn, backgroundColor: "#FAC775", stack: "a" },
+              { label: "PASS", data: trend.pass, backgroundColor: "#97C459", stack: "a" },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false }, tooltip: { mode: "index" } },
+            scales: {
+              x: { stacked: true, ticks: { color: textColor, font: { size: 10 } }, grid: { color: gridColor }, border: { display: false } },
+              y: { stacked: true, ticks: { color: textColor, font: { size: 10 }, stepSize: 5 }, grid: { color: gridColor }, border: { display: false } },
+            },
+          },
+        });
+        return () => chartRef.current?.destroy();
+      }, [trend, theme]);
+
+      return (
+        <div style={{ position: "relative", width: "100%", height: 140 }}>
+          <canvas ref={canvasRef} />
+        </div>
+      );
+    }
+
+    function NewScanSidebar({ open, onClose, onScanComplete, onTrackCreated }) {
+      const [repos, setRepos]           = useState([]);
+      const [repoName, setRepoName]     = useState("");
+      const [version, setVersion]       = useState("");
+      const [submitting, setSubmitting] = useState(false);
+      const [activeScans, setActiveScans] = useState([]);
+      const [otLayer, setOtLayer]         = useState(true);
+
+      // ─── Context profile (priority framework) ────────────────────────────
+      const [presets, setPresets]         = useState({});
+      const [presetName, setPresetName]   = useState("production_ot");
+      const [exposure, setExposure]       = useState("network");
+      const [criticality, setCriticality] = useState("production");
+      const [cadenceDays, setCadenceDays] = useState(365);
+      const [intervalHours, setIntervalHours] = useState(24);
+
+      // Load repos + presets when sidebar opens
+      useEffect(() => {
+        if (!open) return;
+        const token = sessionStorage.getItem('access_token') || '';
+        const h = { Authorization: 'Bearer ' + token };
+        fetch('/api/repos', { headers: h })
+          .then(r => r.ok ? r.json() : [])
+          .then(data => {
+            setRepos(data);
+            if (data.length > 0) setRepoName(prev => prev || data[0]);
+          }).catch(() => {});
+        fetch('/api/priority/presets', { headers: h })
+          .then(r => r.ok ? r.json() : null)
+          .then(data => {
+            if (!data) return;
+            setPresets(data.presets || {});
+          }).catch(() => {});
+      }, [open]);
+
+      // Apply a preset → overwrite the editable fields
+      const applyPreset = (name) => {
+        setPresetName(name);
+        const p = presets[name];
+        if (!p) return;
+        setExposure(p.exposure);
+        setCriticality(p.criticality);
+        setCadenceDays(p.update_cadence_days);
+      };
+
+      const contextProfile = () => ({
+        name: presetName,
+        exposure,
+        criticality,
+        update_cadence_days: Number(cadenceDays) || 90,
+      });
+
+      const handleRun = async () => {
+        if (!repoName || !version.trim() || submitting) return;
+        const token = sessionStorage.getItem('access_token') || '';
+        setSubmitting(true);
+        try {
+          const res = await fetch('/api/scan/run', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+            body: JSON.stringify({
+              repo_name: repoName,
+              version: version.trim(),
+              extended_coverage: otLayer,
+              context_profile: contextProfile(),
+            }),
+          });
+          if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            alert('Could not start scan: ' + (err.detail || res.statusText));
+            return;
+          }
+          const { scan_id } = await res.json();
+          const localId = Date.now();
+
+          setActiveScans(prev => [...prev, {
+            localId, scanId: scan_id,
+            repoName, version: version.trim(),
+            stage: 'Starting…', pct: 0, done: false, error: null,
+          }]);
+          setVersion("");
+
+          const es = new EventSource(`/api/scan/stream/${scan_id}?token=${encodeURIComponent(token)}`);
+          es.onmessage = (e) => {
+            const data = JSON.parse(e.data);
+            if (data.heartbeat) return;
+            setActiveScans(prev => prev.map(s =>
+              s.localId === localId
+                ? { ...s, stage: data.stage, pct: data.pct, done: data.done, error: data.error || null }
+                : s
+            ));
+            if (data.done) { es.close(); onScanComplete?.(); }
+          };
+          es.onerror = () => {
+            es.close();
+            setActiveScans(prev => prev.map(s =>
+              s.localId === localId ? { ...s, stage: 'Connection lost', pct: 100, done: true, error: 'sse' } : s
+            ));
+          };
+        } catch (err) {
+          alert('Error: ' + err.message);
+        } finally {
+          setSubmitting(false);
+        }
+      };
+
+      const handleTrack = async () => {
+        if (!repoName || !version.trim() || submitting) return;
+        const token = sessionStorage.getItem('access_token') || '';
+        setSubmitting(true);
+        try {
+          const res = await fetch('/api/tracks', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+            body: JSON.stringify({
+              repo_name: repoName,
+              project_name: repoName,
+              version: version.trim(),
+              extended_coverage: otLayer,
+              context_profile: contextProfile(),
+              interval_hours: Number(intervalHours) || 24,
+            }),
+          });
+          if (!res.ok) {
+            const err = await res.json().catch(() => ({}));
+            alert('Could not start tracking: ' + (err.detail || res.statusText));
+            return;
+          }
+          const data = await res.json();
+          setVersion("");
+          onTrackCreated?.(data.track_id);
+          // Refresh the recent-scans table once the first scan lands
+          setTimeout(() => onScanComplete?.(), 30000);
+        } catch (err) {
+          alert('Error: ' + err.message);
+        } finally {
+          setSubmitting(false);
+        }
+      };
+
+      const canRun = repoName && version.trim() && !submitting;
+
+      return (
+        <>
+          <div
+            onClick={onClose}
+            style={{ ...styles.overlay, opacity: open ? 1 : 0, pointerEvents: open ? "all" : "none" }}
+          />
+          <div style={{ ...styles.sidebar, transform: open ? "translateX(0)" : "translateX(100%)" }}>
+            <div style={styles.sidebarHeader}>
+              <span style={{ fontSize: 15, fontWeight: 500 }}>New scan</span>
+              <button style={styles.closeBtn} onClick={onClose}>✕</button>
+            </div>
+            <div style={styles.sidebarBody}>
+              {/* Repo selector */}
+              <div>
+                <label style={styles.fieldLabel}>Repository</label>
+                <select
+                  value={repoName}
+                  onChange={e => setRepoName(e.target.value)}
+                  style={{ width: "100%", fontSize: 13, padding: "7px 8px", border: "0.5px solid var(--color-border-secondary)", borderRadius: "var(--border-radius-md)", background: "var(--color-background-secondary)", color: "var(--color-text-primary)", fontFamily: "var(--font-mono)", cursor: "pointer" }}
+                >
+                  {repos.length === 0 && <option value="">Loading repos…</option>}
+                  {repos.map(r => <option key={r} value={r}>{r}</option>)}
+                </select>
+              </div>
+              {/* Version input */}
+              <div>
+                <label style={styles.fieldLabel}>Version / tag</label>
+                <input
+                  type="text"
+                  value={version}
+                  onChange={e => setVersion(e.target.value)}
+                  onKeyDown={e => { if (e.key === 'Enter') handleRun(); }}
+                  placeholder="e.g. v1.2.3 or main"
+                  style={{ width: "100%", boxSizing: "border-box", fontSize: 13, padding: "7px 8px", border: "0.5px solid var(--color-border-secondary)", borderRadius: "var(--border-radius-md)", background: "var(--color-background-secondary)", color: "var(--color-text-primary)", fontFamily: "var(--font-mono)" }}
+                />
+              </div>
+              {/* extended_coverage toggle */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 14px", background: "var(--color-background-secondary)", borderRadius: "var(--border-radius-md)", border: `0.5px solid ${otLayer ? "rgba(59,109,17,0.30)" : "var(--color-border-tertiary)"}`, transition: "border-color 0.2s" }}>
+                <div>
+                  <div style={{ fontSize: 12, fontWeight: 500, color: "var(--color-text-primary)" }}>OT / ICS layer</div>
+                  <div style={{ fontSize: 11, color: "var(--color-text-tertiary)", marginTop: 2 }}>Protocol, RTOS &amp; security analysis</div>
+                </div>
+                <button
+                  role="switch"
+                  aria-checked={otLayer}
+                  onClick={() => setOtLayer(v => !v)}
+                  style={{
+                    flexShrink: 0,
+                    position: "relative",
+                    width: 40, height: 22,
+                    background: otLayer ? "#3B6D11" : "var(--color-border-secondary)",
+                    borderRadius: 99, border: "none", cursor: "pointer",
+                    transition: "background 0.2s",
+                    padding: 0,
+                  }}
+                >
+                  <span style={{
+                    position: "absolute",
+                    top: 3, left: otLayer ? 21 : 3,
+                    width: 16, height: 16,
+                    borderRadius: "50%",
+                    background: "#fff",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.25)",
+                    transition: "left 0.2s",
+                    display: "block",
+                  }} />
+                </button>
+              </div>
+              {/* Context profile — drives the SSVC prioritisation */}
+              <div style={{ background: "var(--color-background-secondary)", borderRadius: "var(--border-radius-md)", padding: "12px 14px", display: "flex", flexDirection: "column", gap: 10 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: 12, fontWeight: 500, color: "var(--color-text-primary)" }}>Context profile</span>
+                  <span style={{ fontSize: 10, color: "var(--color-text-tertiary)", textTransform: "uppercase", letterSpacing: "0.06em" }}>SSVC inputs</span>
+                </div>
+                <div>
+                  <label style={styles.fieldLabel}>Preset</label>
+                  <select value={presetName} onChange={e => applyPreset(e.target.value)}
+                    style={{ width: "100%", fontSize: 12, padding: "6px 8px", border: "0.5px solid var(--color-border-secondary)", borderRadius: "var(--border-radius-md)", background: "var(--color-background-primary)", color: "var(--color-text-primary)", fontFamily: "var(--font-mono)" }}>
+                    {Object.keys(presets).length === 0 && <option value="">loading…</option>}
+                    {Object.keys(presets).map(name => (
+                      <option key={name} value={name}>{name}</option>
+                    ))}
+                    <option value="custom">custom</option>
+                  </select>
+                </div>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+                  <div>
+                    <label style={styles.fieldLabel}>Exposure</label>
+                    <select value={exposure} onChange={e => { setExposure(e.target.value); setPresetName("custom"); }}
+                      style={{ width: "100%", fontSize: 12, padding: "6px 8px", border: "0.5px solid var(--color-border-secondary)", borderRadius: "var(--border-radius-md)", background: "var(--color-background-primary)", color: "var(--color-text-primary)", fontFamily: "var(--font-mono)" }}>
+                      <option value="airgapped">airgapped</option>
+                      <option value="local">local</option>
+                      <option value="network">network</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label style={styles.fieldLabel}>Criticality</label>
+                    <select value={criticality} onChange={e => { setCriticality(e.target.value); setPresetName("custom"); }}
+                      style={{ width: "100%", fontSize: 12, padding: "6px 8px", border: "0.5px solid var(--color-border-secondary)", borderRadius: "var(--border-radius-md)", background: "var(--color-background-primary)", color: "var(--color-text-primary)", fontFamily: "var(--font-mono)" }}>
+                      <option value="safety_critical">safety_critical</option>
+                      <option value="production">production</option>
+                      <option value="lab">lab</option>
+                      <option value="dev">dev</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label style={styles.fieldLabel}>Update cadence (days)</label>
+                  <input type="number" min="1" max="3650" value={cadenceDays}
+                    onChange={e => { setCadenceDays(e.target.value); setPresetName("custom"); }}
+                    style={{ width: "100%", boxSizing: "border-box", fontSize: 12, padding: "6px 8px", border: "0.5px solid var(--color-border-secondary)", borderRadius: "var(--border-radius-md)", background: "var(--color-background-primary)", color: "var(--color-text-primary)", fontFamily: "var(--font-mono)" }} />
+                  <div style={styles.fieldHint}>&gt;365d firmware-frozen → SSVC impact bumped one notch.</div>
+                </div>
+                <div>
+                  <label style={styles.fieldLabel}>Tracking re-check every (hours)</label>
+                  <input type="number" min="1" max="720" value={intervalHours}
+                    onChange={e => setIntervalHours(e.target.value)}
+                    style={{ width: "100%", boxSizing: "border-box", fontSize: 12, padding: "6px 8px", border: "0.5px solid var(--color-border-secondary)", borderRadius: "var(--border-radius-md)", background: "var(--color-background-primary)", color: "var(--color-text-primary)", fontFamily: "var(--font-mono)" }} />
+                  <div style={styles.fieldHint}>Applies only to "Start tracking". Ignored on one-off scans.</div>
+                </div>
+              </div>
+
+              {/* Active scans list */}
+              {activeScans.length > 0 && (
+                <div>
+                  <div style={{ fontSize: 11, fontWeight: 500, color: "var(--color-text-tertiary)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>
+                    Running scans
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                    {activeScans.map(s => (
+                      <div key={s.localId} style={{ background: "var(--color-background-secondary)", borderRadius: "var(--border-radius-md)", padding: "10px 12px" }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 5 }}>
+                          <span style={{ fontSize: 12, fontWeight: 500, fontFamily: "var(--font-mono)" }}>{s.repoName}</span>
+                          <span style={{ fontSize: 11, color: "var(--color-text-tertiary)", fontFamily: "var(--font-mono)" }}>{s.version}</span>
+                        </div>
+                        <div style={{ width: "100%", height: 3, background: "var(--color-border-tertiary)", borderRadius: 2, overflow: "hidden", marginBottom: 5 }}>
+                          <div style={{
+                            height: "100%", borderRadius: 2,
+                            background: s.error ? "#E24B4A" : s.done ? "#3B6D11" : "#1E88E5",
+                            width: `${s.pct}%`, transition: "width 0.4s",
+                          }} />
+                        </div>
+                        <div style={{ fontSize: 11, color: s.error ? "#A32D2D" : s.done ? "#3B6D11" : "var(--color-text-secondary)" }}>
+                          {s.stage}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {/* Pipeline info */}
+              <div style={styles.infoBox}>
+                <div style={{ fontSize: 11, fontWeight: 500, color: "var(--color-text-secondary)", marginBottom: 8 }}>Pipeline steps</div>
+                {["Syft SBOM generation (CycloneDX JSON)", "OSV + NVD + CISA KEV correlation", "EPSS enrichment", "JSON report + DB save"].map(item => (
+                  <div key={item} style={{ fontSize: 11, color: "var(--color-text-secondary)", display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
+                    <span style={{ color: "#3B6D11" }}>✓</span> {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div style={{ ...styles.sidebarFooter, display: "flex", gap: 8 }}>
+              <button
+                style={{ ...styles.runBtn, flex: 1, opacity: canRun ? 1 : 0.5, cursor: canRun ? "pointer" : "not-allowed" }}
+                onClick={handleRun}
+                disabled={!canRun}
+                title="One-off scan with the current context profile"
+              >
+                {submitting ? "Starting…" : "Run scan"}
+              </button>
+              <button
+                style={{ ...styles.runBtn, flex: 1, background: "#3B6D11", color: "#ffffff", borderColor: "#3B6D11", opacity: canRun ? 1 : 0.5, cursor: canRun ? "pointer" : "not-allowed" }}
+                onClick={handleTrack}
+                disabled={!canRun}
+                title="Run an initial scan and re-check vuln DBs at the chosen interval"
+              >
+                {submitting ? "…" : "Track"}
+              </button>
+            </div>
+          </div>
+        </>
+      );
+    }
+
+    // ─── Tracks panel ─────────────────────────────────────────────────────────
+
+    function TracksPanel({ refreshTick, onScanClick }) {
+      const [tracks, setTracks]   = useState([]);
+      const [expandedId, setExpanded] = useState(null);
+      const [history, setHistory] = useState({});         // {track_id: [...rows]}
+      const [upgrading, setUpgrading] = useState(null);   // {id, version}
+
+      const refresh = useCallback(async () => {
+        const token = sessionStorage.getItem('access_token') || '';
+        const r = await fetch('/api/tracks', { headers: { Authorization: 'Bearer ' + token } });
+        if (r.ok) setTracks(await r.json());
+      }, []);
+
+      useEffect(() => { refresh(); }, [refresh, refreshTick]);
+      // Auto-refresh every 60s so the "last check" column doesn't go stale
+      useEffect(() => {
+        const id = setInterval(refresh, 60000);
+        return () => clearInterval(id);
+      }, [refresh]);
+
+      const toggleExpand = async (id) => {
+        if (expandedId === id) { setExpanded(null); return; }
+        setExpanded(id);
+        const token = sessionStorage.getItem('access_token') || '';
+        const r = await fetch(`/api/tracks/${id}`, { headers: { Authorization: 'Bearer ' + token } });
+        if (r.ok) {
+          const d = await r.json();
+          setHistory(prev => ({ ...prev, [id]: d.history || [] }));
+        }
+      };
+
+      const handleUpgrade = async (id, currentVersion) => {
+        const newVersion = prompt(`Upgrade track to a new version (current: ${currentVersion}):`);
+        if (!newVersion || !newVersion.trim()) return;
+        const token = sessionStorage.getItem('access_token') || '';
+        const r = await fetch(`/api/tracks/${id}/upgrade`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+          body: JSON.stringify({ version: newVersion.trim() }),
+        });
+        if (r.ok) { setUpgrading({ id, version: newVersion.trim() }); refresh(); }
+        else alert('Upgrade failed');
+      };
+
+      const handleDisable = async (id) => {
+        if (!confirm('Disable this track? Periodic re-checks will stop.')) return;
+        const token = sessionStorage.getItem('access_token') || '';
+        await fetch(`/api/tracks/${id}/disable`, { method: 'POST', headers: { Authorization: 'Bearer ' + token } });
+        refresh();
+      };
+
+      const handleDelete = async (id) => {
+        if (!confirm('Delete this track? Past scans are preserved.')) return;
+        const token = sessionStorage.getItem('access_token') || '';
+        await fetch(`/api/tracks/${id}`, { method: 'DELETE', headers: { Authorization: 'Bearer ' + token } });
+        refresh();
+      };
+
+      if (tracks.length === 0) {
+        return (
+          <div style={styles.card}>
+            <div style={styles.cardTitle}>Tracked projects</div>
+            <div style={{ fontSize: 12, color: "var(--color-text-tertiary)", padding: "8px 0" }}>
+              No tracks yet — open <em>New scan</em>, fill the context profile and press <strong>Track</strong>
+              to schedule periodic vuln re-checks.
+            </div>
+          </div>
+        );
+      }
+
+      return (
+        <div style={styles.card}>
+          <div style={styles.cardTitle}>Tracked projects ({tracks.length})</div>
+          <table style={styles.table}>
+            <thead>
+              <tr>
+                <th style={styles.th}>Project</th>
+                <th style={styles.th}>Version</th>
+                <th style={styles.th}>Profile</th>
+                <th style={styles.th}>Interval</th>
+                <th style={styles.th}>Last check</th>
+                <th style={styles.th}>Status</th>
+                <th style={styles.th}></th>
+              </tr>
+            </thead>
+            <tbody>
+              {tracks.map(t => (
+                <React.Fragment key={t.id}>
+                  <tr onClick={() => toggleExpand(t.id)} style={{ cursor: "pointer" }}>
+                    <td style={styles.td}>{t.project_name}</td>
+                    <td style={{ ...styles.td, ...styles.mono }}>{t.current_version || "—"}</td>
+                    <td style={{ ...styles.td, ...styles.mono }}>
+                      {t.context_profile?.exposure}/{t.context_profile?.criticality}
+                    </td>
+                    <td style={{ ...styles.td, ...styles.mono }}>{t.interval_hours}h</td>
+                    <td style={{ ...styles.td, ...styles.mono }}>
+                      {t.last_check_at ? t.last_check_at.slice(0, 16).replace("T", " ") : "—"}
+                    </td>
+                    <td style={styles.td}>
+                      {t.enabled
+                        ? <span style={styles.badgePass}>active</span>
+                        : <span style={styles.badgeWarn}>disabled</span>}
+                    </td>
+                    <td style={styles.td} onClick={e => e.stopPropagation()}>
+                      <button style={styles.secondaryBtn} onClick={() => handleUpgrade(t.id, t.current_version)}>↑ ver</button>
+                      {" "}
+                      <button style={styles.secondaryBtn} onClick={() => handleDisable(t.id)}>disable</button>
+                      {" "}
+                      <button style={styles.secondaryBtn} onClick={() => handleDelete(t.id)}>×</button>
+                    </td>
+                  </tr>
+                  {expandedId === t.id && (
+                    <tr>
+                      <td colSpan={7} style={{ ...styles.td, background: "var(--color-background-secondary)", padding: "12px 14px" }}>
+                        <div style={{ fontSize: 11, color: "var(--color-text-tertiary)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: 8 }}>
+                          Version timeline ({history[t.id]?.length || 0} scans)
+                        </div>
+                        {(!history[t.id] || history[t.id].length === 0)
+                          ? <div style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>No scans yet — first run still in progress.</div>
+                          : (
+                            <table style={{ ...styles.table, fontSize: 12 }}>
+                              <thead>
+                                <tr>
+                                  <th style={styles.th}>Version</th>
+                                  <th style={styles.th}>When</th>
+                                  <th style={styles.th}>Comps</th>
+                                  <th style={styles.th}>Vulns</th>
+                                  <th style={styles.th}>Act</th>
+                                  <th style={styles.th}>Attend</th>
+                                  <th style={styles.th}>Track*</th>
+                                  <th style={styles.th}>Track</th>
+                                  <th style={styles.th}>KEV</th>
+                                  <th style={styles.th}>Verdict</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {history[t.id].map(h => (
+                                  <tr key={h.scan_id} style={{ cursor: "pointer" }} onClick={() => onScanClick?.(h.scan_id)}>
+                                    <td style={{ ...styles.td, ...styles.mono }}>{h.version}</td>
+                                    <td style={{ ...styles.td, ...styles.mono }}>{h.ts}</td>
+                                    <td style={styles.td}>{h.components}</td>
+                                    <td style={styles.td}>{h.vulns}</td>
+                                    <td style={{ ...styles.td, color: h.act > 0 ? "#A32D2D" : undefined }}>{h.act}</td>
+                                    <td style={{ ...styles.td, color: h.attend > 0 ? "#854F0B" : undefined }}>{h.attend}</td>
+                                    <td style={styles.td}>{h.trackstar}</td>
+                                    <td style={styles.td}>{h.track}</td>
+                                    <td style={styles.td}>{h.kev}</td>
+                                    <td style={styles.td}>
+                                      {h.verdict === "FAIL" && <span style={styles.badgeFail}>FAIL</span>}
+                                      {h.verdict === "WARN" && <span style={styles.badgeWarn}>WARN</span>}
+                                      {h.verdict === "PASS" && <span style={styles.badgePass}>PASS</span>}
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          )}
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
+    // ─── Main Dashboard ───────────────────────────────────────────────────────
+
+    /* ── Scan detail modal ──────────────────────────────────────────────── */
+
+    function ScanDetailModal({ scanId, onClose }) {
+      const [data, setData]       = useState(null);
+      const [loading, setLoading] = useState(true);
+      const [tab, setTab]         = useState("components"); // components | skipped | detected | sbom
+      const [sbomFilter, setSbomFilter] = useState("");
+
+      useEffect(() => {
+        if (!scanId) return;
+        setLoading(true);
+        const token = sessionStorage.getItem('access_token') || '';
+        fetch(`/api/scans/${scanId}/detail`, { headers: { Authorization: 'Bearer ' + token } })
+          .then(r => r.ok ? r.json() : Promise.reject())
+          .then(d => { setData(d); setLoading(false); })
+          .catch(() => setLoading(false));
+      }, [scanId]);
+
+      if (!scanId) return null;
+
+      const sevColor = s => ({ CRITICAL: "#E24B4A", HIGH: "#EF9F27", MEDIUM: "#FAC775", LOW: "#97C459" })[s] || "#9aa5b8";
+      const bktColor = b => ({ Act: "#A32D2D", Attend: "#854F0B", "Track*": "#6B7280", Track: "#9aa5b8" })[b] || "#9aa5b8";
+      const verdictStyle = v =>
+        v === "FAIL" ? styles.badgeFail : v === "WARN" ? styles.badgeWarn : styles.badgePass;
+
+      const downloadSbom = () => {
+        if (!data?.sbom_components) return;
+        const blob = new Blob([JSON.stringify(data.sbom_components, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `sbom_${data.project}_${(data.generated_at || "").slice(0, 10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+      };
+
+      return (
+        <>
+          <div onClick={onClose} style={{ ...styles.overlay, opacity: 1, pointerEvents: "all" }} />
+          <div style={styles.modal}>
+            {loading ? (
+              <div style={{ padding: 40, textAlign: "center", color: "var(--color-text-secondary)" }}>Loading…</div>
+            ) : !data ? (
+              <div style={{ padding: 40, textAlign: "center", color: "#A32D2D" }}>Failed to load scan</div>
+            ) : (
+              <>
+                {/* Header */}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
+                  <div>
+                    <div style={{ fontSize: 17, fontWeight: 500 }}>{data.project} <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--color-text-secondary)" }}>{data.release}</span></div>
+                    <div style={{ fontSize: 12, color: "var(--color-text-tertiary)", marginTop: 3 }}>{data.generated_at?.slice(0,16).replace("T"," ")}</div>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <span style={verdictStyle(data.verdict)}>{data.verdict}</span>
+                    <button onClick={onClose} style={styles.closeBtn}>✕</button>
+                  </div>
+                </div>
+
+                {/* Summary chips */}
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 16 }}>
+                  {[
+                    { l: "Components", v: data.summary.total_components },
+                    { l: "Vulnerable", v: data.summary.vulnerable, c: data.summary.vulnerable > 0 ? "#854F0B" : null },
+                    { l: "Vulns", v: data.summary.total_vulns },
+                    { l: "Critical", v: data.summary.critical, c: data.summary.critical > 0 ? "#E24B4A" : null },
+                    { l: "High", v: data.summary.high, c: data.summary.high > 0 ? "#EF9F27" : null },
+                    { l: "Medium", v: data.summary.medium },
+                    { l: "Low", v: data.summary.low },
+                    { l: "KEV", v: data.summary.kev, c: data.summary.kev > 0 ? "#A32D2D" : null },
+                    { l: "Detected", v: (data.detected || []).length, c: (data.detected || []).length > 0 ? "#7B5EA7" : null },
+                    { l: "Indirect", v: (data.indirect_components || []).length, c: (data.indirect_components || []).length > 0 ? "#6B7280" : null },
+                    { l: "SBOM", v: (data.sbom_components || []).length },
+                  ].map(ch => (
+                    <span key={ch.l} style={{
+                      fontSize: 11, padding: "4px 10px", borderRadius: 99,
+                      background: "var(--color-background-secondary)",
+                      border: "0.5px solid var(--color-border-tertiary)",
+                      color: ch.c || "var(--color-text-secondary)", fontWeight: ch.c ? 600 : 400,
+                    }}>
+                      {ch.l}: {ch.v}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Tabs */}
+                <div style={{ display: "flex", gap: 0, marginBottom: 12, borderBottom: "0.5px solid var(--color-border-tertiary)" }}>
+                  {[
+                    { key: "components", label: `Vulnerable (${data.components.length})` },
+                    { key: "skipped",    label: `Skipped (${data.skipped.length})` },
+                    { key: "detected",   label: `Detected (${(data.detected || []).length})` },
+                    { key: "indirect",   label: `Indirect (${(data.indirect_components || []).length})` },
+                    { key: "sbom",       label: `SBOM (${(data.sbom_components || []).length})` },
+                  ].map(t => (
+                    <button key={t.key} onClick={() => setTab(t.key)} style={{
+                      background: "none", border: "none", cursor: "pointer",
+                      padding: "8px 16px", fontSize: 12, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.05em",
+                      color: tab === t.key ? "var(--color-text-primary)" : "var(--color-text-tertiary)",
+                      borderBottom: tab === t.key ? "2px solid #1E88E5" : "2px solid transparent",
+                    }}>
+                      {t.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Tab content */}
+                <div style={{ overflowY: "auto", maxHeight: "calc(80vh - 220px)" }}>
+                  {tab === "components" && (
+                    data.components.length === 0
+                      ? <div style={{ padding: 20, textAlign: "center", color: "var(--color-text-tertiary)", fontSize: 13 }}>No vulnerable components</div>
+                      : data.components.map(c => (
+                        <div key={c.id} style={{ marginBottom: 12, border: "0.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-md)", overflow: "hidden" }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 14px", background: "var(--color-background-secondary)" }}>
+                            <div>
+                              <span style={{ fontWeight: 500, fontSize: 13 }}>{c.name}</span>
+                              <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--color-text-secondary)", marginLeft: 8 }}>{c.version}</span>
+                              {c.ecosystem && <span style={{ fontSize: 10, color: "var(--color-text-tertiary)", marginLeft: 8 }}>{c.ecosystem}</span>}
+                            </div>
+                            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                              {c.highest_severity && <span style={{ fontSize: 10, fontWeight: 600, color: sevColor(c.highest_severity), textTransform: "uppercase" }}>{c.highest_severity}</span>}
+                              {c.max_cvss != null && <span style={{ fontSize: 11, fontFamily: "var(--font-mono)", color: "var(--color-text-secondary)" }}>CVSS {c.max_cvss.toFixed(1)}</span>}
+                            </div>
+                          </div>
+                          {c.vulns.map(v => (
+                            <div key={v.vuln_id} style={{ padding: "8px 14px", borderTop: "0.5px solid var(--color-border-tertiary)", fontSize: 12 }}>
+                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
+                                <span style={{ fontFamily: "var(--font-mono)", fontWeight: 500, fontSize: 11 }}>{v.vuln_id}</span>
+                                <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                                  {v.priority?.bucket && <span title={v.priority.rationale || ""} style={{ fontSize: 10, fontWeight: 600, color: "#fff", background: bktColor(v.priority.bucket), padding: "2px 7px", borderRadius: 99 }}>{v.priority.bucket}</span>}
+                                  {v.source && <span style={{ fontSize: 10, color: "var(--color-text-tertiary)" }}>{v.source}</span>}
+                                  {v.severity && <span style={{ fontSize: 10, fontWeight: 600, color: sevColor(v.severity) }}>{v.severity}</span>}
+                                  {v.cvss != null && <span style={{ fontSize: 10, fontFamily: "var(--font-mono)", color: "var(--color-text-secondary)" }}>{v.cvss.toFixed(1)}</span>}
+                                  {v.epss != null && <span style={{ fontSize: 10, fontFamily: "var(--font-mono)", color: "var(--color-text-tertiary)" }}>EPSS {(v.epss * 100).toFixed(2)}%</span>}
+                                  {v.exploit_available && <span style={{ fontSize: 10, fontWeight: 600, color: "#E24B4A", background: "rgba(226,75,74,0.1)", padding: "2px 7px", borderRadius: 99 }}>⚡ exploit</span>}
+                                  {v.vdb_id && <span style={{ fontSize: 10, fontFamily: "var(--font-mono)", color: "var(--color-text-tertiary)" }}>{v.vdb_id}</span>}
+                                </div>
+                              </div>
+                              {v.summary && <div style={{ color: "var(--color-text-secondary)", fontSize: 11, lineHeight: 1.45 }}>{v.summary}</div>}
+                              {v.fixed && <div style={{ fontSize: 11, marginTop: 2, color: "#3B6D11" }}>Fixed in {v.fixed}</div>}
+                            </div>
+                          ))}
+                        </div>
+                      ))
+                  )}
+
+                  {tab === "skipped" && (
+                    data.skipped.length === 0
+                      ? <div style={{ padding: 20, textAlign: "center", color: "var(--color-text-tertiary)", fontSize: 13 }}>No skipped components</div>
+                      : <table style={styles.table}>
+                          <thead><tr><th style={styles.th}>Component</th><th style={styles.th}>Reason</th></tr></thead>
+                          <tbody>
+                            {data.skipped.map((s, i) => (
+                              <tr key={i}>
+                                <td style={{ ...styles.td, fontFamily: "var(--font-mono)", fontSize: 12 }}>{s.name}</td>
+                                <td style={{ ...styles.td, fontSize: 12, color: "var(--color-text-secondary)" }}>{s.reason || "—"}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                  )}
+
+                  {tab === "detected" && (() => {
+                    const detected = data.detected || [];
+                    const confColor = c => ({ HIGH: "#3B6D11", MEDIUM: "#854F0B", LOW: "#7a8ba8" })[c] || "#7a8ba8";
+                    return detected.length === 0
+                      ? <div style={{ padding: 20, textAlign: "center", color: "var(--color-text-tertiary)", fontSize: 13 }}>No unanalyzed OT components detected</div>
+                      : (
+                        <>
+                          <div style={{ fontSize: 11, color: "var(--color-text-tertiary)", marginBottom: 10, lineHeight: 1.5 }}>
+                            These OT/ICS components were detected by the static-analysis layer but could not be queried for vulnerabilities (no known PURL).
+                          </div>
+                          <table style={styles.table}>
+                            <thead>
+                              <tr>
+                                <th style={styles.th}>Component</th>
+                                <th style={styles.th}>Category</th>
+                                <th style={styles.th}>Confidence</th>
+                                <th style={styles.th}>Detected in</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {detected.map((d, i) => {
+                                const firstMatch = (d.matches || [])[0];
+                                return (
+                                  <tr key={i}>
+                                    <td style={{ ...styles.td, fontWeight: 500, fontSize: 12 }}>{d.name}</td>
+                                    <td style={{ ...styles.td, fontSize: 11, color: "var(--color-text-secondary)", fontFamily: "var(--font-mono)" }}>{d.category}</td>
+                                    <td style={{ ...styles.td, fontSize: 11, fontWeight: 600, color: confColor(d.confidence) }}>{d.confidence}</td>
+                                    <td style={{ ...styles.td, fontSize: 11, fontFamily: "var(--font-mono)", color: "var(--color-text-tertiary)" }}>
+                                      {firstMatch ? `${firstMatch.file}:${firstMatch.line ?? ""}` : "—"}
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                            </tbody>
+                          </table>
+                        </>
+                      );
+                  })()}
+
+                  {tab === "indirect" && (() => {
+                    const indirect = data.indirect_components || [];
+                    return indirect.length === 0
+                      ? <div style={{ padding: 20, textAlign: "center", color: "var(--color-text-tertiary)", fontSize: 13 }}>No indirect components — all dependencies are directly used</div>
+                      : (
+                        <>
+                          <div style={{ fontSize: 11, color: "var(--color-text-tertiary)", marginBottom: 10, lineHeight: 1.5 }}>
+                            These components are transitive (lock-file only) or have no direct import/include usage in the project source. Their CVEs were excluded from this scan to reduce noise.
+                          </div>
+                          <table style={styles.table}>
+                            <thead>
+                              <tr>
+                                <th style={styles.th}>Component</th>
+                                <th style={styles.th}>Version</th>
+                                <th style={styles.th}>PURL</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {indirect.map((c, i) => (
+                                <tr key={i}>
+                                  <td style={{ ...styles.td, fontWeight: 500, fontSize: 12 }}>{c.name}</td>
+                                  <td style={{ ...styles.td, fontFamily: "var(--font-mono)", fontSize: 11 }}>{c.version || "—"}</td>
+                                  <td style={{ ...styles.td, fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--color-text-tertiary)", maxWidth: 260, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.purl || "—"}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </>
+                      );
+                  })()}
+
+                  {tab === "sbom" && (() => {
+                    const all = data.sbom_components || [];
+                    const q   = sbomFilter.toLowerCase();
+                    const filtered = q ? all.filter(c =>
+                      c.name.toLowerCase().includes(q) ||
+                      (c.purl || "").toLowerCase().includes(q) ||
+                      (c.ecosystem || "").toLowerCase().includes(q)
+                    ) : all;
+                    return (
+                      <>
+                        <div style={{ display: "flex", gap: 8, alignItems: "center", marginBottom: 10 }}>
+                          <input
+                            type="text"
+                            value={sbomFilter}
+                            onChange={e => setSbomFilter(e.target.value)}
+                            placeholder="Filter by name, ecosystem, PURL…"
+                            style={{ flex: 1, fontSize: 12, padding: "6px 10px", border: "0.5px solid var(--color-border-secondary)", borderRadius: "var(--border-radius-md)", background: "var(--color-background-secondary)", color: "var(--color-text-primary)", fontFamily: "var(--font-mono)", outline: "none" }}
+                          />
+                          <button
+                            onClick={downloadSbom}
+                            style={{ flexShrink: 0, fontSize: 12, fontWeight: 500, padding: "6px 14px", border: "0.5px solid var(--color-border-secondary)", borderRadius: "var(--border-radius-md)", background: "var(--color-background-secondary)", color: "var(--color-text-primary)", cursor: "pointer", whiteSpace: "nowrap" }}
+                          >
+                            ↓ Download JSON
+                          </button>
+                        </div>
+                        {filtered.length === 0
+                          ? <div style={{ padding: 20, textAlign: "center", color: "var(--color-text-tertiary)", fontSize: 13 }}>No components match</div>
+                          : <table style={styles.table}>
+                              <thead>
+                                <tr>
+                                  <th style={styles.th}>Component</th>
+                                  <th style={styles.th}>Version</th>
+                                  <th style={styles.th}>Ecosystem</th>
+                                  <th style={styles.th}>PURL</th>
+                                  <th style={styles.th}>Source</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {filtered.map((c, i) => (
+                                  <tr key={i}>
+                                    <td style={{ ...styles.td, fontWeight: 500, fontSize: 12 }}>{c.name}</td>
+                                    <td style={{ ...styles.td, fontFamily: "var(--font-mono)", fontSize: 11 }}>{c.version || "—"}</td>
+                                    <td style={{ ...styles.td, fontSize: 11, color: "var(--color-text-secondary)" }}>{c.ecosystem || "—"}</td>
+                                    <td style={{ ...styles.td, fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--color-text-tertiary)", maxWidth: 220, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.purl || "—"}</td>
+                                    <td style={{ ...styles.td, fontSize: 11 }}>
+                                      {c.directly_used === false
+                                        ? <span style={{ fontSize: 10, fontWeight: 600, color: "#6B7280", background: "rgba(107,114,128,0.1)", padding: "2px 7px", borderRadius: 99 }}>Indirect</span>
+                                        : c.extended_injected
+                                          ? <span style={{ fontSize: 10, fontWeight: 600, color: "#7B5EA7", background: "rgba(123,94,167,0.1)", padding: "2px 7px", borderRadius: 99 }}>OT</span>
+                                          : <span style={{ fontSize: 10, color: "var(--color-text-tertiary)" }}>Syft</span>}
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                        }
+                      </>
+                    );
+                  })()}
+                </div>
+              </>
+            )}
+          </div>
+        </>
+      );
+    }
+
+    /* ── Main Dashboard ────────────────────────────────────────────────── */
+
+    function PipelineDashboard() {
+      const { summary, scans, severity, sources, trend, loading, refresh } = usePipelineData();
+      const [sidebarOpen, setSidebarOpen] = useState(false);
+
+      // Expanded scans panel
+      const [expanded, setExpanded]     = useState(false);
+      const [searchQ, setSearchQ]       = useState("");
+      const [searchResults, setSearchResults] = useState(null);
+      const [searching, setSearching]   = useState(false);
+      const searchTimer = useRef(null);
+
+      // Detail modal
+      const [detailId, setDetailId] = useState(null);
+      const [tracksTick, setTracksTick] = useState(0);
+
+      const handleSearch = useCallback((q) => {
+        setSearchQ(q);
+        clearTimeout(searchTimer.current);
+        if (!q.trim()) { setSearchResults(null); return; }
+        searchTimer.current = setTimeout(async () => {
+          setSearching(true);
+          const token = sessionStorage.getItem('access_token') || '';
+          try {
+            const res = await fetch(`/api/scans/search?q=${encodeURIComponent(q)}&limit=50`, { headers: { Authorization: 'Bearer ' + token } });
+            if (res.ok) setSearchResults(await res.json());
+          } catch {}
+          setSearching(false);
+        }, 350);
+      }, []);
+
+      const handleShowMore = async () => {
+        setExpanded(true);
+        if (!searchResults) {
+          setSearching(true);
+          const token = sessionStorage.getItem('access_token') || '';
+          try {
+            const res = await fetch('/api/scans/search?limit=50', { headers: { Authorization: 'Bearer ' + token } });
+            if (res.ok) setSearchResults(await res.json());
+          } catch {}
+          setSearching(false);
+        }
+      };
+
+      const handleCollapse = () => { setExpanded(false); setSearchQ(""); setSearchResults(null); };
+
+      const displayedScans = expanded ? (searchResults || scans) : scans;
+
+      return (
+        <div style={styles.dash}>
+          {/* Topbar */}
+          <div style={styles.topbar}>
+            <div>
+              <div style={styles.pageTitle}>Pipeline Overview</div>
+              <div style={styles.pageSub}>OT/ICS SBOM Vulnerability Intelligence</div>
+            </div>
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <button style={styles.primaryBtn} onClick={() => setSidebarOpen(true)}>
+                <span style={{ color: "#3B6D11", fontSize: 16, lineHeight: 1 }}>+</span> New scan
+              </button>
+            </div>
+          </div>
+
+          {/* KPIs */}
+          <div style={styles.kpiGrid}>
+            <KpiCard label="Total scans"     value={summary.totalScans}    sub="all time"             />
+            <KpiCard label="Active projects" value={summary.activeProjects} sub="tracked releases"   />
+            <KpiCard label="Open vulns"      value={summary.openVulns}     sub="across all scans"     valueStyle={{ color: "#854F0B" }} />
+            <KpiCard label="KEV matches"     value={summary.kevMatches}    sub="CISA known exploited" valueStyle={{ color: "#A32D2D" }} />
+          </div>
+
+          {/* Tracks panel */}
+          <div>
+            <TracksPanel refreshTick={tracksTick} onScanClick={id => setDetailId(id)} />
+          </div>
+
+          {/* Middle row */}
+          <div style={{ ...(expanded ? {} : styles.twoCol), marginTop: 12 }}>
+            <div style={styles.card}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+                <div style={styles.cardTitle}>{expanded ? "All scans" : "Latest scans"}</div>
+                {expanded && (
+                  <input
+                    type="text"
+                    value={searchQ}
+                    onChange={e => handleSearch(e.target.value)}
+                    placeholder="Search repo:version…"
+                    style={{ fontSize: 12, padding: "5px 10px", border: "0.5px solid var(--color-border-secondary)", borderRadius: "var(--border-radius-md)", background: "var(--color-background-secondary)", color: "var(--color-text-primary)", fontFamily: "var(--font-mono)", width: 220, outline: "none" }}
+                  />
+                )}
+              </div>
+              {searching && <div style={{ fontSize: 11, color: "var(--color-text-tertiary)", marginBottom: 8 }}>Searching…</div>}
+              <div style={expanded ? { maxHeight: 480, overflowY: "auto" } : {}}>
+                <ScanTable scans={displayedScans} onRowClick={id => setDetailId(id)} />
+              </div>
+              {!expanded ? (
+                <button onClick={handleShowMore} style={styles.showMoreBtn}>Show more</button>
+              ) : (
+                <button onClick={handleCollapse} style={styles.showMoreBtn}>Show less</button>
+              )}
+            </div>
+            {!expanded && (
+              <div style={styles.card}>
+                <div style={styles.cardTitle}>Vulnerability severity</div>
+                <SeverityBar severity={severity} />
+                <div style={{ marginTop: 16 }}>
+                  <div style={styles.cardTitle}>Vuln sources</div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                    {sources.map((s) => (
+                      <div key={s.name} style={styles.sourceRow}>
+                        <span style={{ fontWeight: 500, fontSize: 12 }}>{s.name}</span>
+                        <span style={{ ...styles.mono, fontSize: 11, color: "var(--color-text-tertiary)" }}>{s.count} vulns · {s.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Bottom row */}
+          <div style={{ ...styles.card, marginTop: 12 }}>
+            <div style={styles.cardTitle}>7-day scan trend</div>
+            <TrendChart trend={trend} />
+          </div>
+
+          {/* Scan detail modal */}
+          {detailId && <ScanDetailModal scanId={detailId} onClose={() => setDetailId(null)} />}
+
+          {/* New scan sidebar */}
+          <NewScanSidebar
+            open={sidebarOpen}
+            onClose={() => setSidebarOpen(false)}
+            onScanComplete={refresh}
+            onTrackCreated={() => setTracksTick(t => t + 1)}
+          />
+        </div>
+      );
+    }
+
+    // ─── Styles ───────────────────────────────────────────────────────────────
+    const styles = {
+      dash:       { padding: "1.25rem 0", fontFamily: "var(--font-sans)", position: "relative" },
+      topbar:     { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem", flexWrap: "wrap", gap: 12 },
+      pageTitle:  { fontSize: 18, fontWeight: 500, color: "var(--color-text-primary)" },
+      pageSub:    { fontSize: 13, color: "var(--color-text-secondary)", marginTop: 2 },
+      logoPill:   { background: "var(--color-background-secondary)", border: "0.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-md)", padding: "6px 14px", fontSize: 13, fontWeight: 500, color: "var(--color-text-secondary)", display: "inline-flex", alignItems: "center" },
+      logoDot:    { display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: "#3B6D11", marginRight: 6 },
+      secondaryBtn: { fontSize: 12, border: "0.5px solid var(--color-border-secondary)", background: "transparent", color: "var(--color-text-secondary)", borderRadius: "var(--border-radius-md)", padding: "6px 14px", cursor: "pointer" },
+      primaryBtn: { fontSize: 12, fontWeight: 500, border: "0.5px solid var(--color-border-secondary)", background: "var(--color-background-primary)", color: "var(--color-text-primary)", borderRadius: "var(--border-radius-md)", padding: "6px 14px", cursor: "pointer", display: "flex", alignItems: "center", gap: 6 },
+      kpiGrid:    { display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", gap: 10, marginBottom: "1.25rem" },
+      kpi:        { background: "var(--color-background-secondary)", borderRadius: "var(--border-radius-md)", padding: "14px 16px" },
+      kpiLabel:   { fontSize: 12, color: "var(--color-text-secondary)", marginBottom: 6 },
+      kpiVal:     { fontSize: 24, fontWeight: 500, color: "var(--color-text-primary)" },
+      kpiSub:     { fontSize: 11, color: "var(--color-text-tertiary)", marginTop: 4 },
+      twoCol:     { display: "grid", gridTemplateColumns: "minmax(0, 1.55fr) minmax(0, 1fr)", gap: 12, marginBottom: 12 },
+      card:       { background: "var(--color-background-primary)", border: "0.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-lg)", padding: "1rem 1.25rem" },
+      cardTitle:  { fontSize: 13, fontWeight: 500, color: "var(--color-text-secondary)", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.06em" },
+      table:      { width: "100%", borderCollapse: "collapse", fontSize: 13 },
+      th:         { textAlign: "left", fontSize: 11, fontWeight: 500, color: "var(--color-text-tertiary)", padding: "0 0 8px", borderBottom: "0.5px solid var(--color-border-tertiary)", letterSpacing: "0.05em", textTransform: "uppercase" },
+      td:         { padding: "9px 0", borderBottom: "0.5px solid var(--color-border-tertiary)", color: "var(--color-text-primary)", verticalAlign: "middle" },
+      mono:       { fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--color-text-secondary)" },
+      badgeFail:  { display: "inline-flex", alignItems: "center", fontSize: 11, fontWeight: 500, padding: "3px 9px", borderRadius: 99, background: "#FCEBEB", color: "#A32D2D" },
+      badgeWarn:  { display: "inline-flex", alignItems: "center", fontSize: 11, fontWeight: 500, padding: "3px 9px", borderRadius: 99, background: "#FAEEDA", color: "#854F0B" },
+      badgePass:  { display: "inline-flex", alignItems: "center", fontSize: 11, fontWeight: 500, padding: "3px 9px", borderRadius: 99, background: "#EAF3DE", color: "#3B6D11" },
+      sourceRow:  { display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 10px", background: "var(--color-background-secondary)", borderRadius: "var(--border-radius-md)" },
+      pStep:      { flex: 1, textAlign: "center", padding: "8px 4px", background: "var(--color-background-secondary)", border: "0.5px solid var(--color-border-tertiary)", color: "var(--color-text-secondary)", fontSize: 11 },
+      pStepActive:{ background: "var(--color-background-primary)", color: "var(--color-text-primary)", fontWeight: 500, borderColor: "var(--color-border-secondary)" },
+      bottomRow:  { display: "grid", gridTemplateColumns: "minmax(0,1fr) minmax(0,1fr)", gap: 12 },
+      kevItem:    { display: "flex", alignItems: "flex-start", gap: 10, padding: "8px 10px", borderRadius: "var(--border-radius-md)", border: "0.5px solid var(--color-border-tertiary)" },
+      overlay:    { position: "fixed", inset: 0, background: "rgba(0,0,0,0.25)", transition: "opacity 0.22s", zIndex: 10 },
+      sidebar:    { position: "fixed", top: 0, right: 0, height: "100%", width: 320, background: "var(--color-background-primary)", borderLeft: "0.5px solid var(--color-border-secondary)", display: "flex", flexDirection: "column", transition: "transform 0.24s cubic-bezier(.4,0,.2,1)", zIndex: 11 },
+      sidebarHeader: { display: "flex", alignItems: "center", justifyContent: "space-between", padding: "1rem 1.25rem", borderBottom: "0.5px solid var(--color-border-tertiary)" },
+      closeBtn:   { background: "none", border: "none", cursor: "pointer", fontSize: 18, color: "var(--color-text-secondary)", lineHeight: 1, padding: "2px 6px", borderRadius: "var(--border-radius-md)" },
+      sidebarBody:  { flex: 1, padding: "1.25rem", overflowY: "auto", display: "flex", flexDirection: "column", gap: "1.25rem" },
+      sidebarFooter: { padding: "1rem 1.25rem", borderTop: "0.5px solid var(--color-border-tertiary)" },
+      fieldLabel: { fontSize: 12, fontWeight: 500, color: "var(--color-text-secondary)", marginBottom: 6, display: "block" },
+      fieldHint:  { fontSize: 11, color: "var(--color-text-tertiary)", marginTop: 4 },
+      browseBtn:  { fontSize: 12, border: "0.5px solid var(--color-border-secondary)", background: "var(--color-background-secondary)", color: "var(--color-text-secondary)", borderRadius: "var(--border-radius-md)", padding: "0 12px", cursor: "pointer", whiteSpace: "nowrap" },
+      infoBox:    { background: "var(--color-background-secondary)", borderRadius: "var(--border-radius-md)", padding: "12px 14px" },
+      runBtn:     { width: "100%", padding: 10, fontSize: 13, fontWeight: 500, background: "var(--color-background-primary)", color: "var(--color-text-primary)", border: "0.5px solid var(--color-border-secondary)", borderRadius: "var(--border-radius-md)", cursor: "pointer" },
+      showMoreBtn:{ width: "100%", marginTop: 12, padding: "8px 0", fontSize: 12, fontWeight: 500, color: "var(--color-text-secondary)", background: "var(--color-background-secondary)", border: "0.5px solid var(--color-border-tertiary)", borderRadius: "var(--border-radius-md)", cursor: "pointer", textAlign: "center" },
+      modal:      { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "min(820px, 90vw)", maxHeight: "85vh", background: "var(--color-background-primary)", borderRadius: "var(--border-radius-lg)", border: "0.5px solid var(--color-border-secondary)", boxShadow: "0 20px 60px rgba(0,0,0,0.18)", padding: "1.5rem", zIndex: 12, overflow: "hidden", display: "flex", flexDirection: "column", fontFamily: "var(--font-sans)" },
+    };
+
+    // ─── Mount ────────────────────────────────────────────────────────────────
+    const appEl = document.getElementById('app');
+    appEl.innerHTML = '';
+    const root = ReactDOM.createRoot(appEl);
+    root.render(<PipelineDashboard />);
+  </script>
+
+  <!-- Dark mode toggle -->
+  <script>
+    (function () {
+      var MOON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      var SUN  = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
+      var root = document.documentElement;
+      function updateIcon() {
+        var btn = document.getElementById('dark-toggle-dash');
+        if (btn) btn.innerHTML = root.getAttribute('data-theme') === 'dark' ? SUN : MOON;
+      }
+      updateIcon();
+      var btn = document.getElementById('dark-toggle-dash');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          root.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+          updateIcon();
+          window.dispatchEvent(new CustomEvent('themechange'));
+        });
+      }
+    })();
+  </script>
+
+  <!-- Auth: fetch user info, update nav, wire logout -->
+  <script>
+    (function () {
+      const token = sessionStorage.getItem('access_token');
+
+      fetch('/api/v1/auth/me', {
+        headers: { Authorization: 'Bearer ' + token }
+      })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (me) {
+        var el = document.getElementById('user-email');
+        if (el) el.textContent = me.email;
+      })
+      .catch(function () { window.location.href = '/'; });
+
+      document.getElementById('btn-logout').addEventListener('click', function () {
+        sessionStorage.clear();
+        window.location.href = '/';
+      });
+    })();
+  </script>
+</body>
+</html>
