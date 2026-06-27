@@ -1,0 +1,164 @@
+{
+  "metrics": {
+    "overall": {
+      "label": "ALL",
+      "n": 33,
+      "n_score_cvss": 33,
+      "n_bucket": 33,
+      "spearman_score_vs_vendor_cvss": {
+        "rho": 0.4895,
+        "p": 0.0038380248130258916,
+        "n": 33
+      },
+      "spearman_baseline_our_cvss_vs_vendor_cvss": {
+        "rho": 0.7816,
+        "p": 1.2897132429678386e-07,
+        "n": 32
+      },
+      "cohen_kappa_bucket": 0.0195,
+      "bucket_agreement_rate": 0.0303,
+      "bucket_mean_abs_distance": 1.758
+    },
+    "siemens": {
+      "label": "Siemens",
+      "n": 32,
+      "n_score_cvss": 32,
+      "n_bucket": 32,
+      "spearman_score_vs_vendor_cvss": {
+        "rho": 0.4611,
+        "p": 0.007906429902543552,
+        "n": 32
+      },
+      "spearman_baseline_our_cvss_vs_vendor_cvss": {
+        "rho": 0.7628,
+        "p": 6.082446903375772e-07,
+        "n": 31
+      },
+      "cohen_kappa_bucket": 0.0198,
+      "bucket_agreement_rate": 0.0312,
+      "bucket_mean_abs_distance": 1.75
+    },
+    "cisa": {
+      "label": "CISA",
+      "n": 12,
+      "n_score_cvss": 12,
+      "n_bucket": 12,
+      "spearman_score_vs_vendor_cvss": {
+        "rho": -0.0107,
+        "p": 0.9736326448501226,
+        "n": 12
+      },
+      "spearman_baseline_our_cvss_vs_vendor_cvss": {
+        "rho": 0.5588,
+        "p": 0.07395777623968605,
+        "n": 11
+      },
+      "cohen_kappa_bucket": 0.0294,
+      "bucket_agreement_rate": 0.0833,
+      "bucket_mean_abs_distance": 1.5
+    }
+  },
+  "per_component": [
+    {
+      "component": "mbedTLS",
+      "cves": 16,
+      "act": 0,
+      "attend": 0,
+      "trackstar": 16,
+      "track": 0,
+      "vendor_cvss_avg": 7.97
+    },
+    {
+      "component": "cryptography",
+      "cves": 4,
+      "act": 0,
+      "attend": 1,
+      "trackstar": 3,
+      "track": 0,
+      "vendor_cvss_avg": 5.62
+    },
+    {
+      "component": "node-forge",
+      "cves": 3,
+      "act": 0,
+      "attend": 0,
+      "trackstar": 3,
+      "track": 0,
+      "vendor_cvss_avg": 7.13
+    },
+    {
+      "component": "axios",
+      "cves": 2,
+      "act": 0,
+      "attend": 0,
+      "trackstar": 2,
+      "track": 0,
+      "vendor_cvss_avg": 7.75
+    },
+    {
+      "component": "qs",
+      "cves": 2,
+      "act": 0,
+      "attend": 0,
+      "trackstar": 2,
+      "track": 0,
+      "vendor_cvss_avg": 7.5
+    },
+    {
+      "component": "traverse",
+      "cves": 1,
+      "act": 0,
+      "attend": 0,
+      "trackstar": 1,
+      "track": 0,
+      "vendor_cvss_avg": 9.3
+    },
+    {
+      "component": "babel-traverse",
+      "cves": 1,
+      "act": 0,
+      "attend": 0,
+      "trackstar": 1,
+      "track": 0,
+      "vendor_cvss_avg": 9.3
+    },
+    {
+      "component": "form-data",
+      "cves": 1,
+      "act": 0,
+      "attend": 0,
+      "trackstar": 1,
+      "track": 0,
+      "vendor_cvss_avg": 8.7
+    },
+    {
+      "component": "js-yaml",
+      "cves": 1,
+      "act": 0,
+      "attend": 0,
+      "trackstar": 1,
+      "track": 0,
+      "vendor_cvss_avg": 5.3
+    },
+    {
+      "component": "paramiko",
+      "cves": 1,
+      "act": 0,
+      "attend": 1,
+      "trackstar": 0,
+      "track": 0,
+      "vendor_cvss_avg": 5.9
+    },
+    {
+      "component": "threadx",
+      "cves": 1,
+      "act": 0,
+      "attend": 0,
+      "trackstar": 1,
+      "track": 0,
+      "vendor_cvss_avg": 9.8
+    }
+  ],
+  "n_total_pairs": 33,
+  "n_unique_cves": 18
+}

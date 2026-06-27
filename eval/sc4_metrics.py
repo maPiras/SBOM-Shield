@@ -32,6 +32,44 @@ from scipy.stats import spearmanr
 from core.csaf import get_for_cves, stats as csaf_stats
 from storage.database import get_conn
 
+# ── GHSA/PYSEC → CVE alias resolution (widens the CSAF join) ──────────────────
+# Findings emitted with a non-CVE primary id (GHSA, PYSEC, RUSTSEC) are dropped
+# by a naive CVE-only join even when they carry a CVE alias, because the SBOM
+# serialisation does not persist aliases. We resolve them against OSV once and
+# cache the mapping so the join is reproducible and offline on re-runs.
+_ALIAS_CACHE = ROOT / "eval" / "results" / "_alias_cache.json"
+
+
+def _load_alias_cache() -> dict:
+    try:
+        return json.loads(_ALIAS_CACHE.read_text())
+    except Exception:
+        return {}
+
+
+def _resolve_aliases(non_cve_ids: set[str], cache: dict) -> dict:
+    """Return {vuln_id: CVE-or-None}, querying OSV only for uncached ids."""
+    import httpx
+    todo = [i for i in non_cve_ids if i not in cache]
+    if todo:
+        from concurrent.futures import ThreadPoolExecutor
+
+        def fetch(vid):
+            try:
+                r = httpx.get(f"https://api.osv.dev/v1/vulns/{vid}", timeout=20)
+                if r.status_code == 200:
+                    cve = next((a for a in r.json().get("aliases", [])
+                                if str(a).startswith("CVE-")), None)
+                    return vid, cve
+            except Exception:
+                pass
+            return vid, None
+        with ThreadPoolExecutor(max_workers=16) as ex:
+            for vid, cve in ex.map(fetch, todo):
+                cache[vid] = cve
+        _ALIAS_CACHE.write_text(json.dumps(cache, indent=0))
+    return cache
+
 
 # Mapping B: lenient — vendor "High" maps to our "Act" (both = action required).
 VENDOR_SEV_TO_BUCKET = {
@@ -77,27 +115,48 @@ def _cohen_kappa(a, b):
     return (p_o - p_e) / (1 - p_e)
 
 
-def _collect_scan_vulns(scan_ids: list[int] | None = None) -> list[dict]:
+def _collect_scan_vulns(scan_ids: list[int] | None = None, widen: bool = False) -> list[dict]:
     """All benchmark-scan vulns with our priority breakdown attached.
+
+    When *widen* is True, non-CVE findings (GHSA/PYSEC/RUSTSEC) are resolved to
+    their CVE alias via OSV so they can join the CSAF cache (the alias-collapse
+    robustness experiment). Default False preserves the narrow CVE-id-only join.
 
     Reads from the JSON reports under eval/results/ (richer than DB) but
     falls back to DB if a JSON file is missing."""
+    # SC4 is scoped to the 14-repository PRIORITY pool. The four vendored repos
+    # added later (mongoose-os, esp-mqtt, mbusd, eModbus) belong to the
+    # detection prong only and must not enter the priority/CSAF agreement study.
+    PRIORITY_POOL = {"zephyr", "esp-idf", "apollo", "autoware_universe", "RIOT",
+                     "CarPlayCore", "OpenPLC_v3", "FreeRTOS-Plus-TCP", "mongoose",
+                     "mosquitto", "open62541", "lvgl", "iceoryx", "busybox"}
     rows = []
     results_dir = ROOT / "eval" / "results"
-    json_files = sorted(p for p in results_dir.glob("*.json") if not p.name.startswith("_"))
+    json_files = sorted(p for p in results_dir.glob("*.json")
+                        if p.stem in PRIORITY_POOL)
+    reports = []
+    non_cve = set()
     for jf in json_files:
         try:
             rep = json.loads(jf.read_text())
         except Exception:
             continue
-        repo = jf.stem
+        reports.append((jf.stem, rep))
+        for comp in rep.get("vulnerable_components", []) or []:
+            for v in comp.get("vulns", []) or []:
+                i = str(v.get("id", ""))
+                if i and not i.startswith("CVE-") and not (v.get("cve_alias") or v.get("aliases")):
+                    non_cve.add(i)
+    alias = _resolve_aliases(non_cve, _load_alias_cache()) if widen else {}
+
+    for repo, rep in reports:
         for comp in rep.get("vulnerable_components", []) or []:
             for v in comp.get("vulns", []) or []:
                 cve = v.get("id")
                 if not cve or not cve.startswith("CVE-"):
-                    # Skip GHSA/PYSEC/OSV-only IDs; CSAF feed uses CVE only.
-                    # Use the alias if present.
-                    cve = (v.get("cve_alias") or v.get("aliases") or [None])[0]
+                    # GHSA/PYSEC/RUSTSEC: use a stored alias, else the OSV-resolved one.
+                    cve = (v.get("cve_alias") or (v.get("aliases") or [None])[0]
+                           or alias.get(str(v.get("id", ""))))
                     if not cve or not str(cve).startswith("CVE-"):
                         continue
                 pri = v.get("priority") or {}
@@ -203,10 +262,12 @@ def per_component(joined):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="eval/results/sc4_report.json")
+    ap.add_argument("--widen", action="store_true",
+                    help="resolve GHSA/PYSEC->CVE aliases via OSV to widen the join")
     args = ap.parse_args()
     logging.basicConfig(level=logging.INFO)
 
-    rows = _collect_scan_vulns()
+    rows = _collect_scan_vulns(widen=args.widen)
     print(f"Scan vulns collected: {len(rows)} (unique CVEs: {len({r['cve'] for r in rows})})")
     print(f"CSAF cache: {csaf_stats()}")
 
